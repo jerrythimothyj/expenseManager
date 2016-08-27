@@ -1,0 +1,28 @@
+html,
+body {
+    font-family: 'PT Sans', sans-serif;
+}
+
+.title-text {
+    font-size: 20px;
+}
+
+text {
+  font: 25px 'PT Sans', sans-serif;
+}
+
+.white-bg {
+    text-align: center;
+}
+
+.graph-title {
+    padding-top: 10px;
+}
+
+.table-invoice {
+    font-size: 18px;
+}
+
+.table-invoice th {
+    text-align: center;
+}
