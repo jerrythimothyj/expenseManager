@@ -1,6 +1,6 @@
 (function(angular) {
   'use strict';
-angular.module('expenseManager')
+angular.module('moneyManager')
     .controller('calendarCtrl', ['$scope', function($scope) {
         $(document).ready(function() {
             $('#calendar').fullCalendar({

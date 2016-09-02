@@ -5,19 +5,19 @@
     $obj = json_decode($json);
 
 
-    $expenseManager = new expenseManager();
+    $moneyManager = new moneyManager();
 
     switch($_GET['api']) {
         case 'expenseFields':
-            print_r(json_encode($expenseManager->expenseFields()));
+            print_r(json_encode($moneyManager->expenseFields()));
             break;
             
         case 'spendingFields':
-            print_r(json_encode($expenseManager->spendingFields()));
+            print_r(json_encode($moneyManager->spendingFields()));
             break;
         
         case 'newUserRegistration':
-            print_r(json_encode($expenseManager->newUserRegistration($obj)));
+            print_r(json_encode($moneyManager->newUserRegistration($obj)));
             break;
     }
 ?>

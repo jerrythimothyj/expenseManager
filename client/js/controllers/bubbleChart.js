@@ -1,42 +1,36 @@
 (function(angular) {
   'use strict';
-angular.module('expenseManager')
+angular.module('moneyManager')
     .controller('bubbleChartCtrl', ['$scope', function($scope) {
         var root = {
              "name": "flare",
              "children": [
                 {
-                 "name": "cluster",
-                 "children": [
-                  {"name": "AgglomerativeCluster", "size": 3938}
+                 "name": "bubble0",
+                 "size": [
+                  {"name": "BetweennessCentrality", "size": 3534}
                  ]
                 },
-                {
-                 "name": "graph",
+                 {
+                 "name": "bubble1",
                  "children": [
                   {"name": "BetweennessCentrality", "size": 3534}
                  ]
                 },
                  {
-                 "name": "graph1",
+                 "name": "bubble2",
                  "children": [
                   {"name": "BetweennessCentrality", "size": 3534}
                  ]
                 },
                  {
-                 "name": "graph2",
+                 "name": "bubble3",
                  "children": [
                   {"name": "BetweennessCentrality", "size": 3534}
                  ]
                 },
                  {
-                 "name": "graph3",
-                 "children": [
-                  {"name": "BetweennessCentrality", "size": 3534}
-                 ]
-                },
-                 {
-                 "name": "graph4",
+                 "name": "bubble4",
                  "children": [
                   {"name": "BetweennessCentrality", "size": 3534}
                  ]

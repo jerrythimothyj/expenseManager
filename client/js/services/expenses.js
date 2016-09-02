@@ -1,6 +1,6 @@
 (function(angular) {
   'use strict';
-angular.module('expenseManager')
+angular.module('moneyManager')
     .service('expensesService', function($http) {
         this.expenseFields = () => {
             return $http({

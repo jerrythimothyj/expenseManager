@@ -7,5 +7,5 @@
     require('./config/dbConfig.php');
     require('./config/validations.php');
     require('./config/miscMethods.php');
-    require('./api/expenseManager.php');
+    require('./api/moneyManager.php');
 ?>

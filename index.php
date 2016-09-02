@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Expense Manager</title>
+  <title>Money Manager</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -20,8 +20,10 @@
   <link rel="stylesheet" href="./client/css/skeleton.css">
   <link rel="stylesheet" href="./client/css/text.css">
   <link rel="stylesheet" href="./client/css/colors.css">
+  <link rel="icon" type="image/x-icon" href="./client/images/favicon.ico">
+  <base href="/moneymanager/">
 </head>
-<body data-ng-app="expenseManager">
+<body data-ng-app="moneyManager">
     
 <nav class="navbar navbar-inverse navbar-fixed-top navbar-custom">
   <div class="container-fluid">
@@ -31,7 +33,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Expense Manager</a>
+        <a class="navbar-brand" href="#">Money Manager</a>
     </div>
      <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
@@ -51,7 +53,7 @@
   <div ui-view></div>
 </div>
 
-<script src="./client/js/modules/expenseManager.js"></script>
+<script src="./client/js/modules/moneyManager.js"></script>
 <script src="./client/js/controllers/register.js"></script>
 <script src="./client/js/controllers/expenses.js"></script>
 <script src="./client/js/controllers/bubbleChart.js"></script>

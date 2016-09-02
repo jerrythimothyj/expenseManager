@@ -1,6 +1,6 @@
 (function(angular) {
   'use strict';
-angular.module('expenseManager')
+angular.module('moneyManager')
   .directive('bubbleChart', function() {
     return {
       restrict: 'E',
