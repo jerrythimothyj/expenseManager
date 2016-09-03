@@ -47,14 +47,7 @@
   <script src="./client/js/directives/calendar.js"></script>
   <script src="./client/js/services/register.js"></script>
   <script src="./client/js/services/expenses.js"></script>
-
-  <script>
-  	$(document).on('click','.navbar-collapse.in',function(e) {
-      if( $(e.target).is('a') ) {
-          $(this).collapse('hide');
-      }
-  });
-  </script>
-
+  <script src="./clinet/js/miscellaneous/misc.js"></script>
+  
 </body>
 </html>
