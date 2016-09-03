@@ -47,7 +47,7 @@
   <script src="./client/js/directives/calendar.js"></script>
   <script src="./client/js/services/register.js"></script>
   <script src="./client/js/services/expenses.js"></script>
-  <script src="./clinet/js/miscellaneous/misc.js"></script>
+  <script src="./client/js/miscellaneous/misc.js"></script>
   
 </body>
 </html>
