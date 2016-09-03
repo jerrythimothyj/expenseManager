@@ -4,7 +4,7 @@
 			.directive('navbar', () => {
 				return {
 					restrict: 'E',
-					templateUrl: './client/views/pages/navbar.php'
+					templateUrl: './client/views/components/navbar.php'
 				}
 			});
 
