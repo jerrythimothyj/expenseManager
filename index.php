@@ -26,7 +26,7 @@
   <link rel="stylesheet" href="./client/css/text.css">
   <link rel="stylesheet" href="./client/css/colors.css">
   
-  <base href="/moneymanager/">
+  <base href="/moneyManager/">
 </head>
 <body data-ng-app="moneyManager">
     
@@ -37,16 +37,16 @@
   </div>
 
   <script src="./client/js/modules/moneyManager.js"></script>
-  <script src="./client/js/controllers/register.js"></script>
-  <script src="./client/js/controllers/expenses.js"></script>
-  <script src="./client/js/controllers/bubbleChart.js"></script>
-  <script src="./client/js/controllers/calendar.js"></script>
-  <script src="./client/js/directives/navbar.js"></script>
-  <script src="./client/js/directives/bubbleChart.js"></script>
-  <script src="./client/js/directives/invoices.js"></script>
-  <script src="./client/js/directives/calendar.js"></script>
-  <script src="./client/js/services/register.js"></script>
-  <script src="./client/js/services/expenses.js"></script>
+  <script src="./client/js/controllers/registerController.js"></script>
+  <script src="./client/js/controllers/expensesController.js"></script>
+  <script src="./client/js/controllers/bubbleChartController.js"></script>
+  <script src="./client/js/controllers/calendarController.js"></script>
+  <script src="./client/js/directives/navbarDirective.js"></script>
+  <script src="./client/js/directives/bubbleChartDirective.js"></script>
+  <script src="./client/js/directives/invoicesDirective.js"></script>
+  <script src="./client/js/directives/calendarDirective.js"></script>
+  <script src="./client/js/services/registerService.js"></script>
+  <script src="./client/js/services/expensesService.js"></script>
   <script src="./client/js/miscellaneous/misc.js"></script>
   
 </body>
