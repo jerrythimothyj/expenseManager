@@ -26,7 +26,7 @@
   <link rel="stylesheet" href="./client/css/text.css">
   <link rel="stylesheet" href="./client/css/colors.css">
   
-  <base href="/moneyManager/">
+  <base href="/moneymanager/">
 </head>
 <body data-ng-app="moneyManager">
     
