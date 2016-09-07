@@ -2,25 +2,16 @@
 
     class dbConfig {
         
-        $whitelist = array(
-            '127.0.0.1',
-            '::1'
-        );
+        // private $dbHost     = "sql205.my-webs.org";
+        // private $dbUsername = "mw_6427044";
+        // private $dbPassword = "qwertyui";
+        // private $dbName     = "mw_6427044_bigjapps_mm";
 
-        $miscMethods = new miscMethods();
-        if(!in_array($miscMethods->getIP(), $whitelist)) {
-            private $dbHost     = "localhost";
-            private $dbUsername = "root";
-            private $dbPassword = "";
-            private $dbName     = "bigjapps_mm";
-        }
-        else {
-            private $dbHost     = "sql205.my-webs.org";
-            private $dbUsername = "mw_6427044";
-            private $dbPassword = "qwertyui";
-            private $dbName     = "mw_6427044_bigjapps_mm";
-        }
-        
+        private $dbHost     = "localhost";
+        private $dbUsername = "root";
+        private $dbPassword = "";
+        private $dbName     = "bigjapps_mm";
+
         private $dbCon;
         
         function dbConnect() {
