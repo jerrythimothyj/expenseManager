@@ -7,10 +7,6 @@ angular.module('moneyManager', ['ui.router'])
         $urlRouterProvider.otherwise("/login");
     
         $stateProvider
-        .state('/', {
-          url: "/login",
-          templateUrl: "./client/views/pages/login.php"
-        })
         .state('login', {
           url: "/login",
           templateUrl: "./client/views/pages/login.php"
