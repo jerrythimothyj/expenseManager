@@ -19,5 +19,9 @@
         case 'newUserRegistration':
             print_r(json_encode($moneyManager->newUserRegistration($obj)));
             break;
+
+        case 'logout':
+            print_r(json_encode($moneyManager->logout($obj)));
+            break;
     }
 ?>
