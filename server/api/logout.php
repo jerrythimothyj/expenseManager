@@ -1,5 +1,7 @@
 <?php
 	session_destroy();
-	$returnObj = new stdClass();
-	$returnObj->message = "Logged out successfully";
+	$logoutObj = new stdClass();
+	$logoutObj->message = "Logged out successfully";
+
+	$returnObj  = $logoutObj;
 ?>
