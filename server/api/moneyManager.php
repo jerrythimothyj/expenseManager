@@ -84,5 +84,10 @@
             
             return $spendFieldsRows;
         }
+
+        function logout() {
+            require('./api/logout.php');
+            return $returnObj;
+        }
     }
 ?>
