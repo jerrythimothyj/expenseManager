@@ -9,23 +9,23 @@ angular.module('moneyManager', ['ui.router'])
         $stateProvider
         .state('login', {
           url: "/login",
-          templateUrl: "./client/views/pages/login.php"
+          templateUrl: "./client/views/pages/login.html"
         })
         .state('register', {
           url: "/register",
-          templateUrl: "./client/views/pages/register.php"
+          templateUrl: "./client/views/pages/register.html"
         })
         .state('forgotPassword', {
           url: "/forgotPassword",
-          templateUrl: "./client/views/pages/forgotPassword.php"
+          templateUrl: "./client/views/pages/forgotPassword.html"
         })
         .state('dashboard', {
           url: "/dashboard",
-          templateUrl: "./client/views/pages/dashboard.php"
+          templateUrl: "./client/views/pages/dashboard.html"
         })
         .state('expenses', {
           url: "/expenses",
-          templateUrl: "./client/views/pages/expenses.php",
+          templateUrl: "./client/views/pages/expenses.html",
           controller: 'expensesController',
           controllerAs: 'ec',
           resolve: {
@@ -39,7 +39,7 @@ angular.module('moneyManager', ['ui.router'])
         })
         .state('calendar', {
           url: "/calendar",
-          templateUrl: "./client/views/pages/calendar.php"
+          templateUrl: "./client/views/pages/calendar.html"
         })
     });
 })(window.angular);
