@@ -8,6 +8,10 @@
     $moneyManager = new moneyManager();
 
     switch($_GET['api']) {
+        case 'newUserRegistration':
+            print_r(json_encode($moneyManager->newUserRegistration($obj)));
+            break;
+            
         case 'expenseFields':
             print_r(json_encode($moneyManager->expenseFields()));
             break;
@@ -15,9 +19,9 @@
         case 'spendingFields':
             print_r(json_encode($moneyManager->spendingFields()));
             break;
-        
-        case 'newUserRegistration':
-            print_r(json_encode($moneyManager->newUserRegistration($obj)));
+
+        case 'saveExpenses':
+            print_r(json_encode($moneyManager->saveExpenses()));
             break;
 
         case 'logout':
