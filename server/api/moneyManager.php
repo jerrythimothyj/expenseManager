@@ -4,6 +4,16 @@
             require('./api/newUserRegistration.php');
             return $returnObj;
         }
+
+        function login($userObj) {
+            require('./api/login.php');
+            return $returnObj;
+        }
+
+        function forgotPassword($userObj) {
+            require('./api/forgotPassword.php');
+            return $returnObj;
+        }
         
         function expenseFields() {
             require('./api/expenseFields.php');
