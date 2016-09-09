@@ -14,6 +14,11 @@
             require('./api/forgotPassword.php');
             return $returnObj;
         }
+
+        function logout() {
+            require('./api/logout.php');
+            return $returnObj;
+        }
         
         function expenseFields() {
             require('./api/expenseFields.php');
@@ -25,13 +30,13 @@
             return $returnObj;
         }
 
-         function saveExpenses($expenseObj) {
+        function saveExpenses($expenseObj) {
             require('./api/saveExpenses.php');
             return $returnObj;
         }
 
-        function logout() {
-            require('./api/logout.php');
+        function getExpenses($expenseObj) {
+            require('./api/getExpenses.php');
             return $returnObj;
         }
     }

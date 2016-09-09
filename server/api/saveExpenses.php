@@ -64,7 +64,8 @@
 	        $dbConfig->dbQuery($expenseSql);
   		}
 
-    	$saveExpObj = 'Expenses Saved';
+  		$saveExpObj->saveInd = 1;
+    	$saveExpObj->saveText = 'Expenses Saved';
 
     	$returnObj  = $saveExpObj;
   	}
