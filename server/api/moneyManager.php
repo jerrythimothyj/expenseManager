@@ -25,7 +25,7 @@
             return $returnObj;
         }
 
-         function saveExpenses() {
+         function saveExpenses($expenseObj) {
             require('./api/saveExpenses.php');
             return $returnObj;
         }

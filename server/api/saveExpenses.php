@@ -2,45 +2,73 @@
 	$dbConfig = new dbConfig();
     $dbConfig->dbConnect();
 
-    $saveExpObj = new stdClass();
+    $validations = new validations();
+    $validObj = new stdClass();
 
- //    $jsonData = {
-	// 	date: 'Wed Sep 07 2016 22:15:53 GMT+0530 (India Standard Time)',
-	// 	expenses: [
-	// 		{
-	// 			expenseType: 1,
-	// 			spendingType: 2,
-	// 			amount: 10.00
-	// 		},
-	// 		{
-	// 			expenseType: 3,
-	// 			spendingType: 1,
-	// 			amount: 30.00
-	// 		},
-	// 		{
-	// 			expenseType: 2,
-	// 			spendingType: 2,
-	// 			amount: 37.00
-	// 		},
-	// 		{
-	// 			expenseType: 1,
-	// 			spendingType: 2,
-	// 			amount: 89.00
-	// 		},
-	// 		{
-	// 			expenseType: 15,
-	// 			spendingType: 2,
-	// 			amount: 2.00
-	// 		},
-	// 		{
-	// 			expenseType: 20,
-	// 			spendingType: 2,
-	// 			amount: 99.00
-	// 		}
-	// 	]
-	// };
+    $validObj->validDate = $validations->validateDate($expenseObj->date);
 
-    $saveExpObj = 'Expenses Saved';
+    $validObj->validAll = 1;
+  	if($validObj->validDate == false)
+  		 $validObj->validAll = 0;
 
-    $returnObj  = $saveExpObj;
+  	$ictr = 1;
+  	foreach ($expenseObj->expenses as $expense) {
+  		if(!$validations->validateNumber($expense->expenseType)) {
+  			$validObj->invalidExpenseType[] = $ictr;
+  			$validObj->validAll = 0;
+  		}
+
+  		if(!$validations->validateNumber($expense->spendingType)) {
+  			$validObj->invalidSpendingType[] = $ictr;
+  			$validObj->validAll = 0;
+  		}
+
+  		if(!$validations->validateNumber($expense->amount)) {
+  			$validObj->invalidAmount[] = $ictr;
+  			$validObj->validAll = 0;
+  		}
+
+		$ictr++;
+  	}
+
+  	if($validObj->validAll == 1) {
+  		$saveExpObj = new stdClass();
+
+  		$dbConfig = new dbConfig();
+        $dbConfig->dbConnect();
+        
+        $miscMethods = new miscMethods();
+
+        $expenseSql = "DELETE FROM expenses ";
+        $expenseSql .= "WHERE users_sl='".$_SESSION['users_sl']."' and date='".$expenseObj->date."'";
+        
+        $dbResult = $dbConfig->dbQuery($expenseSql);
+
+  		foreach ($expenseObj->expenses as $expense) {
+	        
+	        $expenseSql = "INSERT INTO expenses (users_sl,";
+	        $expenseSql .= "date,";
+	        $expenseSql .= "expense_types_sl,";
+	        $expenseSql .= "spendings_types_sl,";
+	        $expenseSql .= "amount,";
+	        $expenseSql .= "ip,"; 
+	        $expenseSql .= "time)";
+	        $expenseSql .= "VALUES ('".$_SESSION['users_sl']."',";
+	        $expenseSql .= "'".$expenseObj->date."',";
+	        $expenseSql .= "'".$expense->expenseType."',";
+	        $expenseSql .= "'".$expense->spendingType."',";
+	        $expenseSql .= "'".$expense->amount."',";
+	        $expenseSql .= "'".$miscMethods->getIP()."',";
+	        $expenseSql .= "'".$miscMethods->getDTTM()."')";
+	        
+	        $dbConfig->dbQuery($expenseSql);
+  		}
+
+    	$saveExpObj = 'Expenses Saved';
+
+    	$returnObj  = $saveExpObj;
+  	}
+  	else {
+  		$returnObj = $validObj;
+  	}
 ?>

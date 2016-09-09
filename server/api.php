@@ -21,7 +21,7 @@
             break;
 
         case 'saveExpenses':
-            print_r(json_encode($moneyManager->saveExpenses()));
+            print_r(json_encode($moneyManager->saveExpenses($obj)));
             break;
 
         case 'logout':

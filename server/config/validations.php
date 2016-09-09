@@ -13,5 +13,14 @@
         function validateConfPwd($pwd, $confPwd) {
             return (strcmp($pwd,$confPwd) != 0)? 0 : 1; 
         }
+
+        function validateDate($date) {
+            $dateArr = explode('/', $date);
+            return checkdate($dateArr[2], $dateArr[1], $dateArr[0]);
+        }
+
+        function validateNumber($number) {
+            return is_numeric($number);
+        }
     }
 ?>
