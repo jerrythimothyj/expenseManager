@@ -39,5 +39,9 @@
         case 'getExpenses':
             print_r(json_encode($moneyManager->getExpenses($obj)));
             break;
+
+        case 'getDashboard':
+            print_r(json_encode($moneyManager->getDashboard($obj)));
+            break;
     }
 ?>

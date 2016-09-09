@@ -39,5 +39,10 @@
             require('./api/getExpenses.php');
             return $returnObj;
         }
+
+        function getDashboard($expenseObj) {
+            require('./api/getDashboard.php');
+            return $returnObj;
+        }
     }
 ?>

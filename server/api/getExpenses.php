@@ -1,7 +1,4 @@
 <?php
-	$dbConfig = new dbConfig();
-    $dbConfig->dbConnect();
-
     $validations = new validations();
     $validObj = new stdClass();
 
@@ -16,9 +13,14 @@
   		$dbConfig = new dbConfig();
       $dbConfig->dbConnect();
 
+      $dateArr = explode('/', $expenseObj->date);
+
       $expenseSql = "SELECT expense_types_sl, spendings_types_sl, amount  FROM expenses ";
-      $expenseSql .= "WHERE users_sl='".$_SESSION['users_sl']."' and date='".$expenseObj->date."' ";
-      echo $expenseSql .= "ORDER BY sl DESC";
+      $expenseSql .= "WHERE users_sl='".$_SESSION['users_sl']."'";
+      $expenseSql .= " and date_yyyy='".$dateArr[0]."'";
+      $expenseSql .= " and date_mm='".$dateArr[1]."'";
+      $expenseSql .= " and date_dd='".$dateArr[2]."'";
+      $expenseSql .= "ORDER BY sl DESC";
 
       $dbResult = $dbConfig->dbQuery($expenseSql);
 
