@@ -29,7 +29,7 @@
               $expArr[$ictr]['spendingsType'] = $dbRow['spendings_types_sl'];
               $expArr[$ictr]['amount'] = $dbRow['amount'];  
 
-              $ictr++;            
+              $ictr++;
           }
       }
 
