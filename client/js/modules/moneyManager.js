@@ -1,7 +1,7 @@
 (function(angular) {
   'use strict';
 angular.module('moneyManager', ['ui.router'])
-    .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
+    .config(($stateProvider, $urlRouterProvider, $locationProvider) => {
         // $locationProvider.html5Mode(true);
     
         $urlRouterProvider.otherwise("/login");
@@ -29,10 +29,10 @@ angular.module('moneyManager', ['ui.router'])
           controller: 'expensesController',
           controllerAs: 'ec',
           resolve: {
-              expenseFields: function(expensesService) {
+              expenseFields: (expensesService) => {
                   return expensesService.expenseFields();
               },
-              spendingFields: function(expensesService) {
+              spendingFields: (expensesService) => {
                   return expensesService.spendingFields();
               }
           }

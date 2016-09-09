@@ -1,7 +1,7 @@
 (function(angular) {
   'use strict';
 angular.module('moneyManager')
-    .service('registerService', function($http, $state) {
+    .service('registerService', ($http, $state) => {
         this.registerNewUser = (user) => {
             $http({
               method: 'POST',

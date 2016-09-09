@@ -1,7 +1,7 @@
 (function(angular){
 	'use strict';
 
-	$(document).on('click','.navbar-collapse.in',function(e) {
+	$(document).on('click','.navbar-collapse.in',(e) => {
       if( $(e.target).is('a') ) {
           $(this).collapse('hide');
       }

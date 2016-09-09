@@ -1,7 +1,7 @@
 (function(angular) {
   'use strict';
 angular.module('moneyManager')
-  .directive('bubbleChart', function() {
+  .directive('bubbleChart', () => {
     return {
       restrict: 'E',
       templateUrl: './client/views/components/bubbleChart.html',
