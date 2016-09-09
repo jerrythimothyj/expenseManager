@@ -1,7 +1,7 @@
 (function(angular) {
   'use strict';
 angular.module('moneyManager')
-  .directive('calendar', function() {
+  .directive('calendar', () => {
     return {
       restrict: 'E',
       templateUrl: './client/views/components/calendar.html',

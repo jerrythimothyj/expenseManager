@@ -1,7 +1,7 @@
 (function(angular) {
   'use strict';
 angular.module('moneyManager')
-    .controller('bubbleChartCtrl', ['$scope', function($scope) {
+    .controller('bubbleChartCtrl', ['$scope', ($scope) => {
         var root = {
              "name": "flare",
              "children": [
@@ -57,22 +57,22 @@ angular.module('moneyManager')
             //d3.json("flare.json", function(error, root) {
               var node = svg.selectAll(".node")
                   .data(bubble.nodes(classes(root))
-                  .filter(function(d) { return !d.children; }))
+                  .filter((d) => { return !d.children; }))
                 .enter().append("g")
                   .attr("class", "node")
-                  .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+                  .attr("transform", (d) => { return "translate(" + d.x + "," + d.y + ")"; });
 
               node.append("title")
-                  .text(function(d) { return d.className + ": " + format(d.value); });
+                  .text((d) => { return d.className + ": " + format(d.value); });
 
               node.append("circle")
-                  .attr("r", function(d) { return d.r; })
-                  .style("fill", function(d) { return color(d.packageName); });
+                  .attr("r", (d) => { return d.r; })
+                  .style("fill", (d) => { return color(d.packageName); });
 
               node.append("text")
                   .attr("dy", ".3em")
                   .style("text-anchor", "middle")
-                  .text(function(d) { return d.className.substring(0, d.r / 3); });
+                  .text((d) => { return d.className.substring(0, d.r / 3); });
             //});
 
             // Returns a flattened hierarchy containing all leaf nodes under the root.
@@ -80,7 +80,7 @@ angular.module('moneyManager')
               var classes = [];
 
               function recurse(name, node) {
-                if (node.children) node.children.forEach(function(child) { recurse(node.name, child); });
+                if (node.children) node.children.forEach((child) => { recurse(node.name, child); });
                 else classes.push({packageName: name, className: node.name, value: node.size});
               }
 
@@ -93,7 +93,7 @@ angular.module('moneyManager')
             var chart = $(".bubble"),
                 aspect = chart.width() / chart.height(),
                 container = chart.parent();
-            $(window).on("resize", function() {
+            $(window).on("resize", () => {
                 var targetWidth = container.width();
                 chart.attr("width", targetWidth);
                 chart.attr("height", Math.round(targetWidth / aspect));

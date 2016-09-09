@@ -1,8 +1,8 @@
 (function(angular) {
   'use strict';
 angular.module('moneyManager')
-    .controller('calendarCtrl', ['$scope', function($scope) {
-        $(document).ready(function() {
+    .controller('calendarCtrl', ['$scope', ($scope) => {
+        $(document).ready(() => {
             $('#calendar').fullCalendar({
                 header: {
                     left: 'prev,next today',
