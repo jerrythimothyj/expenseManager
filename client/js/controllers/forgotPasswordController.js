@@ -1,14 +1,14 @@
 (function(angular) {
   'use strict';
 angular.module('moneyManager')
-    .controller('registerController', function($scope, landingService) {
+    .controller('forgotPasswordController', function($scope, landingService) {
         
         
-        $scope.registrationSubmit = (user) => {
+        $scope.forgotSubmit = (user) => {
         	
-        	landingService.registration(user)
+        	landingService.forgotPassword(user)
             				.then((response) => {
-
+                                    
 									$scope.returnObj = response.data;
 							         //console.log(response.data);
                             	});

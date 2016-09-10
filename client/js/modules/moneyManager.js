@@ -14,11 +14,13 @@ angular.module('moneyManager', ['ui.router'])
         })
         .state('register', {
           url: "/register",
-          templateUrl: "./client/views/pages/register.html"
+          templateUrl: "./client/views/pages/register.html",
+          controller: 'registerController'
         })
         .state('forgotPassword', {
           url: "/forgotPassword",
-          templateUrl: "./client/views/pages/forgotPassword.html"
+          templateUrl: "./client/views/pages/forgotPassword.html",
+          controller: 'forgotPasswordController'
         })
         .state('dashboard', {
           url: "/dashboard",

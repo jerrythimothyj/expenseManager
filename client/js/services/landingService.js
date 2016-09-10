@@ -14,8 +14,31 @@
 					  }
 		            });
 			    }
+
+				this.registration = (submissionDetails) => {
+
+			        return $http({
+		              method: 'POST',
+		              url: './server/api.php?api=newUserRegistration',
+		              data: {
+					    
+					    	user: submissionDetails
+						}
+		            });
+			    }
+			    
+			    this.forgotPassword = (submissionDetails) => {
+
+			        return $http({
+		              method: 'POST',
+		              url: './server/api.php?api=forgotPassword',
+		              data: {
+					    
+					    	user: submissionDetails
+					    
+						}
+		            });
+		            
+			    }
 			});
-
-
-
 })(window.angular);
