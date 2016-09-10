@@ -2,10 +2,12 @@
   'use strict';
 angular.module('moneyManager')
     .controller('loginPanelController', function($scope) {
-        $scope.loginPanelUser = (user) => {
 
-        	console.log(user);
-            // loginPanelService.loginPanelNewUser(user)
+    	console.log($scope.returnObj);
+
+
+        $scope.loginPanelUser = (user) => {
+        	$scope.loginSubmit({submissionDetails: user})
         }
     });
 })(window.angular);

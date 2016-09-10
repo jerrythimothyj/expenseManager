@@ -1,11 +1,13 @@
 (function(angular) {
   'use strict';
-  console.log("Function Working!");
 angular.module('moneyManager')
-    .controller('loginController', function($scope) {
+    .controller('loginController', function($scope, landingService) {
+
         $scope.loginSubmit = (user) => {
-            // loginService.loginNewUser(user)
-            console.log(user);
+        	landingService.login(user)
+        		.then((response) => {
+        			$scope.returnObj = response.data;
+        		});
         }
     });
 })(window.angular);

@@ -6,7 +6,7 @@ angular.module('moneyManager')
       restrict: 'E',
       templateUrl: './client/views/components/loginPanel.html',
       scope: {
-        successStatement: "=",
+        returnObj: "=",
         loginSubmit: "&"
       },
       controller: 'loginPanelController'
