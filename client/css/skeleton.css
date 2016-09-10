@@ -1,9 +1,12 @@
 body { 
-    padding-top: 70px; 
+    padding-top: 70px;
+    padding-bottom: 70px;
 }
 
 .navbar-custom {
     border: none;
+    border-top: 2px solid;
+    border-bottom: 2px solid;
 }
 
 .horizontal-center {
