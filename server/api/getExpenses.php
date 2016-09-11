@@ -29,7 +29,7 @@
           while($dbRow = $dbResult->fetch_assoc()) {
               $expArr[$ictr]['expenseType'] = $dbRow['expense_types_sl'];
               $expArr[$ictr]['spendingsType'] = $dbRow['spendings_types_sl'];
-              $expArr[$ictr]['amount'] = $dbRow['amount'];  
+              $expArr[$ictr]['amount'] = (float)$dbRow['amount'];  
 
               $ictr++;
           }

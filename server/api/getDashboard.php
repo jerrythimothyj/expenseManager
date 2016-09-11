@@ -43,6 +43,7 @@
     $dbResult = $dbConfig->dbQuery($expenseSql);
 
     $ictr=0;
+
     if ($dbResult->num_rows > 0) {
       $dashboardObj->yearly = new stdClass();
       $dashboardObj->yearly->total = 0;
@@ -52,6 +53,8 @@
       // $dashboardObj->weekly->total = 0;
       $dashboardObj->daily = new stdClass();
       $dashboardObj->daily->total = 0;
+
+      $yearlyExpenses = array();
 
         while($dbRow = $dbResult->fetch_assoc()) {
 
@@ -65,15 +68,24 @@
 
           if($dbRow['spendings_types_sl'] == 2) {
             $dashboardObj->yearly->total += $dbRow['amount'];
-            $dashboardObj->yearly->expense_types[][$expenseTypesArr[$dbRow['expense_types_sl']]] = $dbRow['amount'];
+            if(isset($yearlyExpenses[$expenseTypesArr[$dbRow['expense_types_sl']]]))
+              $yearlyExpenses[$expenseTypesArr[$dbRow['expense_types_sl']]] += $dbRow['amount'];
+            else
+              $yearlyExpenses[$expenseTypesArr[$dbRow['expense_types_sl']]] = $dbRow['amount'];
 
             if($dbRow['date_mm'] == $dateArr[1]) {
               $dashboardObj->monthly->total += $dbRow['amount'];
-              $dashboardObj->monthly->expense_types[][$expenseTypesArr[$dbRow['expense_types_sl']]] = $dbRow['amount'];
+              if(isset($monthlyExpenses[$expenseTypesArr[$dbRow['expense_types_sl']]]))
+                $monthlyExpenses[$expenseTypesArr[$dbRow['expense_types_sl']]] += $dbRow['amount'];
+              else
+                $monthlyExpenses[$expenseTypesArr[$dbRow['expense_types_sl']]] = $dbRow['amount'];
 
               if($dbRow['date_dd'] == $dateArr[2]) {
                 $dashboardObj->daily->total += $dbRow['amount'];
-                $dashboardObj->daily->expense_types[][$expenseTypesArr[$dbRow['expense_types_sl']]] = $dbRow['amount'];
+                if(isset($dailyExpenses[$expenseTypesArr[$dbRow['expense_types_sl']]]))
+                  $dailyExpenses[$expenseTypesArr[$dbRow['expense_types_sl']]] += $dbRow['amount'];
+                else
+                  $dailyExpenses[$expenseTypesArr[$dbRow['expense_types_sl']]] = $dbRow['amount'];
               }
             }
           }
@@ -81,6 +93,15 @@
             $ictr++;
         }
     }
+
+    if(isset($yearlyExpenses))
+      $dashboardObj->yearly->expenses = $yearlyExpenses;
+
+    if(isset($monthlyExpenses))
+      $dashboardObj->monthly->expenses = $monthlyExpenses;
+
+    if(isset($dailyExpenses))
+      $dashboardObj->daily->expenses = $dailyExpenses;
 
     $returnObj  = $dashboardObj;
   }

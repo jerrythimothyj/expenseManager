@@ -3,11 +3,54 @@
     <div class="container">
         <div class="landing-panel horizontal-center input-panel">
              <span class="title-text">Enter Expenses</span>
-             <form novalidate>
+             <form novalidate>{{expenses.date}}
               <div class="form-group">
-                <input type="datetime-local" 
-                       class="form-control" 
-                       data-ng-model="expenses.date">
+                <div class="row">
+                  <div class="col-xs-2">
+                    YYYY
+                  </div>
+                  <div class="col-xs-1">
+                    MM
+                  </div>
+                  <div class="col-xs-1">
+                    DD
+                  </div>
+                  <div class="col-xs-6">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-2">
+                    <input type="number" 
+                           class="form-control" 
+                           data-ng-model="expenses.year"
+                           maxlength="4"
+                           size="4"
+                           placeholder="YYYY">
+                  </div>
+                  <div class="col-xs-1">
+                    <input type="number" 
+                           class="form-control" 
+                           data-ng-model="expenses.month"
+                           maxlength="2"
+                           size="2"
+                           placeholder="MM">
+                  </div>
+                  <div class="col-xs-1">
+                    <input type="number" 
+                           class="form-control" 
+                           data-ng-model="expenses.day"
+                           maxlength="2"
+                           size="2"
+                           placeholder="DD">
+                  </div>
+                  <div class="col-xs-1">
+                    <button type="button" class="btn btn-default btn-custom btn-md">
+                      GO <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+                    </button>
+                  </div>
+                  <div class="col-xs-5">
+                  </div>
+                </div>
               </div>
               
                 <div class="table-responsive">          
@@ -22,11 +65,12 @@
                         </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td>1</td>
+                          <tr data-ng-repeat="record in expenseRecords track by $index">
+                            <td>{{$index + 1}}</td>
                             <td>
                                 <select class="form-control"
-                                        data-ng-model="expenses.expenseType">
+                                        data-ng-model="expenseRecords[$index].expenseType"
+                                        data-ng-change="addNewRow($index)">
                                     <option data-ng-repeat="expenseField in expenseFields"
                                             value="{{expenseField.sl}}">
                                         {{expenseField.type | uppercase}}
@@ -35,7 +79,8 @@
                             </td>
                             <td>
                                 <select class="form-control"
-                                        data-ng-model="expenses.spendingType">
+                                        data-ng-model="expenseRecords[$index].spendingsType"
+                                        data-ng-change="addNewRow($index)">
                                     <option data-ng-repeat="spendingField in spendingFields"
                                             value="{{spendingField.sl}}">
                                         {{spendingField.type | uppercase}}
@@ -45,9 +90,15 @@
                             <td>
                                 <input type="number" 
                                        class="form-control" 
-                                       data-ng-model="expenses.amount">
+                                       data-ng-model="expenseRecords[$index].amount"
+                                       data-ng-change="addNewRow($index)">
                             </td>
-                            <td><span class="glyphicon glyphicon-trash alert-color"></span></td>
+                            <td>
+                              <span class="glyphicon glyphicon-trash alert-color"
+                                      data-ng-click="deleteRow($index)"
+                                      data-ng-if="expenseRecords.length - 1 != $index">
+                              </span>
+                            </td>
                           </tr>
                         </tbody>
                     </table>
