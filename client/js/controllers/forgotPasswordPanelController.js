@@ -11,5 +11,11 @@ angular.module('moneyManager')
         	$scope.forgotClicked = 1;
         	$scope.forgotSubmit({submissionDetails: user})
         }
+        $scope.resetForm = () => {
+            $scope.user = {
+                email : '',
+               
+            }
+        }
     });
 })(window.angular);
