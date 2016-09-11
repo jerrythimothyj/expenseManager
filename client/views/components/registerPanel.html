@@ -2,15 +2,19 @@
      data-ng-controller="registerController">
     <div class="container">
         <div class="landing-panel horizontal-center">
-        {{returnObj}}
+        
             <span class="title-text">New User Registration</span>
-            <form novalidate>
+            <form novalidate >
+              <div data-ng-if="returnObj.validAll == 1" 
+                        class="bg-success ">You have successfully created your account!
+                        <span data-ng-bind="resetForm()"></span>
+              </div>
               <div class="form-group">
                 <label for="email">Email address:</label>
                 <input type="text" 
                        class="form-control" 
-                       data-ng-model="user.email">
-                <div data-ng-if="returnObj.validEmail == 0" 
+                       data-ng-model="user.email" >
+                <div data-ng-if="returnObj.validEmail == 0 || returnObj.existingUser == 1" 
                         class="bg-danger ">Invalid Email
                 </div>     
               </div>
@@ -34,7 +38,8 @@
               </div>
               <button type="submit" 
                       class="btn btn-default"
-                      data-ng-click="registerUser(user)">
+                      data-ng-click="registerUser(user)"
+                      data-ng-disabled = "!user.email || !user.pwd || !user.confPwd">
                   Register
               </button>
               <a ui-sref="forgotPassword">Forgot Password?</a>
