@@ -10,7 +10,7 @@ angular.module('moneyManager')
             				.then((response) => {
 
 									$scope.returnObj = response.data;
-							         //console.log(response.data);
+							         
                             	});
             				
         }
