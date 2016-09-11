@@ -45,8 +45,11 @@ angular.module('moneyManager', ['ui.router'])
           templateUrl: "./client/views/pages/calendar.html"
         })
     })
-    .run(function ($state,$rootScope) {
-       $rootScope.$state = $state;
+
+
+    .run(function($state, $rootScope) {
+        $rootScope.$state = $state;
     });
+    
 
 })(window.angular);
