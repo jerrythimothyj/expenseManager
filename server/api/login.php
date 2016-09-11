@@ -27,6 +27,8 @@
         $validObj->existingUser = 0;
         $userSql = "SELECT sl FROM users ";
         $userSql .= "WHERE email='".$_SESSION['users_email']."'";
+        $userSql .= " and password='".$userObj->user->pwd."'";
+
         
         $dbResult = $dbConfig->dbQuery($userSql);
         if ($dbResult->num_rows > 0) {
@@ -43,8 +45,7 @@
 	        $userSql = "INSERT INTO users_log (users_sl,";
 	        $userSql .= "ip,"; 
 	        $userSql .= "time)";
-	        $userSql .= "VALUES ('".$newUserObj->user->users_sl."',";
-	        $userSql .= "'".$userSql->user->pwd."',";
+	        $userSql .= "VALUES ('".$_SESSION['users_sl']."',";
 	        $userSql .= "'".$miscMethods->getIP()."',";
 	        $userSql .= "'".$miscMethods->getDTTM()."')";
 	        

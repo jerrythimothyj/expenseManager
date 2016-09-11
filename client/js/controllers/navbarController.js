@@ -2,13 +2,16 @@
   'use strict';
 angular.module('moneyManager')
 
-    .controller('navbarController', function($scope, landingService) {
+    .controller('navbarController', function($state, $scope, landingService) {
 
         $scope.logout = () => {
         	landingService.logout()
         		.then((response) => {
-        			console.log(response.data);
-        			// $scope.returnObj = response.data;
+        			$scope.returnObj = response.data;
+
+                    if ($scope.returnObj.logoutInd == 1) {
+                        $state.go ('login');
+                    }
         		});
         }
     });
