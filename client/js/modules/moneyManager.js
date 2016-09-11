@@ -9,7 +9,8 @@ angular.module('moneyManager', ['ui.router'])
         $stateProvider
         .state('login', {
           url: "/login",
-          templateUrl: "./client/views/pages/login.html"
+          templateUrl: "./client/views/pages/login.html",
+          controller: 'loginController'
         })
         .state('register', {
           url: "/register",
