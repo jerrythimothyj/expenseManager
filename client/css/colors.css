@@ -55,3 +55,7 @@ div[class^='bubbleChart'], div[class*=' bubbleChart'] {
 .calendar {
     background-color: #ffffff;
 }
+
+#loaderDiv {
+    background-color: white;
+}
