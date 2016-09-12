@@ -3,7 +3,7 @@
 angular.module('moneyManager', ['ui.router'])
     
     .config(function($httpProvider) {
-      $httpProvider.interceptors.push ('myInterceptor');
+      $httpProvider.interceptors.push ('loaderInterceptorFactory');
     })
 
     .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
