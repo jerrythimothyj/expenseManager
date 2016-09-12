@@ -1,6 +1,9 @@
 (function(angular) {
   'use strict';
 angular.module('moneyManager', ['ui.router'])
+    .config(function($httpProvider){
+      $httpProvider.interceptors.push('loderInterceptor');
+    })
     .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
         // $locationProvider.html5Mode(true);
     
