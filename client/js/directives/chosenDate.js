@@ -1,10 +1,10 @@
 (function(angular){
 	'use strict';
 	angular.module('moneyManager')
-			.directive('chosenData', () => {
+			.directive('chosenDate', () => {
 				return {
 					restrict: 'E',
-					templateUrl: './client/views/components/chosenData.html' //,
+					templateUrl: './client/views/components/chosenDate.html' //,
 					//controller: 'navbarController'
 				}
 			});
