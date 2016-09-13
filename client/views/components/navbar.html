@@ -12,19 +12,17 @@
       
       <!--data-ng-hide="$state.includes('register')"-->
         <ul class="nav navbar-nav">
-            <li data-ng-if="$state.current.name != 'register' && $state.current.name != 'login' && $state.current.name != 'forgotPassword'" class="active" ><a ui-sref="dashboard">Dashboard</a></li>
-            <li data-ng-if="$state.current.name != 'register' && $state.current.name != 'login' && $state.current.name != 'forgotPassword'" ><a ui-sref="expenses">Expenses</a></li>
+            <li data-ng-if="$state.current.name != 'register' && $state.current.name != 'login' && $state.current.name != 'forgotPassword'" ui-sref-active="active" class="active" ><a ui-sref="dashboard">Dashboard</a></li>
+            <li data-ng-if="$state.current.name != 'register' && $state.current.name != 'login' && $state.current.name != 'forgotPassword'" ui-sref-active="active" ><a ui-sref="expenses">Expenses</a></li>
             <!-- <li><a ui-sref="calendar">Calendar</a></li> -->
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li><a ui-sref="profile"><span class="glyphicon glyphicon-user"></span> Guest</a></li>
-            <li data-ng-if="$state.current.name != 'register' && $state.current.name != 'login' && $state.current.name != 'forgotPassword'"
-                data-ng-click="logout()">
-              <a>
+            <!-- <li><a ui-sref="profile" class="btn"><span class="glyphicon glyphicon-user"></span> Guest</a></li> -->
+            <li data-ng-if="$state.current.name != 'register' && $state.current.name != 'login' && $state.current.name != 'forgotPassword'">
+              <a data-ng-click="logout()" class="btn">
                 <span class="glyphicon glyphicon-log-out">
                 </span> Logout
               </a>
-              <div></div>
             </li>
         </ul>
       </div>

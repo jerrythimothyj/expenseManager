@@ -8,31 +8,127 @@ angular.module('moneyManager')
                 {
                  "name": "bubble0",
                  "size": [
-                  {"name": "BetweennessCentrality", "size": 3534}
+                  {"name": "food", "size": 1}
                  ]
                 },
                  {
                  "name": "bubble1",
                  "children": [
-                  {"name": "BetweennessCentrality", "size": 3534}
+                  {"name": "snacks", "size": 2}
                  ]
                 },
                  {
                  "name": "bubble2",
                  "children": [
-                  {"name": "BetweennessCentrality", "size": 3534}
+                  {"name": "clothing", "size": 3}
                  ]
                 },
                  {
                  "name": "bubble3",
                  "children": [
-                  {"name": "BetweennessCentrality", "size": 3534}
+                  {"name": "entertainment", "size": 4}
                  ]
                 },
                  {
                  "name": "bubble4",
                  "children": [
-                  {"name": "BetweennessCentrality", "size": 3534}
+                  {"name": "electricity", "size": 5}
+                 ]
+                },
+                {
+                 "name": "bubble5",
+                 "children": [
+                  {"name": "water", "size": 6}
+                 ]
+                },
+                {
+                 "name": "bubble6",
+                 "children": [
+                  {"name": "wage", "size": 7}
+                 ]
+                },
+                {
+                 "name": "bubble7",
+                 "children": [
+                  {"name": "travel", "size": 8}
+                 ]
+                },
+                {
+                 "name": "bubble8",
+                 "children": [
+                  {"name": "construction", "size": 9}
+                 ]
+                },
+                {
+                 "name": "bubble9",
+                 "children": [
+                  {"name": "others", "size": 10}
+                 ]
+                },
+                {
+                 "name": "bubble10",
+                 "children": [
+                  {"name": "groceries", "size": 11}
+                 ]
+                },
+                {
+                 "name": "bubble11",
+                 "children": [
+                  {"name": "phone", "size": 12}
+                 ]
+                },
+                {
+                 "name": "bubble12",
+                 "children": [
+                  {"name": "emi", "size": 13}
+                 ]
+                },
+                {
+                 "name": "bubble13",
+                 "children": [
+                  {"name": "debt", "size": 14}
+                 ]
+                },
+                {
+                 "name": "bubble14",
+                 "children": [
+                  {"name": "toys", "size": 15}
+                 ]
+                },
+                {
+                 "name": "bubble15",
+                 "children": [
+                  {"name": "furnitures", "size": 16}
+                 ]
+                },
+                {
+                 "name": "bubble16",
+                 "children": [
+                  {"name": "household", "size": 17}
+                 ]
+                },
+                {
+                 "name": "bubble17",
+                 "children": [
+                  {"name": "rent", "size": 18}
+                 ]
+                },
+                {
+                 "name": "bubble18",
+                 "children": [
+                  {"name": "donation", "size": 19}
+                 ]
+                },
+                {
+                 "name": "bubble19",
+                 "children": [
+                  {"name": "pets", "size": 20}
+                 ]
+                },
+                {
+                 "name": "bubble20",
+                 "children": [
+                  {"name": "tv", "size": 21}
                  ]
                 },
             ]};

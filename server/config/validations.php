@@ -16,7 +16,7 @@
 
         function validateDate($date) {
             $dateArr = explode('/', $date);
-            return checkdate($dateArr[2], $dateArr[1], $dateArr[0]);
+            return checkdate($dateArr[1], $dateArr[2], $dateArr[0]);
         }
 
         function validateNumber($number) {

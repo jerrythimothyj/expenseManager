@@ -2,16 +2,11 @@
   'use strict';
 angular.module('moneyManager')
     .controller('forgotPasswordController', function($scope, landingService) {
-        
-        
+          
         $scope.forgotSubmit = (user) => {
-        	
-        	landingService.forgotPassword(user)
-            				.then((response) => {
-                                    
-									$scope.returnObj = response.data;
-							         //console.log(response.data);
-                            	});
+        	landingService.forgotPassword(user).then((response) => {
+            	$scope.returnObj = response.data;
+            });
             				
         }
     });
