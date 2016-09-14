@@ -4,8 +4,13 @@
 			.directive('expenseRecords', () => {
 				return {
 					restrict: 'E',
-					templateUrl: './client/views/components/expenseRecords.html' //,
-					//controller: 'navbarController'
+					templateUrl: './client/views/components/expenseRecords.html',
+					scope: {
+						expenseFields: '=',
+						spendingFields: '=',
+						expensesRecords: '='
+					},
+					controller: 'expenseRecordsController'
 				}
 			});
 

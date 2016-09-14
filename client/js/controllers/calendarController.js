@@ -1,7 +1,7 @@
 (function(angular) {
   'use strict';
 angular.module('moneyManager')
-    .controller('calendarCtrl', ['$scope', function($scope) {
+    .controller('calendarCtrl', function($scope) {
         $(document).ready(function() {
             $('#calendar').fullCalendar({
                 header: {
@@ -71,5 +71,5 @@ angular.module('moneyManager')
             });
 
         });
-    }]);
+    });
 })(window.angular);

@@ -1,19 +1,18 @@
 <div class="vertical-center input-page"
      data-ng-controller="registerController">
     <div class="container">
-        <div class="landing-panel horizontal-center input-panel">
+        <div class="landing-panel horizontal-center input-panel shadow-box">
              <span class="title-text">Enter Expenses</span>
-             <form novalidate>{{expenses.date}}
+             <form novalidate>
               
-                <chosen-date></chosen-date>
-                <expense-records></expense-records>
-                 
-                 
-              <button type="submit" 
-                      class="btn btn-default btn-custom"
-                      data-ng-click="saveExpenses(expenses)">
-                  Submit
-              </button>
+                <chosen-date expense-date="expenseDate"
+                             get-expense-records="getExpenseRecords(expenseDate)">
+                </chosen-date>
+                <expense-records expense-fields="expenseFields" 
+                                 spending-fields="spendingFields" 
+                                 expenses-records="expensesRecords">
+                </expense-records>
+
             </form>
         </div>
     </div>
