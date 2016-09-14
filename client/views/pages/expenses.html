@@ -1,115 +1,18 @@
 <div class="vertical-center input-page"
      data-ng-controller="registerController">
     <div class="container">
-        <div class="landing-panel horizontal-center input-panel">
+        <div class="landing-panel horizontal-center input-panel shadow-box">
              <span class="title-text">Enter Expenses</span>
-             <form novalidate>{{expenses.date}}
-              <div class="form-group">
-                <div class="row">
-                  <div class="col-xs-2">
-                    YYYY
-                  </div>
-                  <div class="col-xs-1">
-                    MM
-                  </div>
-                  <div class="col-xs-1">
-                    DD
-                  </div>
-                  <div class="col-xs-6">
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-xs-2">
-                    <input type="number" 
-                           class="form-control" 
-                           data-ng-model="expenses.year"
-                           maxlength="4"
-                           size="4"
-                           placeholder="YYYY">
-                  </div>
-                  <div class="col-xs-1">
-                    <input type="number" 
-                           class="form-control" 
-                           data-ng-model="expenses.month"
-                           maxlength="2"
-                           size="2"
-                           placeholder="MM">
-                  </div>
-                  <div class="col-xs-1">
-                    <input type="number" 
-                           class="form-control" 
-                           data-ng-model="expenses.day"
-                           maxlength="2"
-                           size="2"
-                           placeholder="DD">
-                  </div>
-                  <div class="col-xs-1">
-                    <button type="button" class="btn btn-default btn-custom btn-md">
-                      GO <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
-                    </button>
-                  </div>
-                  <div class="col-xs-5">
-                  </div>
-                </div>
-              </div>
+             <form novalidate>
               
-                <div class="table-responsive">          
-                    <table class="table table-bordered">
-                        <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Expense Type</th>
-                            <th>Spending Type</th>
-                            <th>Amount</th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                          <tr data-ng-repeat="record in expenseRecords track by $index">
-                            <td>{{$index + 1}}</td>
-                            <td>
-                                <select class="form-control"
-                                        data-ng-model="expenseRecords[$index].expenseType"
-                                        data-ng-change="addNewRow($index)">
-                                    <option data-ng-repeat="expenseField in expenseFields"
-                                            value="{{expenseField.sl}}">
-                                        {{expenseField.type | uppercase}}
-                                    </option>
-                                </select>
-                            </td>
-                            <td>
-                                <select class="form-control"
-                                        data-ng-model="expenseRecords[$index].spendingsType"
-                                        data-ng-change="addNewRow($index)">
-                                    <option data-ng-repeat="spendingField in spendingFields"
-                                            value="{{spendingField.sl}}">
-                                        {{spendingField.type | uppercase}}
-                                    </option>
-                                </select>
-                            </td>
-                            <td>
-                                <input type="number" 
-                                       class="form-control" 
-                                       data-ng-model="expenseRecords[$index].amount"
-                                       data-ng-change="addNewRow($index)">
-                            </td>
-                            <td>
-                              <span class="glyphicon glyphicon-trash alert-color"
-                                      data-ng-click="deleteRow($index)"
-                                      data-ng-if="expenseRecords.length - 1 != $index">
-                              </span>
-                            </td>
-                          </tr>
-                        </tbody>
-                    </table>
-                </div>
-                 
-                 
-              <button type="submit" 
-                      class="btn btn-default btn-custom"
-                      data-ng-click="saveExpenses(expenses)">
-                  Submit
-              </button>
+                <chosen-date expense-date="expenseDate"
+                             get-expense-records="getExpenseRecords(expenseDate)">
+                </chosen-date>
+                <expense-records expense-fields="expenseFields" 
+                                 spending-fields="spendingFields" 
+                                 expenses-records="expensesRecords">
+                </expense-records>
+
             </form>
         </div>
     </div>

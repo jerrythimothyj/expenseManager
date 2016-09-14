@@ -7,10 +7,10 @@ angular.module('moneyManager')
       templateUrl: './client/views/components/bubbleChart.html',
       scope: {
           bubbleNo: '@',
-          titleText: '@'
+          titleText: '@',
+          bubbleData: '='
       },
-      controller: 'bubbleChartCtrl',
-      controllerAs: 'bcc'
+      controller: 'bubbleChartController'
     };
   });
 })(window.angular);

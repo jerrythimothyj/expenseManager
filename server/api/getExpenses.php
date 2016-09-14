@@ -24,6 +24,8 @@
 
       $dbResult = $dbConfig->dbQuery($expenseSql);
 
+      $expArr = [];
+
       $ictr=0;
       if ($dbResult->num_rows > 0) {
           while($dbRow = $dbResult->fetch_assoc()) {

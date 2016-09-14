@@ -15,5 +15,15 @@ angular.module('moneyManager')
               url: './server/api.php?api=spendingFields'
             });
         }
+
+        this.getExpenses = (obj) => {
+            return $http({
+              method: 'POST',
+              url: './server/api.php?api=getExpenses',
+              data: {
+                date: obj
+              }
+            });
+        }
     });
 })(window.angular);

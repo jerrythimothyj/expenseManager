@@ -1,54 +1,43 @@
 (function(angular) {
   'use strict';
 angular.module('moneyManager')
-    .controller('expensesController', ['$scope', 'expensesService', 'expenseFields', 'spendingFields', function($scope, expensesService, expenseFields, spendingFields) {
+    .controller('expensesController', function($scope, expenseFields, spendingFields, expensesData, expensesService) {
         $scope.expenseFields = _.sortBy(expenseFields.data, 'type');
         $scope.spendingFields = _.sortBy(spendingFields.data, 'type');
 
         let d = new Date();
-        $scope.expenses = {
+        $scope.expenseDate = {
         	year: d.getFullYear(),
-        	month: d.getMonth(),
+        	month: (d.getMonth() + 1),
         	day: d.getDate()
         }
 
-        $scope.expenseRecords = [
-		  {
-		    "expenseType": "2",
-		    "spendingsType": "1",
-		    "amount": 98
-		  },
-		  {
-		    "expenseType": "3",
-		    "spendingsType": "2",
-		    "amount": 10
-		  },
-		  {
-		    "expenseType": "3",
-		    "spendingsType": "2",
-		    "amount": 10
-		  }
-		];
+  //       $scope.expensesRecords = [
+		//   {
+		//     "expenseType": "2",
+		//     "spendingsType": "1",
+		//     "amount": 98
+		//   },
+		//   {
+		//     "expenseType": "3",
+		//     "spendingsType": "2",
+		//     "amount": 10
+		//   },
+		//   {
+		//     "expenseType": "3",
+		//     "spendingsType": "2",
+		//     "amount": 10
+		//   }
+		// ];
 
-        $scope.expenseRecords.push(null);
+        $scope.expensesRecords = expensesData.data;
+        $scope.expensesRecords.push(null);
 
-        $scope.deleteRow = (index) => {
-        	$scope.expenseRecords.splice(index, 1);
-        };
-
-        $scope.addNewRow = (index) => {
-        	if($scope.expenseRecords[$scope.expenseRecords.length - 1] != null) {
-        		$scope.expenseRecords.push(null);
-        	}
-
-        	if($scope.expenseRecords.length > 0 && !$scope.expenseRecords[index]) {
-        		$scope.deleteRow(index);
-        	}
+        $scope.getExpenseRecords = (expenseDate) => {
+            expensesService.getExpenses(expenseDate).then((response) => {
+                $scope.expensesRecords = response.data;
+                $scope.expensesRecords.push(null);
+            });
         }
-
-
-        $scope.saveExpenses = (expenses) => {
-            expensesService.saveExpenses(expenses)
-        }
-    }]);
+    });
 })(window.angular);

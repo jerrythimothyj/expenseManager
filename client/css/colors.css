@@ -1,6 +1,7 @@
 html,
 body {
     background-color: #3498db;
+    background-image: url('../images/bg.png');
 }
 
 .navbar-custom {
@@ -33,6 +34,10 @@ body {
 
 .alert-color {
     color: #db3333;
+}
+
+.shadow-box {
+    box-shadow: 10px 10px 5px #888888;
 }
 
 div[class^='bubbleChart'], div[class*=' bubbleChart'] {
