@@ -13,6 +13,4 @@
 					controller: 'expenseRecordsController'
 				}
 			});
-
-
 })(window.angular);
