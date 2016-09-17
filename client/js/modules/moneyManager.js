@@ -36,7 +36,7 @@ angular.module('moneyManager', ['ui.router'])
           templateUrl: "./client/views/pages/expenses.html",
           controller: 'expensesController',
           controllerAs: 'ec',
-          resolve: {
+          resolve: { 
               expenseFields: function(expensesService) {
                   return expensesService.expenseFields();
               },
