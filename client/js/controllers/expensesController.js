@@ -1,7 +1,7 @@
 (function(angular) {
   'use strict';
 angular.module('moneyManager')
-    .controller('expensesController', function($scope, expenseFields, spendingFields, expensesData, expensesService) {
+    .controller('expensesController', function($scope, $state, expenseFields, spendingFields, expensesData, expensesService) {
         $scope.expenseFields = _.sortBy(expenseFields.data, 'type');
         $scope.spendingFields = _.sortBy(spendingFields.data, 'type');
 
@@ -12,24 +12,6 @@ angular.module('moneyManager')
         	day: d.getDate()
         }
 
-  //       $scope.expensesRecords = [
-		//   {
-		//     "expenseType": "2",
-		//     "spendingsType": "1",
-		//     "amount": 98
-		//   },
-		//   {
-		//     "expenseType": "3",
-		//     "spendingsType": "2",
-		//     "amount": 10
-		//   },
-		//   {
-		//     "expenseType": "3",
-		//     "spendingsType": "2",
-		//     "amount": 10
-		//   }
-		// ];
-
         $scope.expensesRecords = expensesData.data;
         $scope.expensesRecords.push(null);
 
@@ -38,6 +20,19 @@ angular.module('moneyManager')
                 $scope.expensesRecords = response.data;
                 $scope.expensesRecords.push(null);
             });
+        }
+
+        $scope.saveExpenses = (expensesRecords) =>{
+            let expRecords = angular.copy(expensesRecords);
+            expRecords.pop();
+
+            let expenseData = {
+                date: $scope.expenseDate.year + '/' + $scope.expenseDate.month + '/' + $scope.expenseDate.day,
+                expenses: expRecords
+            };
+
+            expensesService.saveExpenses(expenseData);
+
         }
     });
 })(window.angular);

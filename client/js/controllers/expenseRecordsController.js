@@ -15,6 +15,14 @@ angular.module('moneyManager')
         	if($scope.expensesRecords.length > 0 && !$scope.expensesRecords[index]) {
         		$scope.deleteRow(index);
         	}
-        }
+        };
+
+        $scope.saveRecords = (expensesRecords) => {
+            //$scope.expensesRecords.splice(index, 1);
+            $scope.saveExpenses({expensesRecords:expensesRecords});
+           // console.log(expensesRecords);
+        };
+
+
     });
 })(window.angular);
