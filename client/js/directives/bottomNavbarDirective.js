@@ -4,7 +4,8 @@
 			.directive('bottomNavbar', () => {
 				return {
 					restrict: 'E',
-					templateUrl: './client/views/components/bottomNavbar.html'
+					templateUrl: './client/views/components/bottomNavbar.html',
+					controller: 'bottomNavbarController'
 				}
 			});
 

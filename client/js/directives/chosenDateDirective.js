@@ -4,8 +4,12 @@
 			.directive('chosenDate', () => {
 				return {
 					restrict: 'E',
-					templateUrl: './client/views/components/chosenDate.html' //,
-					//controller: 'navbarController'
+					templateUrl: './client/views/components/chosenDate.html',
+					scope: {
+						expenseDate: '=',
+						getExpenseRecords: '&'
+					},
+					controller: 'chosenDateController'
 				}
 			});
 

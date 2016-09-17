@@ -1,6 +1,5 @@
 <div class="white-bg title-text graph-title">
     Recent Invoices
-    
     <table class="table table-invoice">
       <thead>
         <tr>
@@ -11,71 +10,17 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">12 Aug, 2016 12:00:00</th>
-          <td>Food</td>
-          <td>Spending</td>
-          <td>100</td>
+        <tr data-ng-repeat="invoice in invoicesData">
+          <th scope="row">{{invoice.date | date:'fullDate'}}</th>
+          <td>{{invoice.expenseType | uppercase}}</td>
+          <td>{{invoice.spendingType | uppercase}}</td>
+          <td>{{invoice.amount}}</td>
         </tr>
-        <tr>
-          <th scope="row">12 Aug, 2016 12:00:00</th>
-          <td>Food</td>
-          <td>Spending</td>
-          <td>100</td>
-        </tr>
-        <tr>
-          <th scope="row">12 Aug, 2016 12:00:00</th>
-          <td>Food</td>
-          <td>Spending</td>
-          <td>100</td>
-        </tr>
-        <tr>
-          <th scope="row">12 Aug, 2016 12:00:00</th>
-          <td>Food</td>
-          <td>Spending</td>
-          <td>100</td>
-        </tr>
-        <tr>
-          <th scope="row">12 Aug, 2016 12:00:00</th>
-          <td>Food</td>
-          <td>Spending</td>
-          <td>100</td>
-        </tr>
-        <tr>
-          <th scope="row">12 Aug, 2016 12:00:00</th>
-          <td>Food</td>
-          <td>Spending</td>
-          <td>100</td>
-        </tr>
-        <tr>
-          <th scope="row">12 Aug, 2016 12:00:00</th>
-          <td>Food</td>
-          <td>Spending</td>
-          <td>100</td>
-        </tr>
-        <tr>
-          <th scope="row">12 Aug, 2016 12:00:00</th>
-          <td>Food</td>
-          <td>Spending</td>
-          <td>100</td>
-        </tr>
-        <tr>
-          <th scope="row">12 Aug, 2016 12:00:00</th>
-          <td>Food</td>
-          <td>Spending</td>
-          <td>100</td>
-        </tr>
-        <tr>
-          <th scope="row">12 Aug, 2016 12:00:00</th>
-          <td>Food</td>
-          <td>Spending</td>
-          <td>100</td>
-        </tr>
-        <tr>
-          <th scope="row">12 Aug, 2016 12:00:00</th>
-          <td>Food</td>
-          <td>Spending</td>
-          <td>100</td>
+        <tr data-ng-if="!invoicesData">
+          <td scope="row"
+              colspan="4">
+            No Recent Invoices
+          </td>
         </tr>
       </tbody>
     </table>

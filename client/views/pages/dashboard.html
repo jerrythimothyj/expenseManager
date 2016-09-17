@@ -1,16 +1,22 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-4">
-            <bubble-chart bubble-no='1'
-                          title-text='Yearly'>
-            </bubble-chart>
-            <div class="bubbleChart1"></div>
+            <div class="shadow-box">
+                <bubble-chart bubble-no='1'
+                              title-text='Yearly'
+                              bubble-data="yearlyBubble">
+                </bubble-chart>
+                <div class="bubbleChart1"></div>
+            </div>
         </div>
         <div class="col-lg-4">
-            <bubble-chart bubble-no='2'
-                          title-text='Monthly'>
-            </bubble-chart>
-            <div class="bubbleChart2"></div>
+            <div class="shadow-box">
+                <bubble-chart bubble-no='2'
+                              title-text='Monthly'
+                              bubble-data="monthlyBubble">
+                </bubble-chart>
+                <div class="bubbleChart2"></div>
+            </div>
         </div>
         <!-- <div class="col-lg-3">
             <bubble-chart bubble-no='3'
@@ -19,17 +25,22 @@
             <div class="bubbleChart3"></div>
         </div> -->
         <div class="col-lg-4">
-            <bubble-chart bubble-no='4'
-                          title-text='Daily'>
-            </bubble-chart>
-            <div class="bubbleChart4"></div>
+            <div class="shadow-box">
+                <bubble-chart bubble-no='4'
+                              title-text='Daily'
+                              bubble-data="dailyBubble">
+                </bubble-chart>
+                <div class="bubbleChart4"></div>
+            </div>
         </div>
     </div>
-    
+    <br>
     <div class="row">
         <div class="col-lg-12">
-            <invoices>
-            </invoices>
+            <div class="shadow-box">
+                <invoices invoices-data="invoices">
+                </invoices>
+            </div>
         </div>
         <!-- <div class="col-lg-6">
             <calendar>

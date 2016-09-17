@@ -6,6 +6,10 @@ angular.module('moneyManager', ['ui.router'])
       $httpProvider.interceptors.push ('loaderInterceptorFactory');
     })
 
+    .config(function($httpProvider) {
+      $httpProvider.interceptors.push ('apiInterceptorFactory');
+    })
+
     .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
         // $locationProvider.html5Mode(true);
     
@@ -29,7 +33,15 @@ angular.module('moneyManager', ['ui.router'])
         })
         .state('dashboard', {
           url: "/dashboard",
-          templateUrl: "./client/views/pages/dashboard.html"
+          templateUrl: "./client/views/pages/dashboard.html",
+          controller: "dashboardController",
+          resolve: {
+            dashboardData: function(dashboardService) {
+              let d = new Date();
+              let dateObj = d.getFullYear() + '/' + (d.getMonth() + 1)  + '/' + d.getDay();
+              return dashboardService.getDashboard(dateObj);
+            }
+          }
         })
         .state('expenses', {
           url: "/expenses",
@@ -42,6 +54,11 @@ angular.module('moneyManager', ['ui.router'])
               },
               spendingFields: function(expensesService) {
                   return expensesService.spendingFields();
+              },
+              expensesData: function(expensesService) {
+                  let d = new Date();
+                  let dateObj = d.getFullYear() + '/' + (d.getMonth() + 1)  + '/' + d.getDay();
+                  return expensesService.getExpenses(dateObj);
               }
           }
         })
