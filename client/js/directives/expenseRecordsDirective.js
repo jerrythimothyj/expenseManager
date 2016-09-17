@@ -8,7 +8,8 @@
 					scope: {
 						expenseFields: '=',
 						spendingFields: '=',
-						expensesRecords: '='
+						expensesRecords: '=',
+						saveExpenses : '&'
 					},
 					controller: 'expenseRecordsController'
 				}

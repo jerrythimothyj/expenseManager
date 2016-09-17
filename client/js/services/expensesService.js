@@ -25,5 +25,13 @@ angular.module('moneyManager')
               }
             });
         }
+
+        this.saveExpenses = (obj) => {
+            return $http({
+              method: 'POST',
+              url: './server/api.php?api=saveExpenses',
+              data: obj
+            });
+        }
     });
 })(window.angular);
