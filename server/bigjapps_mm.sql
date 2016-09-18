@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 16, 2016 at 05:02 PM
+-- Generation Time: Sep 18, 2016 at 09:32 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.21
 
@@ -69,7 +69,7 @@ CREATE TABLE `expenses` (
   `date_dd` int(11) NOT NULL,
   `spendings_types_sl` bigint(20) NOT NULL,
   `expense_types_sl` bigint(20) NOT NULL,
-  `expense_types_other` text CHARACTER SET utf8 NOT NULL,
+  `comments` text CHARACTER SET utf8 NOT NULL,
   `amount` bigint(20) NOT NULL,
   `ip` text NOT NULL,
   `time` text NOT NULL
@@ -85,6 +85,7 @@ CREATE TABLE `expense_types` (
   `sl` bigint(20) NOT NULL,
   `type` text NOT NULL,
   `eg` text,
+  `color` varchar(10) NOT NULL DEFAULT '6502fe',
   `status` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -92,64 +93,64 @@ CREATE TABLE `expense_types` (
 -- Dumping data for table `expense_types`
 --
 
-INSERT INTO `expense_types` (`sl`, `type`, `eg`, `status`) VALUES
-(1, 'food', NULL, 1),
-(2, 'snacks', NULL, 1),
-(3, 'clothing', NULL, 1),
-(4, 'entertainment', NULL, 1),
-(5, 'electricity', NULL, 1),
-(6, 'water', NULL, 1),
-(7, 'wage', NULL, 1),
-(8, 'travel', NULL, 1),
-(9, 'construction', NULL, 1),
-(10, 'others', NULL, 1),
-(11, 'groceries', NULL, 1),
-(12, 'phone', NULL, 1),
-(13, 'emi', NULL, 1),
-(14, 'debt', NULL, 1),
-(15, 'toys', NULL, 1),
-(16, 'furnitures', NULL, 1),
-(17, 'household', NULL, 1),
-(18, 'rent', NULL, 1),
-(19, 'donation', NULL, 1),
-(20, 'pets', NULL, 1),
-(21, 'tv', NULL, 1),
-(22, 'internet', NULL, 1),
-(23, 'hobby', NULL, 1),
-(24, 'jewels', NULL, 1),
-(25, 'electronics', NULL, 1),
-(26, 'electricals', NULL, 1),
-(27, 'baby', NULL, 1),
-(28, 'medication', NULL, 1),
-(29, 'trainings', NULL, 1),
-(30, 'grooming', NULL, 1),
-(31, 'moving', NULL, 1),
-(32, 'bank', NULL, 1),
-(33, 'creditcard', NULL, 1),
-(34, 'gifts', NULL, 1),
-(35, 'debitcard', NULL, 1),
-(36, 'othercards', NULL, 1),
-(37, 'photography', NULL, 1),
-(38, 'decoration', NULL, 1),
-(39, 'painting', NULL, 1),
-(40, 'labor', NULL, 1),
-(41, 'service', NULL, 1),
-(42, 'sales', NULL, 1),
-(43, 'vehicle', NULL, 1),
-(44, 'advertising', NULL, 1),
-(45, 'alcohol', NULL, 1),
-(46, 'cylindergases', NULL, 1),
-(47, 'hospitality', NULL, 1),
-(48, 'gasoline', NULL, 1),
-(49, 'forms', NULL, 1),
-(50, 'postage', NULL, 1),
-(51, 'safety', NULL, 1),
-(52, 'tax', NULL, 1),
-(53, 'meetings', NULL, 1),
-(54, 'personal', NULL, 1),
-(55, 'petrol', NULL, 1),
-(56, 'fuel', NULL, 1),
-(57, 'tuition', NULL, 1);
+INSERT INTO `expense_types` (`sl`, `type`, `eg`, `color`, `status`) VALUES
+(1, 'food', NULL, '6502fe', 1),
+(2, 'snacks', NULL, 'f6be0c', 1),
+(3, 'clothing', NULL, 'f25533', 1),
+(4, 'entertainment', NULL, '3fcccc', 1),
+(5, 'electricity', NULL, '97b321', 1),
+(6, 'water', NULL, '60ffc1', 1),
+(7, 'wage', NULL, '8af73f', 1),
+(8, 'travel', NULL, '2384e8', 1),
+(9, 'construction', NULL, 'dcb799', 1),
+(10, 'others', NULL, '80cded', 1),
+(11, 'groceries', NULL, 'cccc3f', 1),
+(12, 'phone', NULL, 'cccccc', 1),
+(13, 'emi', NULL, '8521a3', 1),
+(14, 'debt', NULL, '11fb5f', 1),
+(15, 'toys', NULL, '967ae9', 1),
+(16, 'furnitures', NULL, 'bb2d57', 1),
+(17, 'household', NULL, 'e90756', 1),
+(18, 'rent', NULL, '01f089', 1),
+(19, 'donation', NULL, '46e4fa', 1),
+(20, 'pets', NULL, '634496', 1),
+(21, 'tv', NULL, '7fa9c2', 1),
+(22, 'internet', NULL, '27adb9', 1),
+(23, 'hobby', NULL, '4b4ce0', 1),
+(24, 'jewels', NULL, 'e7650c', 1),
+(25, 'electronics', NULL, 'b9d9ef', 1),
+(26, 'electricals', NULL, '54b0b9', 1),
+(27, 'baby', NULL, 'c3136b', 1),
+(28, 'medication', NULL, 'd06be3', 1),
+(29, 'trainings', NULL, 'a7616a', 1),
+(30, 'grooming', NULL, 'e0a1b9', 1),
+(31, 'moving', NULL, 'ddba5b', 1),
+(32, 'bank', NULL, '6140ff', 1),
+(33, 'creditcard', NULL, 'f6b448', 1),
+(34, 'gifts', NULL, '78ea05', 1),
+(35, 'debitcard', NULL, '4df67e', 1),
+(36, 'othercards', NULL, '64a608', 1),
+(37, 'photography', NULL, 'd07bca', 1),
+(38, 'decoration', NULL, 'b5e4e5', 1),
+(39, 'painting', NULL, 'cf937e', 1),
+(40, 'labor', NULL, '32f664', 1),
+(41, 'service', NULL, 'c3aec9', 1),
+(42, 'sales', NULL, '56f94c', 1),
+(43, 'vehicle', NULL, 'f4924e', 1),
+(44, 'advertising', NULL, 'b9bd21', 1),
+(45, 'alcohol', NULL, '08c6a0', 1),
+(46, 'cylindergases', NULL, '5fa184', 1),
+(47, 'hospitality', NULL, '5ee180', 1),
+(48, 'gasoline', NULL, 'e2d666', 1),
+(49, 'forms', NULL, '9fe603', 1),
+(50, 'postage', NULL, '49c8f3', 1),
+(51, 'safety', NULL, 'fcb67e', 1),
+(52, 'tax', NULL, 'fdcef7', 1),
+(53, 'meetings', NULL, 'accf92', 1),
+(54, 'personal', NULL, 'e50ef7', 1),
+(55, 'petrol', NULL, 'fadc84', 1),
+(56, 'fuel', NULL, 'f9174c', 1),
+(57, 'tuition', NULL, 'f0f54d', 1);
 
 -- --------------------------------------------------------
 
@@ -185,6 +186,13 @@ CREATE TABLE `users` (
   `time` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`sl`, `email`, `password`, `ip`, `time`) VALUES
+(1, 'jerrythimothy@gmail.com', 'qwer4321', '::1', 'Saturday 17th of September 2016 06:42:24 PM');
+
 -- --------------------------------------------------------
 
 --
@@ -197,6 +205,16 @@ CREATE TABLE `users_log` (
   `ip` text NOT NULL,
   `time` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users_log`
+--
+
+INSERT INTO `users_log` (`sl`, `users_sl`, `ip`, `time`) VALUES
+(1, 1, '::1', 'Saturday 17th of September 2016 06:42:39 PM'),
+(2, 1, '::1', 'Saturday 17th of September 2016 08:13:08 PM'),
+(3, 1, '::1', 'Sunday 18th of September 2016 07:57:38 AM'),
+(4, 1, '::1', 'Sunday 18th of September 2016 08:12:07 AM');
 
 --
 -- Indexes for dumped tables
@@ -262,7 +280,7 @@ ALTER TABLE `db_errors`
 -- AUTO_INCREMENT for table `expenses`
 --
 ALTER TABLE `expenses`
-  MODIFY `sl` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `sl` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `expense_types`
 --
@@ -277,12 +295,12 @@ ALTER TABLE `spending_types`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `sl` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `sl` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `users_log`
 --
 ALTER TABLE `users_log`
-  MODIFY `sl` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `sl` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

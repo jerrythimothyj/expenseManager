@@ -1,7 +1,7 @@
 (function(angular) {
   'use strict';
 angular.module('moneyManager')
-    .controller('barChartController',function() {
+    .controller('barChartController',function($scope) {
 
       let noOfBarCharts = 3;
       let barChartStart = (ictr) => {
@@ -29,9 +29,12 @@ angular.module('moneyManager')
             .range([0,width]);
 
           //Creates the yScale
+          let domainSet = _.map(Object.keys($scope.barData), (num. key) => {
+            console.log(key);
+          });
           var y0 = d3.scale.ordinal()
             .rangeBands([height, 0], 0.2)
-            .domain(["2016", "2015", "2014", "2013", "2012"]);
+            .domain(Object.keys($scope.barData));
 
           //Defines the y axis styles
           var yAxis = d3.svg.axis()
@@ -47,9 +50,9 @@ angular.module('moneyManager')
             .ticks(numTicks(width)); 
 
           //Loads the data
-          d3.csv("./client/template/template.csv", ready);
+          // d3.json(dataJson, ready);
 
-          function ready(err, data) {
+          function ready(data) {
 
             //FORMAT data
             data.forEach(function(d) {
@@ -107,6 +110,8 @@ angular.module('moneyManager')
               .attr("y", y0.rangeBand()/1.7 )
               .attr("class", "g-labels");
           }
+
+          ready($scope.barData);
 
       }
 

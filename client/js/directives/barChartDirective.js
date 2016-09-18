@@ -5,6 +5,9 @@ angular.module('moneyManager')
     return {
       restrict: 'E',
       templateUrl: './client/views/components/barChart.html',
+      scope: {
+      	barData: '='
+      },
       controller: 'barChartController'
     };
   });
