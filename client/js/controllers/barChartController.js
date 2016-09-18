@@ -15,7 +15,7 @@ angular.module('moneyManager')
           var widther = $('.col-lg-4').width();
 
           var width = widther - margin.left - margin.right,
-              height = 480 - margin.top - margin.bottom;
+              height = 650 - margin.top - margin.bottom;
 
           //Appends the svg to the chart-container div
           var svg = d3.select("." + cate + "BarChart").append("svg")

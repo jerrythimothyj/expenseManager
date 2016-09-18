@@ -6,30 +6,34 @@ angular.module('moneyManager')
 
         $scope.dailyBubble = dashboardData.data.daily;
         $scope.dailyBar = [];
-        for(let ictr = 1; ictr <= 30; ictr++) {
+        _.map(dashboardData.data.daily.comparisons, (num, key) => {
             $scope.dailyBar.push({
-                time: ictr,
-                amount: Math.floor((Math.random() * 100) + 1)
+                time: key,
+                amount: num
             });
-        }
+        });
+        $scope.dailyBar.reverse();
 
         $scope.monthlyBubble = dashboardData.data.monthly;
         $scope.monthlyBar = [];
-        for(let ictr = 1; ictr <= 12; ictr++) {
+        $scope.monthsName = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        _.map(dashboardData.data.monthly.comparisons, (num, key) => {
             $scope.monthlyBar.push({
-                time: ictr,
-                amount: Math.floor((Math.random() * 100) + 1)
+                time: $scope.monthsName[key],
+                amount: num
             });
-        }
+        });
+        $scope.monthlyBar.reverse();
 
         $scope.yearlyBubble = dashboardData.data.yearly;
         $scope.yearlyBar = [];
-        for(let ictr = 2016; ictr >= 2012; ictr--) {
+        _.map(dashboardData.data.yearly.comparisons, (num, key) => {
             $scope.yearlyBar.push({
-                time: ictr,
-                amount: Math.floor((Math.random() * 100) + 1)
+                time: key,
+                amount: num
             });
-        }
+        });
+        $scope.yearlyBar.reverse();
 
         $scope.barData = {
             daily: $scope.dailyBar,
