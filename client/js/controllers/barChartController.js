@@ -15,7 +15,7 @@ angular.module('moneyManager')
           var widther = $('.col-lg-4').width();
 
           var width = widther - margin.left - margin.right,
-              height = 250 - margin.top - margin.bottom;
+              height = 1250 - margin.top - margin.bottom;
 
           //Appends the svg to the chart-container div
           var svg = d3.select(".barChartNo" + ictr).append("svg")
@@ -29,12 +29,13 @@ angular.module('moneyManager')
             .range([0,width]);
 
           //Creates the yScale
-          let domainSet = _.map(Object.keys($scope.barData), (num. key) => {
-            console.log(key);
+          let domainSet = _.map(Object.keys($scope.barData), (num, key) => {
+            return key + 1;
           });
+
           var y0 = d3.scale.ordinal()
             .rangeBands([height, 0], 0.2)
-            .domain(Object.keys($scope.barData));
+            .domain(domainSet);
 
           //Defines the y axis styles
           var yAxis = d3.svg.axis()

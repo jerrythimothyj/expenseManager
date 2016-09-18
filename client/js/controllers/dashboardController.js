@@ -6,7 +6,7 @@ angular.module('moneyManager')
 
         $scope.dailyBubble = dashboardData.data.daily;
         $scope.dailyBar = [];
-        for(let ictr = 0; ictr < 5; ictr++) {
+        for(let ictr = 1; ictr <= 30; ictr++) {
             $scope.dailyBar.push({
                 time: ictr,
                 amount: Math.floor((Math.random() * 100) + 1)
