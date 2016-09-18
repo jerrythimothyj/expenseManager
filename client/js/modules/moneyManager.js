@@ -38,7 +38,7 @@ angular.module('moneyManager', ['ui.router'])
           resolve: {
             dashboardData: function(dashboardService) {
               let d = new Date();
-              let dateObj = d.getFullYear() + '/' + (d.getMonth() + 1)  + '/' + d.getDay();
+              let dateObj = d.getFullYear() + '/' + (d.getMonth() + 1)  + '/' + d.getDate();
               return dashboardService.getDashboard(dateObj);
             }
           }
@@ -48,7 +48,7 @@ angular.module('moneyManager', ['ui.router'])
           templateUrl: "./client/views/pages/expenses.html",
           controller: 'expensesController',
           controllerAs: 'ec',
-          resolve: {
+          resolve: { 
               expenseFields: function(expensesService) {
                   return expensesService.expenseFields();
               },
@@ -57,7 +57,7 @@ angular.module('moneyManager', ['ui.router'])
               },
               expensesData: function(expensesService) {
                   let d = new Date();
-                  let dateObj = d.getFullYear() + '/' + (d.getMonth() + 1)  + '/' + d.getDay();
+                  let dateObj = d.getFullYear() + '/' + (d.getMonth() + 1)  + '/' + d.getDate();
                   return expensesService.getExpenses(dateObj);
               }
           }

@@ -15,7 +15,7 @@
   			$validObj->validAll = 0;
   		}
 
-  		if(!$validations->validateNumber($expense->spendingType)) {
+  		if(!$validations->validateNumber($expense->spendingsType)) {
   			$validObj->invalidSpendingType[] = $ictr;
   			$validObj->validAll = 0;
   		}
@@ -62,7 +62,7 @@
           $expenseSql .= "'".$dateArr[1]."',";
           $expenseSql .= "'".$dateArr[2]."',";
 	        $expenseSql .= "'".$expense->expenseType."',";
-	        $expenseSql .= "'".$expense->spendingType."',";
+	        $expenseSql .= "'".$expense->spendingsType."',";
 	        $expenseSql .= "'".$expense->amount."',";
 	        $expenseSql .= "'".$miscMethods->getIP()."',";
 	        $expenseSql .= "'".$miscMethods->getDTTM()."')";
