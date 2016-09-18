@@ -2,21 +2,49 @@
     <div class="row">
         <div class="col-lg-4">
             <div class="shadow-box">
+                <flat-value flat-class="flat-info"
+                            title-text='Yearly'
+                            flat-data="yearlyBubble">
+                </flat-value>
+            </div>
+            <br>
+            <div class="shadow-box">
                 <bubble-chart bubble-no='1'
-                              title-text='Yearly'
-                              bubble-data="yearlyBubble">
+                              bubble-data="yearlyBubble"
+                              bubble-colors="bubbleColors">
                 </bubble-chart>
                 <div class="bubbleChart1"></div>
             </div>
+            <br>
+            <div class="shadow-box">
+                <bar-chart>
+                </bar-chart>
+                <div class="barChartNo1"></div>
+            </div>
+            <br>
         </div>
         <div class="col-lg-4">
             <div class="shadow-box">
+                <flat-value flat-class="flat-success"
+                            title-text='Monthly'
+                            flat-data="yearlyBubble">
+                </flat-value>
+            </div>
+            <br>
+            <div class="shadow-box">
                 <bubble-chart bubble-no='2'
-                              title-text='Monthly'
-                              bubble-data="monthlyBubble">
+                              bubble-data="monthlyBubble"
+                              bubble-colors="bubbleColors">
                 </bubble-chart>
                 <div class="bubbleChart2"></div>
             </div>
+            <br>
+            <div class="shadow-box">
+                <bar-chart>
+                </bar-chart>
+                <div class="barChartNo2"></div>
+            </div>
+            <br>
         </div>
         <!-- <div class="col-lg-3">
             <bubble-chart bubble-no='3'
@@ -26,15 +54,28 @@
         </div> -->
         <div class="col-lg-4">
             <div class="shadow-box">
+                <flat-value flat-class="flat-danger"
+                            title-text='Daily'
+                            flat-data="yearlyBubble">
+                </flat-value>
+            </div>
+            <br>
+            <div class="shadow-box">
                 <bubble-chart bubble-no='4'
-                              title-text='Daily'
-                              bubble-data="dailyBubble">
+                              bubble-data="dailyBubble"
+                              bubble-colors="bubbleColors">
                 </bubble-chart>
                 <div class="bubbleChart4"></div>
             </div>
+            <br>
+            <div class="shadow-box">
+                <bar-chart>
+                </bar-chart>
+                <div class="barChartNo3"></div>
+            </div>
+            <br>
         </div>
     </div>
-    <br>
     <div class="row">
         <div class="col-lg-12">
             <div class="shadow-box">

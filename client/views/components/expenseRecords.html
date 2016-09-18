@@ -1,9 +1,18 @@
 <div class="table-responsive">
+    <div data-ng-if="expensesSavedRes && expensesSavedRes.saveInd == 1"
+         class="bg-success">
+        Your expenses are saved
+    </div>
+    <div data-ng-if="expensesSavedRes && expensesSavedRes.validAll == 0"
+         class="bg-danger">
+        Please correct the errors highlighted in red
+    </div>
     <table class="table table-bordered">
         <thead>
         <tr>
             <th>#</th>
             <th>Expense Type</th>
+            <th>Optional Comments</th>
             <th>Spending Type</th>
             <th>Amount</th>
             <th></th>
@@ -13,7 +22,9 @@
           <tr data-ng-repeat="record in expensesRecords track by $index">
             <td>{{$index + 1}}</td>
             <td>
-                <select class="form-control"
+                <select class="form-control 
+                                ngClass: {'error-border': expensesSavedRes.invalidExpenseType && 
+                                expensesSavedRes.invalidExpenseType.indexOf($index + 1) != -1}"
                         data-ng-model="expensesRecords[$index].expenseType"
                         data-ng-change="addNewRow($index)">
                     <option data-ng-repeat="expenseField in expenseFields"
@@ -23,7 +34,17 @@
                 </select>
             </td>
             <td>
-                <select class="form-control"
+                <input type="text" 
+                       class="form-control 
+                                ngClass: {'error-border': expensesSavedRes.invalidComments && 
+                                expensesSavedRes.invalidComments.indexOf($index + 1) != -1}"
+                        data-ng-model="expensesRecords[$index].comments"
+                        data-ng-change="addNewRow($index)">
+            </td>
+            <td>
+                <select class="form-control 
+                                ngClass: {'error-border': expensesSavedRes.invalidSpendingType && 
+                                expensesSavedRes.invalidSpendingType.indexOf($index + 1) != -1}"
                         data-ng-model="expensesRecords[$index].spendingsType"
                         data-ng-change="addNewRow($index)">
                     <option data-ng-repeat="spendingField in spendingFields"
@@ -34,7 +55,9 @@
             </td>
             <td>
                 <input type="number" 
-                       class="form-control" 
+                       class="form-control 
+                                ngClass: {'error-border': expensesSavedRes.invalidAmount && 
+                                expensesSavedRes.invalidAmount.indexOf($index + 1) != -1}" 
                        data-ng-model="expensesRecords[$index].amount"
                        data-ng-change="addNewRow($index)">
             </td>

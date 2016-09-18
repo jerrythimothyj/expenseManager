@@ -13,12 +13,18 @@ angular.module('moneyManager')
         }
 
         $scope.expensesRecords = expensesData.data;
-        $scope.expensesRecords.push(null);
+        $scope.emptyRecord = {
+            expenseType: 0,
+            comments: '',
+            spendingsType: 0,
+            amount: 0
+        }
+        $scope.expensesRecords.push($scope.emptyRecord);
 
         $scope.getExpenseRecords = (expenseDate) => {
             expensesService.getExpenses(expenseDate).then((response) => {
                 $scope.expensesRecords = response.data;
-                $scope.expensesRecords.push(null);
+                $scope.expensesRecords.push($scope.emptyRecord);
             });
         }
 
@@ -31,7 +37,9 @@ angular.module('moneyManager')
                 expenses: expRecords
             };
 
-            expensesService.saveExpenses(expenseData);
+            expensesService.saveExpenses(expenseData).then((response) => {
+                $scope.expensesSavedRes = response.data;
+            });
 
         }
     });

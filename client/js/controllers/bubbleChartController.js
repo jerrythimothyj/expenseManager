@@ -57,7 +57,7 @@ angular.module('moneyManager')
 
             node.append("circle")
                 .attr("r", function(d) { return d.r; })
-                .style("fill", function(d) { return (d.value == 0.1)? '#ffffff' : color(d.packageName); });
+                .style("fill", function(d) { return (d.value == 0.1)? '#ffffff' : '#' + $scope.bubbleColors[d.className]; });
 
             node.append("text")
                 .attr("dy", ".3em")

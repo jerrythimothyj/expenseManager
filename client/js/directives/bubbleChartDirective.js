@@ -7,8 +7,8 @@ angular.module('moneyManager')
       templateUrl: './client/views/components/bubbleChart.html',
       scope: {
           bubbleNo: '@',
-          titleText: '@',
-          bubbleData: '='
+          bubbleData: '=',
+          bubbleColors: '='
       },
       controller: 'bubbleChartController'
     };

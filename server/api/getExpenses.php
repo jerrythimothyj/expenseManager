@@ -15,7 +15,7 @@
 
       $dateArr = explode('/', $expenseObj->date);
 
-      $expenseSql = "SELECT expense_types_sl, spendings_types_sl, amount  FROM expenses ";
+      $expenseSql = "SELECT expense_types_sl, comments, spendings_types_sl, amount  FROM expenses ";
       $expenseSql .= "WHERE users_sl='".$_SESSION['users_sl']."'";
       $expenseSql .= " and date_yyyy='".$dateArr[0]."'";
       $expenseSql .= " and date_mm='".$dateArr[1]."'";
@@ -30,6 +30,7 @@
       if ($dbResult->num_rows > 0) {
           while($dbRow = $dbResult->fetch_assoc()) {
               $expArr[$ictr]['expenseType'] = $dbRow['expense_types_sl'];
+              $expArr[$ictr]['comments'] = $dbRow['comments'];
               $expArr[$ictr]['spendingsType'] = $dbRow['spendings_types_sl'];
               $expArr[$ictr]['amount'] = (float)$dbRow['amount'];  
 

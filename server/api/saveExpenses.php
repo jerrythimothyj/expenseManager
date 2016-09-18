@@ -10,17 +10,22 @@
 
   	$ictr = 1;
   	foreach ($expenseObj->expenses as $expense) {
-  		if(!$validations->validateNumber($expense->expenseType)) {
+  		if(!$validations->validateNumber($expense->expenseType) || $expense->expenseType <= 0) {
   			$validObj->invalidExpenseType[] = $ictr;
   			$validObj->validAll = 0;
   		}
 
-  		if(!$validations->validateNumber($expense->spendingsType)) {
+      if(!$validations->validateFreeText($expense->comments)) {
+        $validObj->invalidComments[] = $ictr;
+        $validObj->validAll = 0;
+      }
+
+  		if(!$validations->validateNumber($expense->spendingsType) || $expense->spendingsType <= 0) {
   			$validObj->invalidSpendingType[] = $ictr;
   			$validObj->validAll = 0;
   		}
 
-  		if(!$validations->validateNumber($expense->amount)) {
+  		if(!$validations->validateNumber($expense->amount) || $expense->amount <= 0) {
   			$validObj->invalidAmount[] = $ictr;
   			$validObj->validAll = 0;
   		}
@@ -52,7 +57,8 @@
           $expenseSql .= "date_yyyy,";
           $expenseSql .= "date_mm,";
           $expenseSql .= "date_dd,";
-	        $expenseSql .= "expense_types_sl,";
+          $expenseSql .= "expense_types_sl,";
+          $expenseSql .= "comments,";
 	        $expenseSql .= "spendings_types_sl,";
 	        $expenseSql .= "amount,";
 	        $expenseSql .= "ip,"; 
@@ -61,7 +67,8 @@
           $expenseSql .= "'".$dateArr[0]."',";
           $expenseSql .= "'".$dateArr[1]."',";
           $expenseSql .= "'".$dateArr[2]."',";
-	        $expenseSql .= "'".$expense->expenseType."',";
+          $expenseSql .= "'".$expense->expenseType."',";
+          $expenseSql .= "'".htmlspecialchars($expense->comments)."',";
 	        $expenseSql .= "'".$expense->spendingsType."',";
 	        $expenseSql .= "'".$expense->amount."',";
 	        $expenseSql .= "'".$miscMethods->getIP()."',";

@@ -17,12 +17,13 @@
 
     $dateArr = explode('/', $expenseObj->date);
 
-    $expenseTypesSql = "SELECT sl, type FROM expense_types ";
+    $expenseTypesSql = "SELECT sl, type, color FROM expense_types ";
     $expenseTypesSql .= "WHERE status=1";
     $dbResult = $dbConfig->dbQuery($expenseTypesSql);
     if ($dbResult->num_rows > 0) {
       while($dbRow = $dbResult->fetch_assoc()) {
         $expenseTypesArr[$dbRow['sl']] = $dbRow['type'];
+        $expenseColorsArr[$dbRow['type']] = $dbRow['color'];
       }
     }
 
@@ -38,7 +39,7 @@
     $expenseSql = "SELECT date_yyyy, date_mm, date_dd, expense_types_sl, spendings_types_sl, amount FROM expenses ";
     $expenseSql .= "WHERE users_sl='".$_SESSION['users_sl']."'";
     $expenseSql .= " and date_yyyy='".$dateArr[0]."'";
-    $expenseSql .= "ORDER BY sl DESC";
+    $expenseSql .= " ORDER BY sl DESC";
 
     $dbResult = $dbConfig->dbQuery($expenseSql);
 
@@ -93,6 +94,9 @@
             $ictr++;
         }
     }
+
+    if(isset($expenseColorsArr))
+      $dashboardObj->bubbleColors = $expenseColorsArr;
 
     if(isset($yearlyExpenses))
       $dashboardObj->yearly->expenses = $yearlyExpenses;
