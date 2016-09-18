@@ -64,11 +64,8 @@ text {
   }
 
   .g-labels {
-    font-family: 'Proxima-Nova', sans-serif;
     fill: white;
-    font-weight: bold;
-    font-size: 13px;
-    float: left;
+    font-size: 8px;
   }
 
   .axis line {
@@ -81,7 +78,7 @@ text {
 
   .axis text {
     font-family: 'Proxima-Nova', sans-serif;
-    font-size: 13px;
+    font-size: 8px;
     pointer-events: none;
     fill: #7e7e7e;
   }
@@ -92,7 +89,7 @@ text {
 
   .y.axis text {
     text-anchor: end !important;
-    font-size:14px;
+    font-size:8px;
     fill: #000000;
   }
 

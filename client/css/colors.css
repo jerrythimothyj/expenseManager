@@ -40,12 +40,12 @@ body {
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
 }
 
-div[class^='bubbleChart'], div[class*=' bubbleChart'] {
+div[class^='bubbleChart'], div[class*='bubbleChart'] {
     background-color: #ffffff;
     padding: 5px;
 }
 
-div[class^='barChart'], div[class*=' barChart'] {
+div[class^='BarChart'], div[class*='BarChart'] {
     background-color: #ffffff;
 }
 
@@ -78,12 +78,24 @@ div[class^='barChart'], div[class*=' barChart'] {
     color: #ffffff;
 }
 
+.bar-info {
+    fill: #9358ac;
+}
+
 .flat-success {
     background-color: #81c04d;
     color: #ffffff;
 }
 
+.bar-success {
+    fill: #81c04d;
+}
+
 .flat-danger {
     background-color: #ef553a;
     color: #ffffff;
+}
+
+.bar-danger {
+    fill: #ef553a;
 }

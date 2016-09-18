@@ -14,10 +14,34 @@ angular.module('moneyManager')
         }
 
         $scope.monthlyBubble = dashboardData.data.monthly;
-        $scope.monthlyBar = $scope.dailyBar;
+        $scope.monthlyBar = [];
+        for(let ictr = 1; ictr <= 12; ictr++) {
+            $scope.monthlyBar.push({
+                time: ictr,
+                amount: Math.floor((Math.random() * 100) + 1)
+            });
+        }
 
         $scope.yearlyBubble = dashboardData.data.yearly;
-        $scope.yearlyBar = $scope.dailyBar;
+        $scope.yearlyBar = [];
+        for(let ictr = 2016; ictr >= 2012; ictr--) {
+            $scope.yearlyBar.push({
+                time: ictr,
+                amount: Math.floor((Math.random() * 100) + 1)
+            });
+        }
+
+        $scope.barData = {
+            daily: $scope.dailyBar,
+            monthly: $scope.monthlyBar,
+            yearly: $scope.yearlyBar            
+        }
+
+        $scope.barColorClass = {
+            daily: 'bar-danger',
+            monthly: 'bar-success',
+            yearly: 'bar-info'            
+        }
 
         $scope.invoices = dashboardData.data.invoices;
         _.map($scope.invoices, (num, key) => {
