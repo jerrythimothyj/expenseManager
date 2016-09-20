@@ -9,7 +9,8 @@
 						expenseFields: '=',
 						spendingFields: '=',
 						expensesRecords: '=',
-						saveExpenses : '&'
+						saveExpenses : '&',
+						expensesSavedRes: '='
 					},
 					controller: 'expenseRecordsController'
 				}

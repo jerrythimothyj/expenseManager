@@ -17,12 +17,13 @@
 
     $dateArr = explode('/', $expenseObj->date);
 
-    $expenseTypesSql = "SELECT sl, type FROM expense_types ";
+    $expenseTypesSql = "SELECT sl, type, color FROM expense_types ";
     $expenseTypesSql .= "WHERE status=1";
     $dbResult = $dbConfig->dbQuery($expenseTypesSql);
     if ($dbResult->num_rows > 0) {
       while($dbRow = $dbResult->fetch_assoc()) {
         $expenseTypesArr[$dbRow['sl']] = $dbRow['type'];
+        $expenseColorsArr[$dbRow['type']] = $dbRow['color'];
       }
     }
 
@@ -38,7 +39,7 @@
     $expenseSql = "SELECT date_yyyy, date_mm, date_dd, expense_types_sl, spendings_types_sl, amount FROM expenses ";
     $expenseSql .= "WHERE users_sl='".$_SESSION['users_sl']."'";
     $expenseSql .= " and date_yyyy='".$dateArr[0]."'";
-    $expenseSql .= "ORDER BY sl DESC";
+    $expenseSql .= " ORDER BY sl DESC";
 
     $dbResult = $dbConfig->dbQuery($expenseSql);
 
@@ -94,14 +95,96 @@
         }
     }
 
+    $expenseSql = "SELECT date_yyyy, amount FROM expenses ";
+    $expenseSql .= "WHERE users_sl='".$_SESSION['users_sl']."'";
+    $expenseSql .= " and spendings_types_sl='2' ";
+    $expenseSql .= " and date_yyyy<='".$dateArr[0]."' ";
+    $expenseSql .= " and date_yyyy>='".($dateArr[0] - 9)."'";
+    $expenseSql .= " ORDER BY sl DESC";
+
+    $dbResult = $dbConfig->dbQuery($expenseSql);
+
+
+    if ($dbResult->num_rows > 0) {
+      while($dbRow = $dbResult->fetch_assoc()) {
+        if(!isset($yearBars[$dbRow['date_yyyy']]))
+          $yearBars[$dbRow['date_yyyy']] = 0;
+        $yearBars[$dbRow['date_yyyy']] += $dbRow['amount'];
+      }
+    }
+
+    for($ictr = ($dateArr[0] - 9); $ictr <= $dateArr[0]; $ictr++) {
+      if(!isset($yearBars[$ictr]))
+        $yearBars[$ictr] = 0;
+    }
+
+    $expenseSql = "SELECT date_mm, amount FROM expenses ";
+    $expenseSql .= "WHERE users_sl='".$_SESSION['users_sl']."'";
+    $expenseSql .= " and spendings_types_sl='2' ";
+    $expenseSql .= " and date_yyyy='".$dateArr[0]."' ";
+    $expenseSql .= " and date_mm<='".$dateArr[1]."'";
+    $expenseSql .= " ORDER BY sl DESC";
+
+    $dbResult = $dbConfig->dbQuery($expenseSql);
+
+
+    if ($dbResult->num_rows > 0) {
+      while($dbRow = $dbResult->fetch_assoc()) {
+        if(!isset($monthBars[$dbRow['date_mm']]))
+          $monthBars[$dbRow['date_mm']] = 0;
+        $monthBars[$dbRow['date_mm']] += $dbRow['amount'];
+      }
+    }
+
+    for($ictr = 1; $ictr <= $dateArr[1]; $ictr++) {
+      if(!isset($monthBars[$ictr]))
+        $monthBars[$ictr] = 0;
+    }
+
+    $expenseSql = "SELECT date_dd, amount FROM expenses ";
+    $expenseSql .= "WHERE users_sl='".$_SESSION['users_sl']."'";
+    $expenseSql .= " and spendings_types_sl='2' ";
+    $expenseSql .= " and date_yyyy='".$dateArr[0]."' ";
+    $expenseSql .= " and date_mm='".$dateArr[1]."'";
+    $expenseSql .= " and date_dd<='".$dateArr[2]."'";
+    $expenseSql .= " ORDER BY sl DESC";
+
+    $dbResult = $dbConfig->dbQuery($expenseSql);
+
+
+    if ($dbResult->num_rows > 0) {
+      while($dbRow = $dbResult->fetch_assoc()) {
+        if(!isset($dailyBars[$dbRow['date_dd']]))
+          $dailyBars[$dbRow['date_dd']] = 0;
+        $dailyBars[$dbRow['date_dd']] += $dbRow['amount'];
+      }
+    }
+
+    for($ictr = $dateArr[2]; $ictr >= 1; $ictr--) {
+      if(!isset($dailyBars[$ictr]))
+        $dailyBars[$ictr] = 0;
+    }
+
+    if(isset($expenseColorsArr))
+      $dashboardObj->bubbleColors = $expenseColorsArr;
+
     if(isset($yearlyExpenses))
       $dashboardObj->yearly->expenses = $yearlyExpenses;
+
+    if(isset($yearBars))
+      $dashboardObj->yearly->comparisons = $yearBars;
 
     if(isset($monthlyExpenses))
       $dashboardObj->monthly->expenses = $monthlyExpenses;
 
+    if(isset($monthBars))
+      $dashboardObj->monthly->comparisons = $monthBars;
+
     if(isset($dailyExpenses))
       $dashboardObj->daily->expenses = $dailyExpenses;
+
+    if(isset($dailyBars))
+      $dashboardObj->daily->comparisons = $dailyBars;
 
     $returnObj  = $dashboardObj;
   }

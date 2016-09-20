@@ -22,5 +22,9 @@
         function validateNumber($number) {
             return is_numeric($number);
         }
+
+        function validateFreeText($text) {
+            return true;
+        }
     }
 ?>
