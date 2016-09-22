@@ -1,3 +1,8 @@
+<div data-ng-if="!dateChosen && !getExpenseValidation.validDate"
+     class="bg-primary">
+    Please click GO after selecting a date
+</div>
+<fieldset data-ng-disabled="!dateChosen">
 <div class="table-responsive">
     <div data-ng-if="expensesSavedRes && expensesSavedRes.saveInd == 1"
          class="bg-success">
@@ -15,7 +20,7 @@
             <th>Optional Comments</th>
             <th>Spending Type</th>
             <th>Amount</th>
-            <th></th>
+            <th data-ng-if="dateChosen"></th>
         </tr>
         </thead>
         <tbody>
@@ -61,7 +66,7 @@
                        data-ng-model="expensesRecords[$index].amount"
                        data-ng-change="addNewRow($index)">
             </td>
-            <td>
+            <td data-ng-if="dateChosen">
               <span class="glyphicon glyphicon-trash alert-color"
                       data-ng-click="deleteRow($index)"
                       data-ng-if="expensesRecords.length - 1 != $index">
@@ -77,3 +82,4 @@
         >
     Submit
 </button>
+</fieldset>

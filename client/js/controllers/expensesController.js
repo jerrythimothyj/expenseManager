@@ -2,6 +2,9 @@
   'use strict';
 angular.module('moneyManager')
     .controller('expensesController', function($scope, $state, expenseFields, spendingFields, expensesData, expensesService) {
+        
+        $scope.dateChosen = false;
+
         $scope.expenseFields = _.sortBy(expenseFields.data, 'type');
         $scope.spendingFields = _.sortBy(spendingFields.data, 'type');
 
@@ -23,8 +26,18 @@ angular.module('moneyManager')
 
         $scope.getExpenseRecords = (expenseDate) => {
             expensesService.getExpenses(expenseDate).then((response) => {
-                $scope.expensesRecords = response.data;
-                $scope.expensesRecords.push($scope.emptyRecord);
+                $scope.getExpenseValidation = {};
+
+                if(response.data.validAll == 0) {
+                    $scope.getExpenseValidation = response.data;
+                }
+                else {
+                    $scope.expensesRecords = response.data;
+                    $scope.expensesRecords.push($scope.emptyRecord);
+
+                    $scope.dateChosen = true;
+                    $scope.expensesSavedRes = {};
+                }
             });
         }
 
@@ -39,6 +52,10 @@ angular.module('moneyManager')
 
             expensesService.saveExpenses(expenseData).then((response) => {
                 $scope.expensesSavedRes = response.data;
+
+                if(response.data.saveInd == 1) {
+                    $scope.dateChosen = false;
+                }
             });
 
         }

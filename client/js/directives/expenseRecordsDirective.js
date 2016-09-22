@@ -6,6 +6,8 @@
 					restrict: 'E',
 					templateUrl: './client/views/components/expenseRecords.html',
 					scope: {
+						dateChosen: '=',
+						getExpenseValidation: '=',
 						expenseFields: '=',
 						spendingFields: '=',
 						expensesRecords: '=',

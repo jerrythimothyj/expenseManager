@@ -9,6 +9,15 @@
   		 $validObj->validAll = 0;
 
   	$ictr = 1;
+
+    // if(count($expenseObj->expenses) == 0) {
+    //   $validObj->invalidExpenseType[] = $ictr;
+    //   $validObj->invalidComments[] = $ictr;
+    //   $validObj->invalidSpendingType[] = $ictr;
+    //   $validObj->invalidAmount[] = $ictr;
+    //   $validObj->validAll = 0;    
+    // }
+
   	foreach ($expenseObj->expenses as $expense) {
   		if(!$validations->validateNumber($expense->expenseType) || $expense->expenseType <= 0) {
   			$validObj->invalidExpenseType[] = $ictr;

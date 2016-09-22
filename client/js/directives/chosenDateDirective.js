@@ -7,6 +7,7 @@
 					templateUrl: './client/views/components/chosenDate.html',
 					scope: {
 						expenseDate: '=',
+						getExpenseValidation: '=',
 						getExpenseRecords: '&'
 					},
 					controller: 'chosenDateController'
