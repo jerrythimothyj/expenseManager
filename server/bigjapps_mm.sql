@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 18, 2016 at 09:32 AM
+-- Generation Time: Sep 22, 2016 at 09:05 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.21
 
@@ -150,7 +150,12 @@ INSERT INTO `expense_types` (`sl`, `type`, `eg`, `color`, `status`) VALUES
 (54, 'personal', NULL, 'e50ef7', 1),
 (55, 'petrol', NULL, 'fadc84', 1),
 (56, 'fuel', NULL, 'f9174c', 1),
-(57, 'tuition', NULL, 'f0f54d', 1);
+(57, 'tuition', NULL, 'f0f54d', 1),
+(58, 'restaurant', NULL, 'fdebd0', 1),
+(59, 'hotel', NULL, 'f4d03f', 1),
+(60, 'motel', NULL, 'f9ebea', 1),
+(61, 'theatre', NULL, 'ebdef0', 1),
+(62, 'surgery', NULL, '48c9b0', 1);
 
 -- --------------------------------------------------------
 
@@ -186,13 +191,6 @@ CREATE TABLE `users` (
   `time` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`sl`, `email`, `password`, `ip`, `time`) VALUES
-(1, 'jerrythimothy@gmail.com', 'qwer4321', '::1', 'Saturday 17th of September 2016 06:42:24 PM');
-
 -- --------------------------------------------------------
 
 --
@@ -205,16 +203,6 @@ CREATE TABLE `users_log` (
   `ip` text NOT NULL,
   `time` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `users_log`
---
-
-INSERT INTO `users_log` (`sl`, `users_sl`, `ip`, `time`) VALUES
-(1, 1, '::1', 'Saturday 17th of September 2016 06:42:39 PM'),
-(2, 1, '::1', 'Saturday 17th of September 2016 08:13:08 PM'),
-(3, 1, '::1', 'Sunday 18th of September 2016 07:57:38 AM'),
-(4, 1, '::1', 'Sunday 18th of September 2016 08:12:07 AM');
 
 --
 -- Indexes for dumped tables
@@ -280,12 +268,12 @@ ALTER TABLE `db_errors`
 -- AUTO_INCREMENT for table `expenses`
 --
 ALTER TABLE `expenses`
-  MODIFY `sl` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `sl` bigint(20) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `expense_types`
 --
 ALTER TABLE `expense_types`
-  MODIFY `sl` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `sl` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 --
 -- AUTO_INCREMENT for table `spending_types`
 --
@@ -295,12 +283,12 @@ ALTER TABLE `spending_types`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `sl` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `sl` bigint(20) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `users_log`
 --
 ALTER TABLE `users_log`
-  MODIFY `sl` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `sl` bigint(20) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
