@@ -12,8 +12,11 @@
       
       <!--data-ng-hide="$state.includes('register')"-->
         <ul class="nav navbar-nav">
-            <li data-ng-if="$state.current.name != 'register' && $state.current.name != 'login' && $state.current.name != 'forgotPassword'" ui-sref-active="active" class="active" ><a ui-sref="dashboard">Dashboard</a></li>
-            <li data-ng-if="$state.current.name != 'register' && $state.current.name != 'login' && $state.current.name != 'forgotPassword'" ui-sref-active="active" ><a ui-sref="expenses">Expenses</a></li>
+            <li data-ng-if="$state.current.name != 'register' && $state.current.name != 'login' && $state.current.name != 'forgotPassword'" ui-sref-active="active" class="active" ><a ui-sref="dashboard"><span class="glyphicon glyphicon-stats">
+            </span> Dashboard</a></li>
+            <li data-ng-if="$state.current.name != 'register' && $state.current.name != 'login' && $state.current.name != 'forgotPassword'" ui-sref-active="active" ><a ui-sref="expenses">
+            <span class="glyphicon glyphicon-paste">
+            </span> Expenses</a></li>
             <!-- <li><a ui-sref="calendar">Calendar</a></li> -->
         </ul>
         <ul class="nav navbar-nav navbar-right">
