@@ -6,7 +6,7 @@ body {
 
 .navbar-custom {
     background-color: #ffffff;
-    border-color: #3498db;
+    border-color: #009444;
 }
 
 .navbar-custom .navbar-brand {
@@ -22,14 +22,26 @@ body {
     background-color: #ffffff;
 }
 
-.btn-custom {
-    background-color: #3498db;
+.btn-custom,
+.navbar-inverse .navbar-nav>.active>a,
+.navbar-inverse .navbar-nav>.active>a:focus {
+    background-color: #009444;
     color: #ffffff;
 }
 
-.btn-custom:hover {
-    background-color: #3498db;
-    color: #000000;
+.btn-custom:hover,
+.btn-default.disabled:hover,
+.btn-default[disabled]:hover,
+fieldset[disabled] .btn-default:hover,
+.btn-default.disabled:focus,
+.btn-default[disabled]:focus,
+fieldset[disabled] .btn-default:focus,
+.btn-default.disabled.focus,
+.btn-default[disabled].focus,
+fieldset[disabled] .btn-default.focus,
+.navbar-inverse .navbar-nav>.active>a:hover {
+    background-color: #39b54a;
+    color: #ffffff;
 }
 
 .alert-color {
