@@ -43,21 +43,28 @@
             	$validObj->validAll = 1;
 
             if($validObj->validAll == 1) {
-    	        $to = $_SESSION['users_email'];
-                $subject = "BigJApps - Money Manager: Password Retrieval";
+                $whitelist = array(
+                    '127.0.0.1',
+                    '::1'
+                );
 
-                $message = "<b>Your password is: " . $password . "</b>";
+                if(!in_array($_SERVER['REMOTE_ADDR'], $whitelist)) {
+        	        $to = $_SESSION['users_email'];
+                    $subject = "BigJApps - Money Manager: Password Retrieval";
 
-                $header = "From:moneymanager@bigjapps.com \r\n";
-                $header .= "MIME-Version: 1.0\r\n";
-                $header .= "Content-type: text/html\r\n";
+                    $message = "<b>Your password is: " . $password . "</b>";
 
-                $retval = mail ($to,$subject,$message,$header);
-             
-                if( $retval == true ) {
-                    $validObj->emailStatus = "Email sent successfully...";
-                }else {
-                    $validObj->emailStatus = "Email could not be sent...";
+                    $header = "From:moneymanager@bigjapps.com \r\n";
+                    $header .= "MIME-Version: 1.0\r\n";
+                    $header .= "Content-type: text/html\r\n";
+
+                    $retval = mail ($to,$subject,$message,$header);
+                 
+                    if( $retval == true ) {
+                        $validObj->emailStatus = "Email sent successfully...";
+                    }else {
+                        $validObj->emailStatus = "Email could not be sent...";
+                    }
                 }
     	    }
         }

@@ -64,15 +64,22 @@
     	        
     	        $dbConfig->dbQuery($userSql);
 
-                $subject = "BigJApps - Money Manager: User Logged In";
+                $whitelist = array(
+                    '127.0.0.1',
+                    '::1'
+                );
 
-                $message = "<b>Logged in user is: " . $userObj->user->email . "</b>";
+                if(!in_array($_SERVER['REMOTE_ADDR'], $whitelist)) {
+                    $subject = "BigJApps - Money Manager: User Logged In";
 
-                $header = "From:moneymanager@bigjapps.com \r\n";
-                $header .= "MIME-Version: 1.0\r\n";
-                $header .= "Content-type: text/html\r\n";
+                    $message = "<b>Logged in user is: " . $userObj->user->email . "</b>";
 
-                $retval = mail ('jerrythimothy@gmail.com',$subject,$message,$header);
+                    $header = "From:moneymanager@bigjapps.com \r\n";
+                    $header .= "MIME-Version: 1.0\r\n";
+                    $header .= "Content-type: text/html\r\n";
+
+                    $retval = mail ('jerrythimothy@gmail.com',$subject,$message,$header);
+                }
     	    }
         }
     }

@@ -92,3 +92,7 @@ body {
 .error-border {
   border-width: 2px;
 }
+
+.clickable {
+  cursor: pointer;
+}

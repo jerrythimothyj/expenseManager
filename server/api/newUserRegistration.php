@@ -80,15 +80,23 @@
     	                $_SESSION['users_sl'] = $dbRow['sl'];
     	                $validObj->validUser = 1;
 
-                        $subject = "BigJApps - Money Manager: New User Registration";
+                        $whitelist = array(
+                            '127.0.0.1',
+                            '::1'
+                        );
 
-                        $message = "<b>New user is: " . $newUserObj->user->email . "</b>";
+                        if(!in_array($_SERVER['REMOTE_ADDR'], $whitelist)) {
 
-                        $header = "From:moneymanager@bigjapps.com \r\n";
-                        $header .= "MIME-Version: 1.0\r\n";
-                        $header .= "Content-type: text/html\r\n";
+                            $subject = "BigJApps - Money Manager: New User Registration";
 
-                        $retval = mail ('jerrythimothy@gmail.com',$subject,$message,$header);
+                            $message = "<b>New user is: " . $newUserObj->user->email . "</b>";
+
+                            $header = "From:moneymanager@bigjapps.com \r\n";
+                            $header .= "MIME-Version: 1.0\r\n";
+                            $header .= "Content-type: text/html\r\n";
+
+                            $retval = mail ('jerrythimothy@gmail.com',$subject,$message,$header);
+                        }
     	            }
     	        }
     	    }
