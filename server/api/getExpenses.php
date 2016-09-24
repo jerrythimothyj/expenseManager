@@ -20,7 +20,7 @@
       $expenseSql .= " and date_yyyy='".$dateArr[0]."'";
       $expenseSql .= " and date_mm='".$dateArr[1]."'";
       $expenseSql .= " and date_dd='".$dateArr[2]."'";
-      $expenseSql .= " ORDER BY sl DESC";
+      $expenseSql .= " ORDER BY sl ASC";
 
       $dbResult = $dbConfig->dbQuery($expenseSql);
 
