@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 23, 2016 at 07:58 PM
+-- Generation Time: Sep 24, 2016 at 01:03 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.21
 
@@ -74,13 +74,6 @@ CREATE TABLE `expenses` (
   `ip` text NOT NULL,
   `time` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `expenses`
---
-
-INSERT INTO `expenses` (`sl`, `users_sl`, `date_yyyy`, `date_mm`, `date_dd`, `spendings_types_sl`, `expense_types_sl`, `comments`, `amount`, `ip`, `time`) VALUES
-(1, 1, 2016, 9, 23, 2, 45, '', 10000, '::1', 'Friday 23rd of September 2016 08:20:21 PM');
 
 -- --------------------------------------------------------
 
@@ -163,7 +156,19 @@ INSERT INTO `expense_types` (`sl`, `type`, `eg`, `color`, `status`) VALUES
 (60, 'motel', NULL, 'f9ebea', 1),
 (61, 'theatre', NULL, 'ebdef0', 1),
 (62, 'surgery', NULL, '48c9b0', 1),
-(63, 'mobile', NULL, 'e699ff', 1);
+(63, 'mobile', NULL, 'e699ff', 1),
+(64, 'fruits', NULL, 'ffff00', 1),
+(65, 'vegetables', NULL, '77b300', 1),
+(66, 'plants', NULL, '88cc00', 1),
+(67, 'trees', NULL, 'cc9966', 1),
+(68, 'animals', NULL, 'ff704d', 1),
+(69, 'birds', NULL, 'ff00ff', 1),
+(70, 'reptiles', NULL, 'bbff33', 1),
+(71, 'insects', NULL, 'ff9933', 1),
+(72, 'vat', NULL, 'ffa64d', 1),
+(73, 'bag', NULL, '80ff80', 1),
+(74, 'servicetax', NULL, 'ffff99', 1),
+(75, 'discount', NULL, 'd1b3ff', 1);
 
 -- --------------------------------------------------------
 
@@ -199,13 +204,6 @@ CREATE TABLE `users` (
   `time` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`sl`, `email`, `password`, `ip`, `time`) VALUES
-(1, 'jerrythimothy@gmail.com', 'asdASD123!@#', '::1', 'Friday 23rd of September 2016 08:19:19 PM');
-
 -- --------------------------------------------------------
 
 --
@@ -218,16 +216,6 @@ CREATE TABLE `users_log` (
   `ip` text NOT NULL,
   `time` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `users_log`
---
-
-INSERT INTO `users_log` (`sl`, `users_sl`, `ip`, `time`) VALUES
-(1, 1, '::1', 'Friday 23rd of September 2016 08:19:28 PM'),
-(2, 1, '::1', 'Friday 23rd of September 2016 09:17:49 PM'),
-(3, 1, '::1', 'Friday 23rd of September 2016 09:33:49 PM'),
-(4, 1, '::1', 'Friday 23rd of September 2016 10:06:49 PM');
 
 --
 -- Indexes for dumped tables
@@ -293,12 +281,12 @@ ALTER TABLE `db_errors`
 -- AUTO_INCREMENT for table `expenses`
 --
 ALTER TABLE `expenses`
-  MODIFY `sl` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `sl` bigint(20) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `expense_types`
 --
 ALTER TABLE `expense_types`
-  MODIFY `sl` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `sl` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 --
 -- AUTO_INCREMENT for table `spending_types`
 --
@@ -308,12 +296,12 @@ ALTER TABLE `spending_types`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `sl` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `sl` bigint(20) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `users_log`
 --
 ALTER TABLE `users_log`
-  MODIFY `sl` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `sl` bigint(20) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
