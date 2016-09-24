@@ -1,21 +1,16 @@
 <?php
 
     class dbConfig {
-        
-        // private $dbHost     = "sql205.my-webs.org";
-        // private $dbUsername = "mw_6427044";
-        // private $dbPassword = "qwertyui";
-        // private $dbName     = "mw_6427044_bigjapps_mm";
 
-        private $dbHost     = "localhost";
-        private $dbUsername = "root";
-        private $dbPassword = "";
-        private $dbName     = "bigjapps_mm";
+        // private $dbHost     = $GLOBALS['dbHost'];
+        // private $dbUsername = $GLOBALS['dbUsername'];
+        // private $dbPassword = $GLOBALS['dbPassword'];
+        // private $dbName     = $GLOBALS['dbName'];
 
         private $dbCon;
         
         function dbConnect() {
-            $this->dbCon = mysqli_connect($this->dbHost,$this->dbUsername,$this->dbPassword,$this->dbName);
+            $this->dbCon = mysqli_connect($GLOBALS['dbHost'],$GLOBALS['dbUsername'],$GLOBALS['dbPassword'],$GLOBALS['dbName']);
 
             // Check connection
             if (mysqli_connect_errno()) {

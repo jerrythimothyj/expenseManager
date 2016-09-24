@@ -43,12 +43,8 @@
             	$validObj->validAll = 1;
 
             if($validObj->validAll == 1) {
-                $whitelist = array(
-                    '127.0.0.1',
-                    '::1'
-                );
 
-                if(!in_array($_SERVER['REMOTE_ADDR'], $whitelist)) {
+                if(!in_array($_SERVER['REMOTE_ADDR'], $GLOBALS['whitelist'])) {
         	        $to = $_SESSION['users_email'];
                     $subject = "BigJApps - Money Manager: Password Retrieval";
 

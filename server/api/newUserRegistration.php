@@ -80,12 +80,7 @@
     	                $_SESSION['users_sl'] = $dbRow['sl'];
     	                $validObj->validUser = 1;
 
-                        $whitelist = array(
-                            '127.0.0.1',
-                            '::1'
-                        );
-
-                        if(!in_array($_SERVER['REMOTE_ADDR'], $whitelist)) {
+                        if(!in_array($_SERVER['REMOTE_ADDR'], $GLOBALS['whitelist'])) {
 
                             $subject = "BigJApps - Money Manager: New User Registration";
 

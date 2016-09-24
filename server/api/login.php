@@ -64,12 +64,7 @@
     	        
     	        $dbConfig->dbQuery($userSql);
 
-                $whitelist = array(
-                    '127.0.0.1',
-                    '::1'
-                );
-
-                if(!in_array($_SERVER['REMOTE_ADDR'], $whitelist)) {
+                if(!in_array($_SERVER['REMOTE_ADDR'], $GLOBALS['whitelist'])) {
                     $subject = "BigJApps - Money Manager: User Logged In";
 
                     $message = "<b>Logged in user is: " . $userObj->user->email . "</b>";
