@@ -3,60 +3,62 @@
 angular.module('moneyManager')
     .controller('budgetRecordsController', function($scope) {
 
+        var vm = this;
+
         let calculateTodays = () => {
-            $scope.todays = {};
-            $scope.todays.total = 0;
-            _.map($scope.budgetRecords, (num) => {
+            vm.todays = {};
+            vm.todays.total = 0;
+            _.map(vm.budgetRecords, (num) => {
                 if(num.expenseType) {
-                    $scope.todays.total += isNaN(parseFloat(num.amount))? 0 : parseFloat(num.amount);
+                    vm.todays.total += isNaN(parseFloat(num.amount))? 0 : parseFloat(num.amount);
                 }
             });
         }
 
         calculateTodays();
 
-        $scope.deleteRow = (index) => {
-        	$scope.budgetRecords.splice(index, 1);
-            $scope.budgetSavedRes.invalidExpenseType = [];
-            $scope.budgetSavedRes.invalidComments = [];
-            $scope.budgetSavedRes.invalidAmount = [];
+        vm.deleteRow = (index) => {
+        	vm.budgetRecords.splice(index, 1);
+            vm.budgetSavedRes.invalidExpenseType = [];
+            vm.budgetSavedRes.invalidComments = [];
+            vm.budgetSavedRes.invalidAmount = [];
 
-            if($scope.budgetSavedRes) {
-                $scope.budgetSavedRes.validAll = 1;
+            if(vm.budgetSavedRes) {
+                vm.budgetSavedRes.validAll = 1;
             }
 
             calculateTodays();
         };
 
-        $scope.addNewRow = (index) => {
-            if($scope.budgetSavedRes) {
-                $scope.budgetSavedRes.saveInd = 0;
+        vm.addNewRow = (index) => {
+            if(vm.budgetSavedRes) {
+                vm.budgetSavedRes.saveInd = 0;
             }
-        	if($scope.budgetRecords[$scope.budgetRecords.length - 1].expenseType != 0 || 
-                $scope.budgetRecords[$scope.budgetRecords.length - 1].comments != '' || 
-                $scope.budgetRecords[$scope.budgetRecords.length - 1].amount != 0) {
-                $scope.emptyRecord = {
+        	if(vm.budgetRecords[vm.budgetRecords.length - 1].expenseType != 0 || 
+                vm.budgetRecords[vm.budgetRecords.length - 1].comments != '' || 
+                vm.budgetRecords[vm.budgetRecords.length - 1].amount != 0) {
+                vm.emptyRecord = {
                     expenseType: 0,
                     comments: '',
                     amount: 0
                 }
-        		$scope.budgetRecords.push(angular.copy($scope.emptyRecord));
+        		vm.budgetRecords.push(angular.copy(vm.emptyRecord));
         	}
 
-        	if($scope.budgetRecords.length > 0 && !$scope.budgetRecords[index]) {
-        		$scope.deleteRow(index);
+        	if(vm.budgetRecords.length > 0 && !vm.budgetRecords[index]) {
+        		vm.deleteRow(index);
         	}
 
             calculateTodays();
         };
 
-        $scope.saveRecords = (budgetRecords) => {
-            $scope.saveBudget({budgetRecords:budgetRecords});
+        vm.saveRecords = (budgetRecords) => {
+            vm.saveBudget({budgetRecords:budgetRecords});
         };
 
         $scope.$watch('getBudgetValidation', (newValue) => {
             if(newValue && newValue.validAll !== 0)
-                $scope.dateChosen = true;
+                vm.dateChosen = true;
         });
 
         $scope.$watch('budgetRecords', (newValue) => {

@@ -1,9 +1,11 @@
 (function(angular) {
   'use strict';
 angular.module('moneyManager')
-    .controller('bubbleChartController',function($scope) {
-        $scope.$watch('bubbleData', function() {
-          d3.select(".bubbleChart"+$scope.bubbleNo).select("svg").remove();
+    .controller('bubbleChartController',function() {
+      var vm= this;
+        vm.$onChanges = function() {
+          if(vm.bubbleData) {
+          d3.select(".bubbleChart"+vm.bubbleNo).select("svg").remove();
           
           let ictr = 0;
           let obj = [];
@@ -14,8 +16,8 @@ angular.module('moneyManager')
                 'size': 0.1
               }]
             };
-            if($scope.bubbleData) {
-              _.map($scope.bubbleData.expenses, (num, key) => {
+            if(vm.bubbleData) {
+              _.map(vm.bubbleData.expenses, (num, key) => {
                 obj[ictr] = {
                   'name': 'bubble' + ictr++,
                   'children': [{
@@ -39,7 +41,7 @@ angular.module('moneyManager')
               .sort(null)
               .size([diameter, diameter])
               .padding(1.5);
-          let svg = d3.select(".bubbleChart"+$scope.bubbleNo).append("svg")
+          let svg = d3.select(".bubbleChart"+vm.bubbleNo).append("svg")
               .attr("viewBox","0 0 960 960")
               .attr("perserveAspectRatio","xMinYMid")
               .attr("width", diameter)
@@ -61,7 +63,7 @@ angular.module('moneyManager')
 
               node.append("circle")
                   .attr("r", function(d) { return d.r; })
-                  .style("fill", function(d) { return (d.value == 0.1)? '#ffffff' : '#' + $scope.bubbleColors[d.className]; });
+                  .style("fill", function(d) { return (d.value == 0.1)? '#ffffff' : '#' + vm.bubbleColors[d.className]; });
 
               node.append("text")
                   .attr("dy", ".3em")
@@ -94,6 +96,7 @@ angular.module('moneyManager')
                 chart.attr("height", Math.round(targetWidth / aspect));
             }).trigger("resize");
           }
-        });
+        }
+      }
     });
 })(window.angular);

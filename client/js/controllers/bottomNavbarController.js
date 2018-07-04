@@ -2,10 +2,11 @@
   'use strict';
 angular.module('moneyManager')
 
-    .controller('bottomNavbarController', function($scope, facebookService) {
+    .controller('bottomNavbarController', function(facebookService) {
 
+        var vm = this;
         facebookService.getRecentPosts().then((response) => {
-        	$scope.recentPost = response.data.data[0].message;
+        	vm.recentPost = response.data.data[0].message;
         });
 
     });

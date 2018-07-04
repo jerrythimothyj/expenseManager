@@ -1,15 +1,12 @@
 (function(angular) {
   'use strict';
 angular.module('moneyManager')
-  .directive('barChart', function() {
-    return {
-      restrict: 'E',
+  .component('barChart', {
       templateUrl: './client/views/components/barChart.html',
-      scope: {
+      bindings: {
         barData: '=',
         barColorClass: '='
       },
       controller: 'barChartController'
-    };
   });
 })(window.angular);
