@@ -1,0 +1,143 @@
+<div class="container-fluid">
+    <chosen-date is-dashboard="true" 
+                 expense-date="expenseDate"
+                 get-expense-validation="getExpenseValidation"
+                 get-expense-records="getExpenseRecords(expenseDate)">
+    </chosen-date>
+    <div class="row alert-block"
+         data-ng-if="budgetExceed.length > 0">
+        <div class="col-sm-12">
+            <strong>The following expenses are exceeding the budget by:</strong>
+            <div data-ng-repeat="bud in budgetExceed | uppercase"
+                 class="text-uppercase">
+                {{bud.expenseType}}: {{bud.amount}}
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="shadow-box">
+                <flat-value flat-class="flat-info"
+                            title-text='Yearly'
+                            flat-data="yearlyBubble"
+                            flat-data-earnings="yearlyBubbleEarnings">
+                </flat-value>
+            </div>
+            <br>
+            <div class="shadow-box">
+                <div class="white-bg title-text">
+                    Yearly Spendings
+                </div>
+                <bubble-chart bubble-no='1'
+                              bubble-data="yearlyBubble"
+                              bubble-colors="bubbleColors">
+                </bubble-chart>
+                <div class="bubbleChart1"></div>
+                <bubble-legend bubble-no='1'
+                               bubble-data="yearlyBubble"
+                               bubble-colors="bubbleColors">
+                </bubble-legend>
+            </div>
+            <br>
+            <div class="shadow-box"
+                 data-ng-if="barData.yearly.length > 0">
+                <bar-chart bar-data='barData'
+                           bar-color-class='barColorClass'>
+                </bar-chart>
+                <div class="yearlyBarChart"></div>
+            </div>
+            <br>
+        </div>
+        <div class="col-lg-4">
+            <div class="shadow-box">
+                <flat-value flat-class="flat-success"
+                            title-text='Monthly'
+                            flat-data="monthlyBubble"
+                            flat-data-earnings="monthlyBubbleEarnings">
+                </flat-value>
+            </div>
+            <br>
+            <div class="shadow-box">
+                <div class="white-bg title-text">
+                    Monthly Spendings
+                </div>
+                <bubble-chart bubble-no='2'
+                              bubble-data="monthlyBubble"
+                              bubble-colors="bubbleColors">
+                </bubble-chart>
+                <div class="bubbleChart2"></div>
+                <bubble-legend bubble-no='2'
+                               bubble-data="monthlyBubble"
+                               bubble-colors="bubbleColors">
+                </bubble-legend>
+            </div>
+            <br>
+            <div class="shadow-box"
+                 data-ng-if="barData.yearly.length > 0">
+                <bar-chart bar-data='barData'
+                           bar-color-class='barColorClass'>
+                </bar-chart>
+                <div class="monthlyBarChart"></div>
+            </div>
+            <br>
+        </div>
+        <!-- <div class="col-lg-3">
+            <bubble-chart bubble-no='3'
+                          title-text='Weekly'>
+            </bubble-chart>
+            <div class="bubbleChart3"></div>
+        </div> -->
+        <div class="col-lg-4">
+            <div class="shadow-box">
+                <flat-value flat-class="flat-danger"
+                            title-text='Daily'
+                            flat-data="dailyBubble"
+                            flat-data-earnings="dailyBubbleEarnings">
+                </flat-value>
+            </div>
+            <br>
+            <div class="shadow-box">
+                <div class="white-bg title-text">
+                    Daily Spendings
+                </div>
+                <bubble-chart bubble-no='4'
+                              bubble-data="dailyBubble"
+                              bubble-colors="bubbleColors">
+                </bubble-chart>
+                <div class="bubbleChart4"></div>
+                <bubble-legend bubble-no='4'
+                               bubble-data="dailyBubble"
+                               bubble-colors="bubbleColors">
+                </bubble-legend>
+            </div>
+            <br>
+            <div class="shadow-box"
+                 data-ng-if="barData.yearly.length > 0">
+                <bar-chart bar-data='barData'
+                           bar-color-class='barColorClass'>
+                </bar-chart>
+                <div class="dailyBarChart"></div>
+            </div>
+            <br>
+        </div>
+    </div>
+    <!-- <div class="row">
+        <div class="col-lg-12">
+            <div class="shadow-box">
+                <invoices invoices-data="invoices">
+                </invoices>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <calendar>
+            </calendar>
+        </div>
+    </div> -->
+    <div class="row">
+        <div class="col-lg-12">
+            <calendar event-sources="calendarExpenses">
+            </calendar>
+        </div>
+    </div>
+</div>

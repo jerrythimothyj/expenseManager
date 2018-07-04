@@ -1,0 +1,73 @@
+<div class="vertical-center">
+    <div class="container">
+        <div class="landing-panel horizontal-center shadow-box">
+        
+            <span class="title-text">New User Registration</span>
+            <form role="form"
+                  autocomplete="off"
+                  method="post"
+                  action="" 
+                  novalidate>
+              <div data-ng-if="returnObj.validAll == 1" 
+                        class="bg-success ">
+                        You have successfully created your account!
+                        <br>
+                        Please 
+                        <strong>
+                          <a class="full-width" 
+                             ui-sref="login">
+                              Click here
+                          </a>
+                        </strong> 
+                        to login.
+              </div>
+              <div class="form-group">
+                <label for="email">Email address:</label>
+                <input type="text" 
+                       class="form-control" 
+                       data-ng-model="user.email" >
+                <div data-ng-if="returnObj.validEmail == 0 || returnObj.existingUser == 1" 
+                        class="bg-danger ">Invalid Email
+                </div>     
+              </div>
+              <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" 
+                       class="form-control" 
+                       data-ng-model="user.pwd">
+                <div data-ng-if="returnObj.validPwd == 0" 
+                        class="bg-danger ">Enter 8 charater password 
+                </div>       
+              </div>
+              <div class="form-group">
+                <label for="pwd">Confirm Password:</label>
+                <input type="password" 
+                       class="form-control" 
+                       data-ng-model="user.confPwd">
+                <div data-ng-if="returnObj.validConfPwd == 0" 
+                        class="bg-danger ">Enter Confirm password and password same
+                </div>       
+              </div>
+              <div class="form-group">
+                <button type="button" 
+                        class="btn btn-default btn-custom full-width"
+                        data-ng-click="registerUser(user)">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Register
+                </button>
+              </div>
+              <div class="form-group">
+                   <a class="full-width" 
+                      ui-sref="forgotPassword">
+                        Forgot Password?
+                   </a>
+              <div class="form-group">
+                   <a class="full-width" 
+                      ui-sref="login">
+                       Existing User?
+                   </a>
+              </div>
+            </form>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,77 @@
+<strong>
+    <div class="row text-right">
+        <div class="col-sm-12">Total: {{todays.total}}</div>
+    </div>
+</strong>
+<div data-ng-if="!dateChosen && !getExpenseValidation.validDate"
+     class="bg-primary">
+    Please click GO after selecting a date
+</div>
+<fieldset data-ng-disabled="!dateChosen">
+<div class="table-responsive">
+    <div data-ng-if="budgetSavedRes && budgetSavedRes.saveInd == 1"
+         class="bg-success">
+        Your monthly budget is saved
+    </div>
+    <div data-ng-if="budgetSavedRes && budgetSavedRes.validAll == 0"
+         class="bg-danger">
+        Please correct the errors highlighted in red
+    </div>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Expense Type</th>
+            <th>Optional Comments</th>
+            <th>Amount</th>
+            <th data-ng-if="dateChosen"></th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr data-ng-repeat="record in budgetRecords track by $index">
+            <td>{{$index + 1}}</td>
+            <td>
+                <select class="form-control 
+                                ngClass: {'error-border': budgetSavedRes.invalidExpenseType && 
+                                budgetSavedRes.invalidExpenseType.indexOf($index + 1) != -1}"
+                        data-ng-model="budgetRecords[$index].expenseType"
+                        data-ng-change="addNewRow($index)">
+                    <option data-ng-repeat="expenseField in expenseFields"
+                            value="{{expenseField.sl}}">
+                        {{expenseField.type | uppercase}}
+                    </option>
+                </select>
+            </td>
+            <td>
+                <input type="text" 
+                       class="form-control 
+                                ngClass: {'error-border': budgetSavedRes.invalidComments && 
+                                budgetSavedRes.invalidComments.indexOf($index + 1) != -1}"
+                        data-ng-model="budgetRecords[$index].comments"
+                        data-ng-change="addNewRow($index)">
+            </td>
+            <td>
+                <input type="number" 
+                       class="form-control 
+                                ngClass: {'error-border': budgetSavedRes.invalidAmount && 
+                                budgetSavedRes.invalidAmount.indexOf($index + 1) != -1}" 
+                       data-ng-model="budgetRecords[$index].amount"
+                       data-ng-change="addNewRow($index)">
+            </td>
+            <td>
+              <span class="glyphicon glyphicon-trash alert-color clickable"
+                      data-ng-click="deleteRow($index)"
+                      data-ng-if="budgetRecords.length - 1 != $index">
+              </span>
+            </td>
+          </tr>
+        </tbody>
+    </table>
+</div>
+<button type="button" 
+        class="btn btn-default btn-custom"
+        data-ng-click="saveRecords(budgetRecords)"
+        >
+    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Submit 
+</button>
+</fieldset>

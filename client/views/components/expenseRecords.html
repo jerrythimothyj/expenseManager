@@ -1,0 +1,92 @@
+<strong>
+    <div class="row text-center">
+        <div class="col-sm-4">Earnings: {{todays.earnings | number:2}}</div>
+        <div class="col-sm-4">Spendings: {{todays.spendings | number:2}}</div>
+        <div class="col-sm-4">Remainings: {{todays.earnings - todays.spendings | number:2}}</div>
+    </div>
+</strong>
+<div data-ng-if="!dateChosen && !getExpenseValidation.validDate"
+     class="bg-primary">
+    Please click GO after selecting a date
+</div>
+<fieldset data-ng-disabled="!dateChosen">
+<div class="table-responsive">
+    <div data-ng-if="expensesSavedRes && expensesSavedRes.saveInd == 1"
+         class="bg-success">
+        Your expenses are saved
+    </div>
+    <div data-ng-if="expensesSavedRes && expensesSavedRes.validAll == 0"
+         class="bg-danger">
+        Please correct the errors highlighted in red
+    </div>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Expense Type</th>
+            <th>Optional Comments</th>
+            <th>Spending Type</th>
+            <th>Amount</th>
+            <th data-ng-if="dateChosen"></th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr data-ng-repeat="record in expensesRecords track by $index">
+            <td>{{$index + 1}}</td>
+            <td>
+                <select class="form-control 
+                                ngClass: {'error-border': expensesSavedRes.invalidExpenseType && 
+                                expensesSavedRes.invalidExpenseType.indexOf($index + 1) != -1}"
+                        data-ng-model="expensesRecords[$index].expenseType"
+                        data-ng-change="addNewRow($index)">
+                    <option data-ng-repeat="expenseField in expenseFields"
+                            value="{{expenseField.sl}}">
+                        {{expenseField.type | uppercase}}
+                    </option>
+                </select>
+            </td>
+            <td>
+                <input type="text" 
+                       class="form-control 
+                                ngClass: {'error-border': expensesSavedRes.invalidComments && 
+                                expensesSavedRes.invalidComments.indexOf($index + 1) != -1}"
+                        data-ng-model="expensesRecords[$index].comments"
+                        data-ng-change="addNewRow($index)">
+            </td>
+            <td>
+                <select class="form-control 
+                                ngClass: {'error-border': expensesSavedRes.invalidSpendingType && 
+                                expensesSavedRes.invalidSpendingType.indexOf($index + 1) != -1}"
+                        data-ng-model="expensesRecords[$index].spendingsType"
+                        data-ng-change="addNewRow($index)">
+                    <option data-ng-repeat="spendingField in spendingFields"
+                            value="{{spendingField.sl}}">
+                        {{spendingField.type | uppercase}}
+                    </option>
+                </select>
+            </td>
+            <td>
+                <input type="number" 
+                       class="form-control 
+                                ngClass: {'error-border': expensesSavedRes.invalidAmount && 
+                                expensesSavedRes.invalidAmount.indexOf($index + 1) != -1}" 
+                       data-ng-model="expensesRecords[$index].amount"
+                       data-ng-change="addNewRow($index)">
+            </td>
+            <td data-ng-if="dateChosen">
+              <span class="glyphicon glyphicon-trash alert-color clickable"
+                      data-ng-click="deleteRow($index)"
+                      data-ng-if="expensesRecords.length - 1 != $index">
+              </span>
+            </td>
+          </tr>
+        </tbody>
+    </table>
+</div>
+<button type="button" 
+        class="btn btn-default btn-custom"
+        data-ng-click="saveRecords(expensesRecords)"
+        >
+    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Submit 
+</button>
+</fieldset>

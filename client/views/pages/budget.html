@@ -1,0 +1,22 @@
+<div class="vertical-center input-page">
+    <div class="container">
+        <div class="landing-panel horizontal-center input-panel shadow-box">
+             <span class="title-text">Enter Monthly Budget</span>
+             <form novalidate>
+                <chosen-date date-chosen="dateChosen"
+                             expense-date="budgetDate"
+                             get-expense-validation="getBudgetValidation"
+                             get-expense-records="getBudgetRecords(expenseDate)"
+                             no-day=true>
+                </chosen-date>
+                <budget-records date-chosen="dateChosen" 
+                                get-budget-validation="getBudgetValidation" 
+                                expense-fields="expenseFields" 
+                                budget-records="budgetRecords"
+                                save-budget="saveBudget(budgetRecords)"
+                                budget-saved-res="budgetSavedRes">
+                </budget-records>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="bubbleLegends hidden-lg">
+	<table class="bubbleLegend">
+		<tr data-ng-repeat="(key, value) in bubbleData.expenses">
+		 	<td>
+		 		<div class="legendColor" 
+		 			  style="background-color: #{{bubbleColors[key]}}">
+		 		</div>
+		 	</td>
+		 	<td>{{key}}</td>
+		 	<td>{{value}}</td>
+		</tr>
+	</table>
+</div>

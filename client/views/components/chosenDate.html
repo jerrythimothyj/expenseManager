@@ -1,0 +1,31 @@
+<div class="form-group">
+  <div class="row">
+    <div class="col-sm-12">
+      <select data-ng-options="item as item.name for item in expenseYears track by item.id"
+              class="form-control tight-combo"
+              data-ng-model="expenseDate.year"
+              data-ng-change="disableRecords()">                   
+      </select>
+      <select data-ng-options="item as item.name for item in expenseMonths track by item.id"
+              class="form-control tight-combo"
+              data-ng-model="expenseDate.month"
+              data-ng-change="disableRecords()">              
+      </select>
+      <select data-ng-options="item as item.name for item in expenseDays track by item.id"
+              class="form-control tight-combo"
+              data-ng-model="expenseDate.day"
+              data-ng-change="disableRecords()"
+              data-ng-if="!noDay">
+      </select>
+      <button type="button" 
+              class="btn btn-default btn-custom btn-md"
+              data-ng-click="getRecords(expenseDate)">
+        GO <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+</div>
+<div data-ng-if="getExpenseValidation && getExpenseValidation.validDate == false"
+     class="bg-danger">
+     Invalid Date
+</div>

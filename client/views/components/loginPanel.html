@@ -1,0 +1,61 @@
+<div class="vertical-center">
+    <div class="container">
+        <div class="landing-panel horizontal-center shadow-box">
+            <form role="form"
+                  autocomplete="off"
+                  method="post"
+                  action="" 
+                  novalidate>
+                <div class="form-group">
+                    <span class="title-text">Login to your Account</span>
+                </div>
+                <div data-ng-if="returnObj.existingUser==0"
+                     class="bg-danger">
+                     Invalid Username or Password
+                </div>
+                <div class="form-group">
+                    <input type="text" 
+                           class="form-control" 
+                           id="email"
+                           autocomplete="off"
+                           placeholder="Email address"
+                           data-ng-model="user.email">
+                    <div data-ng-if="returnObj.validEmail==0"
+                         class="bg-danger">
+                         Invalid Email
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="password" 
+                           class="form-control" 
+                           id="pwd"
+                           autocomplete="off"
+                           placeholder="Password"
+                           data-ng-model="user.pwd">
+                    <div data-ng-if="returnObj.validPwd==0"
+                         class="bg-danger">
+                         Invalid Password
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="button" 
+                            class="btn btn-default btn-custom full-width"
+                            data-ng-click="loginPanelUser(user)">
+                        Login <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div class="form-group">
+                    <a class="full-width" 
+                       ui-sref="forgotPassword">
+                        Forgot Password?
+                    </a>
+                <div class="form-group">
+                    <a class="full-width" 
+                       ui-sref="register">
+                        New User?
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
