@@ -3,9 +3,8 @@
         <div class="landing-panel horizontal-center shadow-box">
             <form role="form"
                   autocomplete="off"
-                  method="post"
-                  action="" 
-                  novalidate>
+                  novalidate
+                  data-ng-submit="loginPanelUser(user)">
                 <div class="form-group">
                     <span class="title-text">Login to your Account</span>
                 </div>
@@ -38,9 +37,9 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <button type="button" 
+                    <button type="submit" 
                             class="btn btn-default btn-custom full-width"
-                            data-ng-click="loginPanelUser(user)">
+                            >
                         Login <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
                     </button>
                 </div>

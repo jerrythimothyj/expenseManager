@@ -1,4 +1,4 @@
-<strong>
+<form novalidate data-ng-submit="saveRecords(expensesRecords)"><strong>
     <div class="row text-center">
         <div class="col-sm-4">Earnings: {{todays.earnings | number:2}}</div>
         <div class="col-sm-4">Spendings: {{todays.spendings | number:2}}</div>
@@ -83,10 +83,11 @@
         </tbody>
     </table>
 </div>
-<button type="button" 
+<button type="submit" 
         class="btn btn-default btn-custom"
-        data-ng-click="saveRecords(expensesRecords)"
+        
         >
     <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Submit 
 </button>
 </fieldset>
+</form>

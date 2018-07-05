@@ -4,10 +4,9 @@
         
             <span class="title-text">New User Registration</span>
             <form role="form"
-                  autocomplete="off"
-                  method="post"
-                  action="" 
-                  novalidate>
+                  autocomplete="off" 
+                  novalidate
+                  data-ng-submit="registerUser(user)">
               <div data-ng-if="returnObj.validAll == 1" 
                         class="bg-success ">
                         You have successfully created your account!
@@ -49,9 +48,9 @@
                 </div>       
               </div>
               <div class="form-group">
-                <button type="button" 
+                <button type="submit" 
                         class="btn btn-default btn-custom full-width"
-                        data-ng-click="registerUser(user)">
+                        >
                     <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Register
                 </button>
               </div>
