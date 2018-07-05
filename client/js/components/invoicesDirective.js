@@ -1,13 +1,9 @@
 (function(angular) {
-  'use strict';
-angular.module('moneyManager')
-  .directive('invoices', function() {
-    return {
-      restrict: 'E',
-      templateUrl: './client/views/components/invoices.html',
-      scope: {
-      	invoicesData: '='
-      }
-    };
+  "use strict";
+  angular.module("moneyManager").component("invoices", {
+    templateUrl: "./client/views/components/invoices.html",
+    bindings: {
+      invoicesData: "="
+    }
   });
 })(window.angular);

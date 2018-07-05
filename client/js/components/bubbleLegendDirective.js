@@ -1,12 +1,11 @@
 (function(angular) {
-  'use strict';
-angular.module('moneyManager')
-  .component('bubbleLegend', {
-    templateUrl: './client/views/components/bubbleLegend.html',
+  "use strict";
+  angular.module("moneyManager").component("bubbleLegend", {
+    templateUrl: "./client/views/components/bubbleLegend.html",
     bindings: {
-        bubbleNo: '@',
-        bubbleData: '=',
-        bubbleColors: '='
+      bubbleNo: "@",
+      bubbleData: "=",
+      bubbleColors: "="
     }
   });
 })(window.angular);

@@ -1,18 +1,18 @@
-<div class="title-text {{flatClass}} text-center">
-    {{titleText}}<br>
+<div class="title-text {{$ctrl.flatClass}} text-center">
+    {{$ctrl.titleText}}<br>
     <h5>
     	<table class="bubbleLegend text-left">
     		<tr>
     			<td>Earnings</td>
-    			<td class="text-right">{{flatDataEarnings.total + 0 | number:2}}</td>
+    			<td class="text-right">{{$ctrl.flatDataEarnings.total + 0 | number:2}}</td>
     		</tr>
     		<tr>
     			<td>Spendings</td>
-    			<td class="text-right">{{flatData.total + 0 | number:2}}</td>
+    			<td class="text-right">{{$ctrl.flatData.total + 0 | number:2}}</td>
     		</tr>
     		<tr>
     			<td>Remainings</td>
-    			<td class="text-right">{{flatDataEarnings.total - flatData.total + 0 | number:2}}</td>
+    			<td class="text-right">{{$ctrl.flatDataEarnings.total - $ctrl.flatData.total + 0 | number:2}}</td>
     		</tr>
     	</table>
     </h5>

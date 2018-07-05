@@ -11,13 +11,13 @@
           </tr>
         </thead>
         <tbody>
-          <tr data-ng-repeat="invoice in invoicesData">
+          <tr data-ng-repeat="invoice in $ctrl.invoicesData">
             <th scope="row">{{invoice.date | date:'fullDate'}}</th>
             <td>{{invoice.expenseType | uppercase}}</td>
             <td>{{invoice.spendingType | uppercase}}</td>
             <td>{{invoice.amount}}</td>
           </tr>
-          <tr data-ng-if="!invoicesData">
+          <tr data-ng-if="!$ctrl.invoicesData">
             <td scope="row"
                 colspan="4">
               No Recent Invoices

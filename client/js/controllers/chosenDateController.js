@@ -1,64 +1,67 @@
 (function(angular) {
   'use strict';
 angular.module('moneyManager')
-    .controller('chosenDateController', function($rootScope, $scope) {
-       
-        $scope.expenseYears = [];
+    .controller('chosenDateController', function() {
+	   
+		var vm = this;
+		vm.$onChanges = function() {
+        vm.expenseYears = [];
         let expenseYearLimit = 10;
         let currentDate = new Date();
-        for (let ictr = $scope.noDay? currentDate.getFullYear() + 1 : currentDate.getFullYear(); ictr > (currentDate.getFullYear() - expenseYearLimit); ictr--)	 {
-        	$scope.expenseYears.push({
+        for (let ictr = vm.noDay? currentDate.getFullYear() + 1 : currentDate.getFullYear(); ictr > (currentDate.getFullYear() - expenseYearLimit); ictr--)	 {
+        	vm.expenseYears.push({
         		id: ictr, 
         		name: ictr
         	});
  		}
 
- 		$scope.expenseDate.year = {
- 			id: $scope.expenseDate.year,
- 			name: $scope.expenseDate.year
+ 		vm.expenseDate.year = {
+ 			id: vm.expenseDate.year,
+ 			name: vm.expenseDate.year
  		}
 
- 		$scope.expenseMonths = [];
- 		$scope.monthsName = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
- 		let expenseMonthsLimit = $scope.monthsName.length;
+ 		vm.expenseMonths = [];
+ 		vm.monthsName = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+ 		let expenseMonthsLimit = vm.monthsName.length;
  		
  		for (let ictr = 1; ictr < expenseMonthsLimit; ictr++) {
- 			$scope.expenseMonths.push({
+ 			vm.expenseMonths.push({
  				id : ictr,
- 				name : $scope.monthsName[ictr]
+ 				name : vm.monthsName[ictr]
  			});
  		}
 
- 		$scope.expenseDate.month = {
- 			id: $scope.expenseDate.month,
- 			name: $scope.monthsName[$scope.expenseDate.month]
+ 		vm.expenseDate.month = {
+ 			id: vm.expenseDate.month,
+ 			name: vm.monthsName[vm.expenseDate.month]
  		}
 
-		$scope.expenseDays = [];
+		vm.expenseDays = [];
         let expenseDayLimit = 31;
         for (let ictr = 1; ictr <= expenseDayLimit; ictr++)	 {
-        	$scope.expenseDays.push({
+        	vm.expenseDays.push({
         		id: ictr, 
         		name: ictr
         	});
  		}
 
- 		$scope.expenseDate.day = {
- 			id: $scope.expenseDate.day,
- 			name: $scope.expenseDate.day
- 		}
+ 		vm.expenseDate.day = {
+ 			id: vm.expenseDate.day,
+ 			name: vm.expenseDate.day
+		 }
+		}
 
-        $scope.getRecords = (expenseDate) => {
+        vm.getRecords = (expenseDate) => {
             let dateObj = expenseDate.year.id + '/' + expenseDate.month.id  + '/' + expenseDate.day.id;
-            $scope.getExpenseRecords({expenseDate: dateObj});
-            $scope.chosenDate = dateObj;
+            vm.getExpenseRecords({expenseDate: dateObj});
+            vm.chosenDate = dateObj;
         };
 
-        $scope.disableRecords = () => {
-            if(!$scope.isDashboard) {
-                $scope.dateChosen = false;
-                if($scope.chosenDate == $scope.expenseDate.year.id + '/' + $scope.expenseDate.month.id  + '/' + $scope.expenseDate.day.id)
-                    $scope.dateChosen = true;
+        vm.disableRecords = () => {
+            if(!vm.isDashboard) {
+                vm.dateChosen = false;
+                if(vm.chosenDate == vm.expenseDate.year.id + '/' + vm.expenseDate.month.id  + '/' + vm.expenseDate.day.id)
+                    vm.dateChosen = true;
             }
         }
 

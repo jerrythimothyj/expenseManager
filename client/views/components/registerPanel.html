@@ -6,8 +6,8 @@
             <form role="form"
                   autocomplete="off" 
                   novalidate
-                  data-ng-submit="registerUser(user)">
-              <div data-ng-if="returnObj.validAll == 1" 
+                  data-ng-submit="rpc.registerUser(rpc.user)">
+              <div data-ng-if="rpc.returnObj.validAll == 1" 
                         class="bg-success ">
                         You have successfully created your account!
                         <br>
@@ -24,8 +24,8 @@
                 <label for="email">Email address:</label>
                 <input type="text" 
                        class="form-control" 
-                       data-ng-model="user.email" >
-                <div data-ng-if="returnObj.validEmail == 0 || returnObj.existingUser == 1" 
+                       data-ng-model="rpc.user.email" >
+                <div data-ng-if="rpc.returnObj.validEmail == 0 || rpc.returnObj.existingUser == 1" 
                         class="bg-danger ">Invalid Email
                 </div>     
               </div>
@@ -33,8 +33,8 @@
                 <label for="pwd">Password:</label>
                 <input type="password" 
                        class="form-control" 
-                       data-ng-model="user.pwd">
-                <div data-ng-if="returnObj.validPwd == 0" 
+                       data-ng-model="rpc.user.pwd">
+                <div data-ng-if="rpc.returnObj.validPwd == 0" 
                         class="bg-danger ">Enter 8 charater password 
                 </div>       
               </div>
@@ -42,8 +42,8 @@
                 <label for="pwd">Confirm Password:</label>
                 <input type="password" 
                        class="form-control" 
-                       data-ng-model="user.confPwd">
-                <div data-ng-if="returnObj.validConfPwd == 0" 
+                       data-ng-model="rpc.user.confPwd">
+                <div data-ng-if="rpc.returnObj.validConfPwd == 0" 
                         class="bg-danger ">Enter Confirm password and password same
                 </div>       
               </div>

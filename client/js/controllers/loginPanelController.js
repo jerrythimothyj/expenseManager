@@ -1,10 +1,11 @@
 (function(angular) {
   'use strict';
 angular.module('moneyManager')
-    .controller('loginPanelController', function($scope) {
+    .controller('loginPanelController', function() {
+        var vm = this;
 
-        $scope.loginPanelUser = (user) => {
-        	$scope.loginSubmit({submissionDetails: user})
+        vm.loginPanelUser = (user) => {
+        	vm.loginSubmit({submissionDetails: user})
         }
     });
 })(window.angular);

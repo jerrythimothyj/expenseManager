@@ -1,8 +1,10 @@
 (function(angular) {
   'use strict';
 angular.module('moneyManager')
-    .controller('calendarCtrl', function($scope, $timeout, uiCalendarConfig) {
-        $scope.uiConfig = {
+    .controller('calendarCtrl', function($timeout, uiCalendarConfig) {
+        var vm = this;
+
+        vm.uiConfig = {
           calendar:{
             header: {
                 left: 'prev,next today',
@@ -17,7 +19,7 @@ angular.module('moneyManager')
 
         $timeout(function() {
             uiCalendarConfig.calendars.myCalendar.fullCalendar('removeEvents');
-            uiCalendarConfig.calendars.myCalendar.fullCalendar('addEventSource', $scope.eventSources);
+            uiCalendarConfig.calendars.myCalendar.fullCalendar('addEventSource', vm.eventSources);
             uiCalendarConfig.calendars.myCalendar.fullCalendar('rerenderEvents');
         });
     });

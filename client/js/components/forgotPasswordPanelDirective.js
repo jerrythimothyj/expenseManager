@@ -1,17 +1,12 @@
-(function(angular){
-	'use strict';
-	angular.module('moneyManager')
-			.directive('forgotPasswordPanel', () => {
-				return {
-					restrict: 'E',
-					templateUrl: './client/views/components/forgotPasswordPanel.html',
-					scope: {
-			          returnObj : '=',
-			          forgotSubmit : '&'
- 					},
- 					controller : 'forgotPasswordPanelController'
-				}
-			});
-
-
+(function(angular) {
+  "use strict";
+  angular.module("moneyManager").component("forgotPasswordPanel", {
+    templateUrl: "./client/views/components/forgotPasswordPanel.html",
+    bindings: {
+      returnObj: "=",
+      forgotSubmit: "&"
+    },
+    controller: "forgotPasswordPanelController",
+    controllerAs: "fppc"
+  });
 })(window.angular);

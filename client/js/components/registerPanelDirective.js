@@ -1,17 +1,12 @@
-(function(angular){
-	'use strict';
-	angular.module('moneyManager')
-			.directive('registerPanel', () => {
-				return {
-					restrict: 'E',
-					templateUrl: './client/views/components/registerPanel.html',
-					scope: {
-			          returnObj : '=',
-			          registrationSubmit : '&'
- 					},
- 					controller : 'registerPanelController'
-				}
-			});
-
-
+(function(angular) {
+  "use strict";
+  angular.module("moneyManager").component("registerPanel", {
+    templateUrl: "./client/views/components/registerPanel.html",
+    bindings: {
+      returnObj: "=",
+      registrationSubmit: "&"
+    },
+    controller: "registerPanelController",
+    controllerAs: "rpc"
+  });
 })(window.angular);

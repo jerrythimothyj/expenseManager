@@ -1,21 +1,17 @@
 (function(angular){
 	'use strict';
 	angular.module('moneyManager')
-			.directive('chosenDate', () => {
-				return {
-					restrict: 'E',
-					templateUrl: './client/views/components/chosenDate.html',
-					scope: {
-						dateChosen: '=',
-						expenseDate: '=',
-						getExpenseValidation: '=',
-						getExpenseRecords: '&',
-						isDashboard: '@',
-						noDay: '@'
-					},
-					controller: 'chosenDateController'
-				}
-			});
-
-
+			.component('chosenDate', {
+				templateUrl: './client/views/components/chosenDate.html',
+				bindings: {
+					dateChosen: '=',
+					expenseDate: '=',
+					getExpenseValidation: '=',
+					getExpenseRecords: '&',
+					isDashboard: '@',
+					noDay: '@'
+				},
+				controller: 'chosenDateController',
+				controllerAs: 'cdc'
+		});
 })(window.angular);

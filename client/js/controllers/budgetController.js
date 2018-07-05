@@ -3,58 +3,59 @@
 angular.module('moneyManager')
     .controller('budgetController', function($scope, $state, expenseFields, budgetData, budgetService) {
 
-        $scope.dateChosen = false;
+        var vm = this;
+        vm.dateChosen = false;
 
-        $scope.expenseFields = _.sortBy(expenseFields.data, 'type');
+        vm.expenseFields = _.sortBy(expenseFields.data, 'type');
 
         let d = new Date();
-        $scope.budgetDate = {
+        vm.budgetDate = {
             year: d.getFullYear(),
             month: (d.getMonth() + 1),
             day: 1
         }
 
-        $scope.budgetRecords = budgetData.data;
-        $scope.emptyRecord = {
+        vm.budgetRecords = budgetData.data;
+        vm.emptyRecord = {
             expenseType: 0,
             comments: '',
             amount: 0
         }
-        $scope.budgetRecords.push(angular.copy($scope.emptyRecord));
+        vm.budgetRecords.push(angular.copy(vm.emptyRecord));
 
-        $scope.budgetSavedRes = {};
+        vm.budgetSavedRes = {};
 
-        $scope.getBudgetRecords = (budgetDate) => {
+        vm.getBudgetRecords = (budgetDate) => {
             budgetService.getBudget(budgetDate).then((response) => {
-                $scope.getBudgetValidation = {};
+                vm.getBudgetValidation = {};
 
                 if(response.data.validAll == 0) {
-                    $scope.getBudgetValidation = response.data;
+                    vm.getBudgetValidation = response.data;
                 }
                 else {
-                    $scope.budgetRecords = response.data;
-                    $scope.budgetRecords.push(angular.copy($scope.emptyRecord));
+                    vm.budgetRecords = response.data;
+                    vm.budgetRecords.push(angular.copy(vm.emptyRecord));
 
-                    $scope.dateChosen = true;
-                    $scope.budgetSavedRes = {};
+                    vm.dateChosen = true;
+                    vm.budgetSavedRes = {};
                 }
             });
         }
 
-        $scope.saveBudget = (budgetRecords) =>{
+        vm.saveBudget = (budgetRecords) =>{
             let budRecords = angular.copy(budgetRecords);
             budRecords.pop();
 
             let budgetData = {
-                date: $scope.budgetDate.year.id + '/' + $scope.budgetDate.month.id + '/' + 1,
+                date: vm.budgetDate.year.id + '/' + vm.budgetDate.month.id + '/' + 1,
                 budget: budRecords
             };
 
             budgetService.saveBudget(budgetData).then((response) => {
-                $scope.budgetSavedRes = response.data;
+                vm.budgetSavedRes = response.data;
 
                 if(response.data.saveInd == 1) {
-                    $scope.dateChosen = false;
+                    vm.dateChosen = false;
                 }
             });
 

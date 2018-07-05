@@ -1,21 +1,21 @@
 (function(angular) {
-  'use strict';
-angular.module('moneyManager')
-    .controller('registerPanelController', function($scope) {
+  "use strict";
+  angular
+    .module("moneyManager")
+    .controller("registerPanelController", function($scope) {
+      var vm = this;
+      vm.registerUser = user => {
+        vm.registrationSubmit({ submissionDetails: user });
+      };
 
-        $scope.registerUser = (user) => {
-        	$scope.registrationSubmit({submissionDetails: user})
+      $scope.$watch("returnObj", newValue => {
+        if (newValue && newValue.validAll == 1) {
+          vm.user = {
+            email: "",
+            pwd: "",
+            confPwd: ""
+          };
         }
-
-        $scope.$watch('returnObj', (newValue) => {
-            if(newValue && newValue.validAll == 1) {
-                $scope.user = {
-                    email : '',
-                    pwd: '',
-                    confPwd:''
-                }
-            }
-        });
-        
+      });
     });
 })(window.angular);

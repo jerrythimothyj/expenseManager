@@ -4,11 +4,11 @@
             <form role="form"
                   autocomplete="off"
                   novalidate
-                  data-ng-submit="loginPanelUser(user)">
+                  data-ng-submit="lpc.loginPanelUser(lpc.user)">
                 <div class="form-group">
                     <span class="title-text">Login to your Account</span>
                 </div>
-                <div data-ng-if="returnObj.existingUser==0"
+                <div data-ng-if="lpc.returnObj.existingUser==0"
                      class="bg-danger">
                      Invalid Username or Password
                 </div>
@@ -18,8 +18,8 @@
                            id="email"
                            autocomplete="off"
                            placeholder="Email address"
-                           data-ng-model="user.email">
-                    <div data-ng-if="returnObj.validEmail==0"
+                           data-ng-model="lpc.user.email">
+                    <div data-ng-if="lpc.returnObj.validEmail==0"
                          class="bg-danger">
                          Invalid Email
                     </div>
@@ -30,8 +30,8 @@
                            id="pwd"
                            autocomplete="off"
                            placeholder="Password"
-                           data-ng-model="user.pwd">
-                    <div data-ng-if="returnObj.validPwd==0"
+                           data-ng-model="lpc.user.pwd">
+                    <div data-ng-if="lpc.returnObj.validPwd==0"
                          class="bg-danger">
                          Invalid Password
                     </div>

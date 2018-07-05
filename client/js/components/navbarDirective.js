@@ -1,13 +1,8 @@
-(function(angular){
-	'use strict';
-	angular.module('moneyManager')
-			.directive('navbar', () => {
-				return {
-					restrict: 'E',
-					templateUrl: './client/views/components/navbar.html',
-					controller: 'navbarController'
-				}
-			});
-
-
+(function(angular) {
+  "use strict";
+  angular.module("moneyManager").component("navbar", {
+    templateUrl: "./client/views/components/navbar.html",
+    controller: "navbarController",
+    controllerAs: "nc"
+  });
 })(window.angular);

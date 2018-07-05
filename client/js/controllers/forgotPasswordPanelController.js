@@ -1,17 +1,18 @@
 (function(angular) {
-  'use strict';
-angular.module('moneyManager')
-    .controller('forgotPasswordPanelController', function($scope) {    	
-        $scope.forgotPassword = (user) => {
-        	$scope.forgotSubmit({submissionDetails: user});
-            $scope.$watch('returnObj', (newValue) => {
-                if(newValue && newValue.validAll == 1) {
-                    $scope.user = {
-                        email: ''
-                    }
-                }
-            });
-        }
-        
+  "use strict";
+  angular
+    .module("moneyManager")
+    .controller("forgotPasswordPanelController", function($scope) {
+      var vm = this;
+      vm.forgotPassword = user => {
+        vm.forgotSubmit({ submissionDetails: user });
+        $scope.$watch("returnObj", newValue => {
+          if (newValue && newValue.validAll == 1) {
+            vm.user = {
+              email: ""
+            };
+          }
+        });
+      };
     });
 })(window.angular);

@@ -1,13 +1,12 @@
 (function(angular) {
-  'use strict';
-angular.module('moneyManager')
-  .component('bubbleChart', {
-    templateUrl: './client/views/components/bubbleChart.html',
+  "use strict";
+  angular.module("moneyManager").component("bubbleChart", {
+    templateUrl: "./client/views/components/bubbleChart.html",
     bindings: {
-        bubbleNo: '@',
-        bubbleData: '=',
-        bubbleColors: '='
+      bubbleNo: "@",
+      bubbleData: "=",
+      bubbleColors: "="
     },
-    controller: 'bubbleChartController'
+    controller: "bubbleChartController"
   });
 })(window.angular);
