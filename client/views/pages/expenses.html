@@ -2,18 +2,18 @@
     <div class="container">
         <div class="landing-panel horizontal-center input-panel shadow-box">
              <span class="title-text">Enter Expenses</span>
-                <chosen-date date-chosen="dateChosen"
-                             expense-date="expenseDate"
-                             get-expense-validation="getExpenseValidation"
-                             get-expense-records="getExpenseRecords(expenseDate)">
+                <chosen-date date-chosen="ec.dateChosen"
+                             expense-date="ec.expenseDate"
+                             get-expense-validation="ec.getExpenseValidation"
+                             get-expense-records="ec.getExpenseRecords(expenseDate)">
                 </chosen-date>
-                <expense-records date-chosen="dateChosen" 
-                                 get-expense-validation="getExpenseValidation"
-                                 expense-fields="expenseFields" 
-                                 spending-fields="spendingFields" 
-                                 expenses-records="expensesRecords"
-                                 save-expenses="saveExpenses(expensesRecords)"
-                                 expenses-saved-res="expensesSavedRes">
+                <expense-records date-chosen="ec.dateChosen" 
+                                 get-expense-validation="ec.getExpenseValidation"
+                                 expense-fields="ec.expenseFields" 
+                                 spending-fields="ec.spendingFields" 
+                                 expenses-records="ec.expensesRecords"
+                                 save-expenses="ec.saveExpenses(expensesRecords)"
+                                 expenses-saved-res="ec.expensesSavedRes">
                 </expense-records>
         </div>
     </div>

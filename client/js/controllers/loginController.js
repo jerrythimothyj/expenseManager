@@ -1,13 +1,14 @@
 (function(angular) {
   'use strict';
 angular.module('moneyManager')
-    .controller('loginController', function($state, $scope, landingService) {
+    .controller('loginController', function($state, landingService) {
 
-        $scope.loginSubmit = (user) => {
+		var vm = this;
+        vm.loginSubmit = (user) => {
         	landingService.login(user).then((response) => {
-        			$scope.returnObj = response.data;
+        			vm.returnObj = response.data;
 
-        			if ($scope.returnObj.existingUser == 1) {
+        			if (vm.returnObj.existingUser == 1) {
         				$state.go ('dashboard');
         			}
         		});

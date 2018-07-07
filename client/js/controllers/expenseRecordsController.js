@@ -62,7 +62,7 @@ angular.module('moneyManager')
             calculateTodays();
         };
 
-        $scope.saveRecords = (expensesRecords) => {
+        vm.saveRecords = (expensesRecords) => {
             vm.saveExpenses({expensesRecords:expensesRecords});
         };
 

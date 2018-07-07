@@ -2,85 +2,86 @@
   'use strict';
 angular.module('moneyManager')
     .controller('dashboardController', function($scope, dashboardData, dashboardService) {
+        var vm = this;
         let d = new Date();
-        $scope.expenseDate = {
+        vm.expenseDate = {
             year: d.getFullYear(),
             month: (d.getMonth() + 1),
             day: d.getDate()
         }
 
         let resetDashboard = (dashboardData) => {
-            $scope.budgetExceed = dashboardData.data.budgetExceed;
+            vm.budgetExceed = dashboardData.data.budgetExceed;
             
-            $scope.bubbleColors = dashboardData.data.bubbleColors;
+            vm.bubbleColors = dashboardData.data.bubbleColors;
 
-            $scope.dailyBubble = dashboardData.data.daily;
-            $scope.dailyBubbleEarnings = dashboardData.data.dailyEarnings;
-            $scope.dailyBar = [];
-            if ($scope.dailyBubble) {
-                _.map($scope.dailyBubble.comparisons, (num, key) => {
-                    $scope.dailyBar.push({
+            vm.dailyBubble = dashboardData.data.daily;
+            vm.dailyBubbleEarnings = dashboardData.data.dailyEarnings;
+            vm.dailyBar = [];
+            if (vm.dailyBubble) {
+                _.map(vm.dailyBubble.comparisons, (num, key) => {
+                    vm.dailyBar.push({
                         time: key,
                         amount: num
                     });
                 });
             }
-            $scope.dailyBar.reverse();
+            vm.dailyBar.reverse();
 
-            $scope.monthlyBubble = dashboardData.data.monthly;
-            $scope.monthlyBubbleEarnings = dashboardData.data.monthlyEarnings;
-            $scope.monthlyBar = [];
-            $scope.monthsName = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-            if ($scope.monthlyBubble) {
-                _.map($scope.monthlyBubble.comparisons, (num, key) => {
-                    $scope.monthlyBar.push({
-                        time: $scope.monthsName[key],
+            vm.monthlyBubble = dashboardData.data.monthly;
+            vm.monthlyBubbleEarnings = dashboardData.data.monthlyEarnings;
+            vm.monthlyBar = [];
+            vm.monthsName = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            if (vm.monthlyBubble) {
+                _.map(vm.monthlyBubble.comparisons, (num, key) => {
+                    vm.monthlyBar.push({
+                        time: vm.monthsName[key],
                         amount: num
                     });
                 });
             }
-            $scope.monthlyBar.reverse();
+            vm.monthlyBar.reverse();
 
-            $scope.yearlyBubble = dashboardData.data.yearly;
-            $scope.yearlyBubbleEarnings = dashboardData.data.yearlyEarnings;
-            $scope.yearlyBar = [];
-            if ($scope.yearlyBubble) {
-                _.map($scope.yearlyBubble.comparisons, (num, key) => {
-                    $scope.yearlyBar.push({
+            vm.yearlyBubble = dashboardData.data.yearly;
+            vm.yearlyBubbleEarnings = dashboardData.data.yearlyEarnings;
+            vm.yearlyBar = [];
+            if (vm.yearlyBubble) {
+                _.map(vm.yearlyBubble.comparisons, (num, key) => {
+                    vm.yearlyBar.push({
                         time: key,
                         amount: num
                     });
                 });
             }
-            $scope.yearlyBar.reverse();
+            vm.yearlyBar.reverse();
 
-            $scope.barData = {
-                daily: $scope.dailyBar,
-                monthly: $scope.monthlyBar,
-                yearly: $scope.yearlyBar            
+            vm.barData = {
+                daily: vm.dailyBar,
+                monthly: vm.monthlyBar,
+                yearly: vm.yearlyBar            
             }
 
-            $scope.barColorClass = {
+            vm.barColorClass = {
                 daily: 'bar-danger',
                 monthly: 'bar-success',
                 yearly: 'bar-info'            
             }
 
-            // $scope.invoices = dashboardData.data.invoices;
-            // _.map($scope.invoices, (num, key) => {
+            // vm.invoices = dashboardData.data.invoices;
+            // _.map(vm.invoices, (num, key) => {
             //     num.date = new Date(num.date);
             // });
 
-            $scope.calendarExpenses = dashboardData.data.calendarExpenses;
+            vm.calendarExpenses = dashboardData.data.calendarExpenses;
 
             if(dashboardData.data.validAll === 0) {
-                $scope.getExpenseValidation = dashboardData.data;
+                vm.getExpenseValidation = dashboardData.data;
             }
         }
 
         resetDashboard(dashboardData);
 
-        $scope.getExpenseRecords = (expenseDate) => {
+        vm.getExpenseRecords = (expenseDate) => {
             dashboardService.getDashboard(expenseDate).then((response) => {
                 resetDashboard(response);
             });
