@@ -87,15 +87,26 @@
 
           let setXWidth = (d, i, zippedData) => {
             let divider = null;
+            // switch (Math.floor(i % vm.colors.length)) {
+            //   case 0:
+            //     divider = zippedData[i] + zippedData[i + 1] + zippedData[i + 2];
+            //     break;
+            //   case 1:
+            //     divider = zippedData[i - 1] + zippedData[i] + zippedData[i + 1];
+            //     break;
+            //   case 2:
+            //     divider = zippedData[i - 2] + zippedData[i - 1] + zippedData[i];
+            //     break;
+            // }
             switch (Math.floor(i % vm.colors.length)) {
               case 0:
-                divider = zippedData[i] + zippedData[i + 1] + zippedData[i + 2];
+                divider = Math.max(zippedData[i],zippedData[i + 1],zippedData[i + 2]);
                 break;
               case 1:
-                divider = zippedData[i - 1] + zippedData[i] + zippedData[i + 1];
+                divider = Math.max(zippedData[i - 1], zippedData[i], zippedData[i + 1]);
                 break;
               case 2:
-                divider = zippedData[i - 2] + zippedData[i - 1] + zippedData[i];
+                divider = Math.max(zippedData[i - 2], zippedData[i - 1], zippedData[i]);
                 break;
             }
 
