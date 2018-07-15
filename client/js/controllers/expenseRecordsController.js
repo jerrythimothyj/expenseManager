@@ -13,7 +13,6 @@ angular.module('moneyManager')
                 if(num.expenseType) {
                     let amt = isNaN(parseFloat(num.amount))? 0 : parseFloat(num.amount);
                     amt = Math.round(amt*100)/100;
-                    console.log(amt);
                     if(num.spendingsType == 1)
                         vm.todays.earnings += amt;
                     else if(num.spendingsType == 2)
@@ -66,12 +65,12 @@ angular.module('moneyManager')
             vm.saveExpenses({expensesRecords:expensesRecords});
         };
 
-        $scope.$watch('getExpenseValidation', (newValue) => {
+        $scope.$watch('erc.getExpenseValidation', (newValue) => {
             if(newValue && newValue.validAll !== 0)
                 vm.dateChosen = true;
         });
 
-        $scope.$watch('expensesRecords', (newValue) => {
+        $scope.$watch('erc.expensesRecords', (newValue) => {
             calculateTodays();
         });
     });

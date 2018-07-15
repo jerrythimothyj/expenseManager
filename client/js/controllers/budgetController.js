@@ -4,6 +4,7 @@ angular.module('moneyManager')
     .controller('budgetController', function($scope, $state, expenseFields, budgetData, budgetService) {
 
         var vm = this;
+        vm.noDay = true;
         vm.dateChosen = false;
 
         vm.expenseFields = _.sortBy(expenseFields.data, 'type');

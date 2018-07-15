@@ -54,5 +54,10 @@
             require('./api/getDashboard.php');
             return $returnObj;
         }
+
+        function getComparison($comparisonObj) {
+            require('./api/getComparison.php');
+            return $returnObj;
+        }
     }
 ?>

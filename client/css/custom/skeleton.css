@@ -41,6 +41,7 @@ body {
 
 .btn-custom {
     border: none;
+    vertical-align: baseline;
 }
 
 .full-width {

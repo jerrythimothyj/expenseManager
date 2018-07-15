@@ -15,30 +15,41 @@
       
       <!--data-ng-hide="$state.includes('register')"-->
         <ul class="nav navbar-nav">
-            <li data-ng-if="$state.current.name != 'register' && $state.current.name != 'login' && $state.current.name != 'forgotPassword'" ui-sref-active="active" class="active" >
+            <li data-ng-if="$root.$state.current.name != 'register' && $root.$state.current.name != 'login' && $root.$state.current.name != 'forgotPassword'" ui-sref-active="active" class="active" >
               <a ui-sref="dashboard">
                 <span class="glyphicon glyphicon-stats">
                 </span> Dashboard
               </a>
             </li>
-            <li data-ng-if="$state.current.name != 'register' && $state.current.name != 'login' && $state.current.name != 'forgotPassword'" ui-sref-active="active" >
+            <li data-ng-if="$root.$state.current.name != 'register' && $root.$state.current.name != 'login' && $root.$state.current.name != 'forgotPassword'" ui-sref-active="active" >
               <a ui-sref="expenses">
                 <span class="glyphicon glyphicon-paste">
                 </span> Expenses
               </a>
             </li>
-            <li data-ng-if="$state.current.name != 'register' && $state.current.name != 'login' && $state.current.name != 'forgotPassword'" ui-sref-active="active" >
+            <li data-ng-if="$root.$state.current.name != 'register' && $root.$state.current.name != 'login' && $root.$state.current.name != 'forgotPassword'" ui-sref-active="active" >
               <a ui-sref="budget">
                 <span class="glyphicon glyphicon-tasks">
                 </span> Budget
               </a>
             </li>
+            <li data-ng-if="$root.$state.current.name != 'register' && $root.$state.current.name != 'login' && $root.$state.current.name != 'forgotPassword'" class="dropdown" ui-sref-active="active" >
+              <a data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <span class="glyphicon glyphicon-blackboard">
+                </span> Compare <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a ui-sref="compare({kind: 'yearly'})">Yearly</a></li>
+                <li><a ui-sref="compare({kind: 'monthly'})">Monthly</a></li>
+                <li><a ui-sref="compare({kind: 'daily'})">Daily</a></li>
+              </ul>
+            </li>
             <!-- <li><a ui-sref="calendar">Calendar</a></li> -->
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <!-- <li><a ui-sref="profile" class="btn"><span class="glyphicon glyphicon-user"></span> Guest</a></li> -->
-            <li data-ng-if="$state.current.name != 'register' && $state.current.name != 'login' && $state.current.name != 'forgotPassword'">
-              <a data-ng-click="nc.logout()" class="btn">
+            <li data-ng-if="$root.$state.current.name != 'register' && $root.$state.current.name != 'login' && $root.$state.current.name != 'forgotPassword'">
+              <a data-ng-click="nc.logout()">
                 <span class="glyphicon glyphicon-log-out">
                 </span> Logout
               </a>

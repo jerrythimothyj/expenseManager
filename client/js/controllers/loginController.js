@@ -7,8 +7,8 @@ angular.module('moneyManager')
         vm.loginSubmit = (user) => {
         	landingService.login(user).then((response) => {
         			vm.returnObj = response.data;
-
         			if (vm.returnObj.existingUser == 1) {
+						
         				$state.go ('dashboard');
         			}
         		});

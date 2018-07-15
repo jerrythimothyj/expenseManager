@@ -49,6 +49,23 @@
             }
           }
         })
+        .state("compare", {
+          url: "/compare?kind",
+          templateUrl: "./client/views/pages/compare.html",
+          controller: "compareController",
+          controllerAs: "cc",
+          resolve: {
+            compareData: function(compareService, $stateParams) {
+              let {date1, date2, date3} = compareService.getInitialDates($stateParams.kind);
+              return compareService.getComparison(
+                $stateParams.kind,
+                date1,
+                date2,
+                date3
+              );
+            }
+          }
+        })
         .state("expenses", {
           url: "/expenses",
           templateUrl: "./client/views/pages/expenses.html",

@@ -43,23 +43,24 @@
 
     $dbResult = $dbConfig->dbQuery($expenseSql);
 
+    $dashboardObj->yearly = new stdClass();
+    $dashboardObj->yearly->total = 0;
+    $dashboardObj->yearlyEarnings = new stdClass();
+    $dashboardObj->yearlyEarnings->total = 0;
+    $dashboardObj->monthly = new stdClass();
+    $dashboardObj->monthly->total = 0;
+    $dashboardObj->monthlyEarnings = new stdClass();
+    $dashboardObj->monthlyEarnings->total = 0;
+    // $dashboardObj->weekly = new stdClass();
+    // $dashboardObj->weekly->total = 0;
+    $dashboardObj->daily = new stdClass();
+    $dashboardObj->daily->total = 0;
+    $dashboardObj->dailyEarnings = new stdClass();
+    $dashboardObj->dailyEarnings->total = 0;
+    $dashboardObj->calendarExpenses = array();
+    $calendarCtr = 0;
+
     if ($dbResult->num_rows > 0) {
-      $dashboardObj->yearly = new stdClass();
-      $dashboardObj->yearly->total = 0;
-      $dashboardObj->yearlyEarnings = new stdClass();
-      $dashboardObj->yearlyEarnings->total = 0;
-      $dashboardObj->monthly = new stdClass();
-      $dashboardObj->monthly->total = 0;
-      $dashboardObj->monthlyEarnings = new stdClass();
-      $dashboardObj->monthlyEarnings->total = 0;
-      // $dashboardObj->weekly = new stdClass();
-      // $dashboardObj->weekly->total = 0;
-      $dashboardObj->daily = new stdClass();
-      $dashboardObj->daily->total = 0;
-      $dashboardObj->dailyEarnings = new stdClass();
-      $dashboardObj->dailyEarnings->total = 0;
-      $dashboardObj->calendarExpenses = array();
-      $calendarCtr = 0;
 
       $yearlyExpenses = array();
 

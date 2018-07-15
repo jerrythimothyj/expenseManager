@@ -6,7 +6,7 @@
       var vm = this;
       vm.forgotPassword = user => {
         vm.forgotSubmit({ submissionDetails: user });
-        $scope.$watch("returnObj", newValue => {
+        $scope.$watch("fppc.returnObj", newValue => {
           if (newValue && newValue.validAll == 1) {
             vm.user = {
               email: ""

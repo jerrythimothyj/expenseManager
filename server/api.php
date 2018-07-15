@@ -15,7 +15,6 @@
     $json = file_get_contents('php://input');
     $obj = json_decode($json);
 
-
     $moneyManager = new moneyManager();
 
     switch($_GET['api']) {
@@ -61,6 +60,10 @@
 
         case 'getDashboard':
             print_r(json_encode($moneyManager->getDashboard($obj)));
+            break;
+        
+        case 'getComparison':
+            print_r(json_encode($moneyManager->getComparison($obj)));
             break;
     }
 ?>

@@ -1,4 +1,4 @@
-<div class="bubbleLegends hidden-lg">
+<div class="bubbleLegends" data-ng-class="{'hidden-lg': $ctrl.hideLegend}">
 	<table class="bubbleLegend">
 		<tr data-ng-repeat="(key, value) in $ctrl.bubbleData.expenses">
 		 	<td>
@@ -7,7 +7,7 @@
 		 		</div>
 		 	</td>
 		 	<td>{{key}}</td>
-		 	<td>{{value}}</td>
+		 	<td>{{value.toLocaleString()}}</td>
 		</tr>
 	</table>
 </div>

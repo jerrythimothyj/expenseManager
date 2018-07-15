@@ -4,8 +4,9 @@
     templateUrl: "./client/views/components/bubbleLegend.html",
     bindings: {
       bubbleNo: "@",
-      bubbleData: "=",
-      bubbleColors: "="
+      bubbleData: "<",
+      bubbleColors: "=",
+      hideLegend: "<"
     }
   });
 })(window.angular);

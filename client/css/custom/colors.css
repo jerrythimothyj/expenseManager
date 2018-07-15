@@ -24,7 +24,13 @@ body {
 
 .btn-custom,
 .navbar-inverse .navbar-nav>.active>a,
-.navbar-inverse .navbar-nav>.active>a:focus {
+.navbar-inverse .navbar-nav>.active>a:focus,
+.navbar-inverse .navbar-nav>.open>a,
+.navbar-inverse .navbar-nav>.open>a:hover,
+.navbar-inverse .navbar-nav>.open>a:focus,
+.dropdown-menu>li>a:focus,
+.dropdown-menu>li>a:hover,
+.navbar-inverse .navbar-nav>li>a:hover {
     background-color: #009444;
     color: #ffffff;
 }
@@ -123,4 +129,15 @@ div[class^='BarChart'], div[class*='BarChart'] {
 
 .fc {
   background-color: #ffffff;
+}
+
+@media (max-width:767px) {
+    .navbar-inverse .navbar-nav .open .dropdown-menu>li>a {
+        color: #000000;
+    }
+
+    .navbar-inverse .navbar-nav .open .dropdown-menu>li>a:hover {
+        background-color: #009444;
+        color: #ffffff;
+    }
 }

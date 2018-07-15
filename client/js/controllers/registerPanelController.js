@@ -8,7 +8,7 @@
         vm.registrationSubmit({ submissionDetails: user });
       };
 
-      $scope.$watch("returnObj", newValue => {
+      $scope.$watch("rpc.returnObj", newValue => {
         if (newValue && newValue.validAll == 1) {
           vm.user = {
             email: "",

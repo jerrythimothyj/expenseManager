@@ -56,12 +56,12 @@ angular.module('moneyManager')
             vm.saveBudget({budgetRecords:budgetRecords});
         };
 
-        $scope.$watch('getBudgetValidation', (newValue) => {
+        $scope.$watch('brc.getBudgetValidation', (newValue) => {
             if(newValue && newValue.validAll !== 0)
                 vm.dateChosen = true;
         });
 
-        $scope.$watch('budgetRecords', (newValue) => {
+        $scope.$watch('brc.budgetRecords', (newValue) => {
             calculateTodays();
         });
     });

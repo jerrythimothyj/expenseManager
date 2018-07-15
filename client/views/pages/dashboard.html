@@ -36,12 +36,13 @@
                 <div class="bubbleChart1"></div>
                 <bubble-legend bubble-no='1'
                                bubble-data="dc.yearlyBubble"
-                               bubble-colors="dc.bubbleColors">
+                               bubble-colors="dc.bubbleColors"
+                               hide-legend=true>
                 </bubble-legend>
             </div>
             <br>
             <div class="shadow-box"
-                 data-ng-if="dc.barData.yearly.length > 0">
+                 data-ng-if="dc.yearlyBubble.total > 0">
                 <bar-chart bar-data='dc.barData'
                            bar-color-class='dc.barColorClass'>
                 </bar-chart>
@@ -69,12 +70,13 @@
                 <div class="bubbleChart2"></div>
                 <bubble-legend bubble-no='2'
                                bubble-data="dc.monthlyBubble"
-                               bubble-colors="dc.bubbleColors">
+                               bubble-colors="dc.bubbleColors"
+                               hide-legend=true>
                 </bubble-legend>
             </div>
             <br>
             <div class="shadow-box"
-                 data-ng-if="dc.barData.yearly.length > 0">
+                 data-ng-if="dc.yearlyBubble.total > 0">
                 <bar-chart bar-data='dc.barData'
                            bar-color-class='dc.barColorClass'>
                 </bar-chart>
@@ -108,12 +110,13 @@
                 <div class="bubbleChart4"></div>
                 <bubble-legend bubble-no='4'
                                bubble-data="dc.dailyBubble"
-                               bubble-colors="dc.bubbleColors">
+                               bubble-colors="dc.bubbleColors"
+                               hide-legend=true>
                 </bubble-legend>
             </div>
             <br>
             <div class="shadow-box"
-                 data-ng-if="dc.barData.yearly.length > 0">
+                 data-ng-if="dc.yearlyBubble.total > 0">
                 <bar-chart bar-data='dc.barData'
                            bar-color-class='dc.barColorClass'>
                 </bar-chart>

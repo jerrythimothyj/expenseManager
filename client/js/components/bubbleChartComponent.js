@@ -4,7 +4,7 @@
     templateUrl: "./client/views/components/bubbleChart.html",
     bindings: {
       bubbleNo: "@",
-      bubbleData: "=",
+      bubbleData: "<",
       bubbleColors: "="
     },
     controller: "bubbleChartController"

@@ -8,8 +8,10 @@
 					expenseDate: '=',
 					getExpenseValidation: '=',
 					getExpenseRecords: '&',
+					setDate: '&',
 					isDashboard: '@',
-					noDay: '@'
+					noDay: '<',
+					noMonth: '<'
 				},
 				controller: 'chosenDateController',
 				controllerAs: 'cdc'

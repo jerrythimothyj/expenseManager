@@ -4,17 +4,18 @@
       <select data-ng-options="item as item.name for item in cdc.expenseYears track by item.id"
               class="form-control tight-combo"
               data-ng-model="cdc.expenseDate.year"
-              data-ng-change="cdc.disableRecords()">                   
+              data-ng-change="cdc.disableRecords(); cdc.setDateObj()">                   
       </select>
       <select data-ng-options="item as item.name for item in cdc.expenseMonths track by item.id"
               class="form-control tight-combo"
               data-ng-model="cdc.expenseDate.month"
-              data-ng-change="cdc.disableRecords()">              
+              data-ng-change="cdc.disableRecords(); cdc.setDateObj()"
+              data-ng-if="!cdc.noMonth">
       </select>
       <select data-ng-options="item as item.name for item in cdc.expenseDays track by item.id"
               class="form-control tight-combo"
               data-ng-model="cdc.expenseDate.day"
-              data-ng-change="cdc.disableRecords()"
+              data-ng-change="cdc.disableRecords(); cdc.setDateObj()"
               data-ng-if="!cdc.noDay">
       </select>
       <button type="button" 

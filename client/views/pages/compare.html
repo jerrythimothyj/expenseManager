@@ -1,0 +1,66 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-4">
+            <chosen-date is-dashboard="true" expense-date="cc.date3" get-expense-validation="cc.getExpenseValidation" get-expense-records="cc.getComparison3(expenseDate)"
+                no-day="cc.noDay" no-month="cc.noMonth" set-date="cc.setDate3(dateObj)">
+            </chosen-date>
+            <br>
+            <div class="shadow-box">
+                <flat-value title-text="{{cc.kind}}" flat-class="flat-info" flat-data="cc.date3Bubble" flat-data-earnings="cc.date3BubbleEarnings">
+                </flat-value>
+            </div>
+            <br>
+            <div class="shadow-box">
+                <bubble-chart bubble-no='1' bubble-data="cc.date3Bubble" bubble-colors="cc.bubbleColors">
+                </bubble-chart>
+                <div class="bubbleChart1"></div>
+                <bubble-legend hide-legend={true} bubble-no='1' bubble-data="cc.date3Bubble" bubble-colors="cc.bubbleColors">
+                </bubble-legend>
+            </div>
+            <br>
+        </div>
+        <div class="col-lg-4">
+            <chosen-date is-dashboard="true" expense-date="cc.date2" get-expense-validation="cc.getExpenseValidation" get-expense-records="cc.getComparison2(expenseDate)"
+                no-day="cc.noDay" no-month="cc.noMonth" set-date="cc.setDate2(dateObj)">
+            </chosen-date>
+            <br>
+            <div class="shadow-box">
+                <flat-value title-text="{{cc.kind}}" flat-class="flat-success" flat-data="cc.date2Bubble" flat-data-earnings="cc.date2BubbleEarnings">
+                </flat-value>
+            </div>
+            <br>
+            <div class="shadow-box">
+                <bubble-chart bubble-no='2' bubble-data="cc.date2Bubble" bubble-colors="cc.bubbleColors">
+                </bubble-chart>
+                <div class="bubbleChart2"></div>
+                <bubble-legend hide-legend={true} bubble-no='2' bubble-data="cc.date2Bubble" bubble-colors="cc.bubbleColors">
+                </bubble-legend>
+            </div>
+            <br>
+        </div>
+        <div class="col-lg-4">
+            <chosen-date is-dashboard="true" expense-date="cc.date1" get-expense-validation="cc.getExpenseValidation" get-expense-records="cc.getComparison1(expenseDate)"
+                no-day="cc.noDay" no-month="cc.noMonth" set-date="cc.setDate1(dateObj)">
+            </chosen-date>
+            <br>
+            <div class="shadow-box">
+                <flat-value title-text="{{cc.kind}}" flat-class="flat-danger" flat-data="cc.date1Bubble" flat-data-earnings="cc.date1BubbleEarnings">
+                </flat-value>
+            </div>
+            <br>
+            <div class="shadow-box">
+                <bubble-chart bubble-no='4' bubble-data="cc.date1Bubble" bubble-colors="cc.bubbleColors">
+                </bubble-chart>
+                <div class="bubbleChart4"></div>
+                <bubble-legend hide-legend={true} bubble-no='4' bubble-data="cc.date1Bubble" bubble-colors="cc.bubbleColors">
+                </bubble-legend>
+            </div>
+            <br>
+        </div>
+    </div>
+    <div class="row" data-ng-if="cc.groupBarChartData.series[0].values.length > 0 || cc.groupBarChartData.series[1].values.length > 0 || cc.groupBarChartData.series[2].values.length > 0">
+        <div class="col-lg-12">
+            <group-bar-chart group-bar-chart-data="cc.groupBarChartData"></group-bar-chart>
+        </div>
+    </div>
+</div>

@@ -26,5 +26,11 @@
         function validateFreeText($text) {
             return true;
         }
+
+        function validateKind($kind) {
+            if($kind != 'yearly' && $kind != 'monthly' && $kind != 'daily')
+                return false;
+            return true;
+        }
     }
 ?>

@@ -1,0 +1,83 @@
+<style>
+  .groupBarChart {
+    max-height: 500px;
+    overflow: auto;
+  }
+
+  .groupBarChart svg {
+    width: 100%;
+    background-color: #ffffff;
+  }
+
+  /*
+    .groupBarChart svg rect {
+      fill: steelblue;
+    }
+    */
+
+  .groupBarChart svg .legend {
+    fill: black;
+    font-size: 14px;
+    text-anchor: start;
+  }
+
+  .groupBarChart svg text {
+    fill: black;
+    font-size: 10px;
+    font-weight: bold;
+    text-anchor: start;
+  }
+
+  .groupBarChart svg .label {
+    fill: black;
+    font-size: 12px;
+    font-weight: normal;
+    text-anchor: end;
+  }
+
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+  }
+
+  .groupBarChartlegends {
+    background-color: #ffffff;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  #date3, #date2, #date1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  #date3 div, #date2 div, #date1 div {
+    width: 10px;
+    height: 10px;
+    margin-right: 5px;
+  }
+</style>
+
+<div class="groupBarChartlegends">
+  <div id="date3">
+    <div style="background-color: {{gbcc.colors[0]}}">
+    </div>
+    {{gbcc.groupBarChartData.series[0].label}}
+  </div>
+  <div id="date2">
+    <div style="background-color: {{gbcc.colors[1]}}">
+    </div>
+    {{gbcc.groupBarChartData.series[1].label}}
+  </div>
+  <div id="date1">
+    <div style="background-color: {{gbcc.colors[2]}}">
+    </div>
+    {{gbcc.groupBarChartData.series[2].label}}
+  </div>
+</div>
+<div class="groupBarChart"></div>
