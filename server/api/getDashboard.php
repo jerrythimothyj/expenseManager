@@ -128,19 +128,25 @@
         $calendarCtr++;
       }
 
-      foreach ($yearlyExpenses as $key => $value) {
-        if($value <= 0)
-          unset($yearlyExpenses[$key]);
+      if(isset($yearlyExpenses)) {
+        foreach ($yearlyExpenses as $key => $value) {
+          if($value <= 0)
+            unset($yearlyExpenses[$key]);
+        }
       }
 
-      foreach ($monthlyExpenses as $key => $value) {
-        if($value <= 0)
-          unset($monthlyExpenses[$key]);
+      if(isset($monthlyExpenses)) {
+        foreach ($monthlyExpenses as $key => $value) {
+          if($value <= 0)
+            unset($monthlyExpenses[$key]);
+        }
       }
 
-      foreach ($dailyExpenses as $key => $value) {
-        if($value <= 0)
-          unset($dailyExpenses[$key]);
+      if(isset($dailyExpenses)) {
+        foreach ($dailyExpenses as $key => $value) {
+          if($value <= 0)
+            unset($dailyExpenses[$key]);
+        }
       }
     }
 
