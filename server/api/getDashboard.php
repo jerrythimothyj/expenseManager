@@ -64,65 +64,87 @@
 
       $yearlyExpenses = array();
 
-        while($dbRow = $dbResult->fetch_assoc()) {
-          if($dbRow['spendings_types_sl'] == 2) {
-            $dashboardObj->yearly->total += $dbRow['amount'];
-            if(isset($yearlyExpenses[$expenseTypesArr[$dbRow['expense_types_sl']]]))
-              $yearlyExpenses[$expenseTypesArr[$dbRow['expense_types_sl']]] += $dbRow['amount'];
+      while($dbRow = $dbResult->fetch_assoc()) {
+        if(isset($yearlyExpenses[$expenseTypesArr[$dbRow['expense_types_sl']]]))
+          $yearlyExpenses[$expenseTypesArr[$dbRow['expense_types_sl']]] += $dbRow['spendings_types_sl'] == 2 ? $dbRow['amount'] : (-1 * $dbRow['amount']);
+        else
+          $yearlyExpenses[$expenseTypesArr[$dbRow['expense_types_sl']]] = $dbRow['spendings_types_sl'] == 2 ? $dbRow['amount'] : (-1 * $dbRow['amount']);
+
+        if($dbRow['date_mm'] == $dateArr[1]) {
+          if(isset($monthlyExpenses[$expenseTypesArr[$dbRow['expense_types_sl']]]))
+            $monthlyExpenses[$expenseTypesArr[$dbRow['expense_types_sl']]] += $dbRow['spendings_types_sl'] == 2 ? $dbRow['amount'] : (-1 * $dbRow['amount']);
+          else
+            $monthlyExpenses[$expenseTypesArr[$dbRow['expense_types_sl']]] = $dbRow['spendings_types_sl'] == 2 ? $dbRow['amount'] : (-1 * $dbRow['amount']);
+
+          if($dbRow['date_dd'] == $dateArr[2]) {
+            if(isset($dailyExpenses[$expenseTypesArr[$dbRow['expense_types_sl']]]))
+              $dailyExpenses[$expenseTypesArr[$dbRow['expense_types_sl']]] += $dbRow['spendings_types_sl'] == 2 ? $dbRow['amount'] : (-1 * $dbRow['amount']);
             else
-              $yearlyExpenses[$expenseTypesArr[$dbRow['expense_types_sl']]] = $dbRow['amount'];
-
-            if($dbRow['date_mm'] == $dateArr[1]) {
-              $dashboardObj->monthly->total += $dbRow['amount'];
-              if(isset($monthlyExpenses[$expenseTypesArr[$dbRow['expense_types_sl']]]))
-                $monthlyExpenses[$expenseTypesArr[$dbRow['expense_types_sl']]] += $dbRow['amount'];
-              else
-                $monthlyExpenses[$expenseTypesArr[$dbRow['expense_types_sl']]] = $dbRow['amount'];
-
-              if($dbRow['date_dd'] == $dateArr[2]) {
-                $dashboardObj->daily->total += $dbRow['amount'];
-                if(isset($dailyExpenses[$expenseTypesArr[$dbRow['expense_types_sl']]]))
-                  $dailyExpenses[$expenseTypesArr[$dbRow['expense_types_sl']]] += $dbRow['amount'];
-                else
-                  $dailyExpenses[$expenseTypesArr[$dbRow['expense_types_sl']]] = $dbRow['amount'];
-              }
-            }
+              $dailyExpenses[$expenseTypesArr[$dbRow['expense_types_sl']]] = $dbRow['spendings_types_sl'] == 2 ? $dbRow['amount'] : (-1 * $dbRow['amount']);
           }
-          else if($dbRow['spendings_types_sl'] == 1) {
-            $dashboardObj->yearlyEarnings->total += $dbRow['amount'];
-
-            if($dbRow['date_mm'] == $dateArr[1]) {
-              $dashboardObj->monthlyEarnings->total += $dbRow['amount'];
-
-              if($dbRow['date_dd'] == $dateArr[2]) {
-                $dashboardObj->dailyEarnings->total += $dbRow['amount'];
-              }
-            }
-
-          }
-
-          $dashboardObj->calendarExpenses[$calendarCtr] = new stdClass();
-          // $time = strtotime($dateArr[0].'/'.$dbRow['date_mm'].'/'.$dbRow['date_dd']);
-          // $dashboardObj->calendarExpenses[$calendarCtr]->start = date('Y-m-d',$time);
-          $dbldigitMonth = $dbRow['date_mm'];
-          if($dbRow['date_mm'] < 10)
-            $dbldigitMonth = "0".$dbRow['date_mm'];
-          $dbldigitDay = $dbRow['date_dd'];
-            if($dbRow['date_dd'] < 10)
-              $dbldigitDay = "0".$dbRow['date_dd'];
-          $dashboardObj->calendarExpenses[$calendarCtr]->start = $dateArr[0]."-".$dbldigitMonth."-".$dbldigitDay."T00:00:00";
-          $dashboardObj->calendarExpenses[$calendarCtr]->backgroundColor = $dbRow['spendings_types_sl'] == 1 ? '#2384E8' : '#009444';
-          $dashboardObj->calendarExpenses[$calendarCtr]->borderColor = $dbRow['spendings_types_sl'] == 1 ? '#2384E8' : '#009444';
-          $dashboardObj->calendarExpenses[$calendarCtr]->title = $expenseTypesArr[$dbRow['expense_types_sl']].": ".$dbRow['amount'];
-          $dashboardObj->calendarExpenses[$calendarCtr]->description = $expenseTypesArr[$dbRow['expense_types_sl']];
-          if(isset($dbRow['comments']) && $dbRow['comments'] != "")
-            $dashboardObj->calendarExpenses[$calendarCtr]->description .= ": ".$dbRow['comments'];
-          $dashboardObj->calendarExpenses[$calendarCtr]->spendingType = $spendingTypesArr[$dbRow['spendings_types_sl']];
-          $calendarCtr++;
         }
+
+        if($dbRow['spendings_types_sl'] == 2) {
+          $dashboardObj->yearly->total += $dbRow['amount'];
+          
+          if($dbRow['date_mm'] == $dateArr[1]) {
+            $dashboardObj->monthly->total += $dbRow['amount'];
+            
+            if($dbRow['date_dd'] == $dateArr[2]) {
+              $dashboardObj->daily->total += $dbRow['amount'];
+            }
+          }
+        }
+        else if($dbRow['spendings_types_sl'] == 1) {
+          $dashboardObj->yearlyEarnings->total += $dbRow['amount'];
+
+          if($dbRow['date_mm'] == $dateArr[1]) {
+            $dashboardObj->monthlyEarnings->total += $dbRow['amount'];
+
+            if($dbRow['date_dd'] == $dateArr[2]) {
+              $dashboardObj->dailyEarnings->total += $dbRow['amount'];
+            }
+          }
+
+        }
+
+        $dashboardObj->calendarExpenses[$calendarCtr] = new stdClass();
+        // $time = strtotime($dateArr[0].'/'.$dbRow['date_mm'].'/'.$dbRow['date_dd']);
+        // $dashboardObj->calendarExpenses[$calendarCtr]->start = date('Y-m-d',$time);
+        $dbldigitMonth = $dbRow['date_mm'];
+        if($dbRow['date_mm'] < 10)
+          $dbldigitMonth = "0".$dbRow['date_mm'];
+        $dbldigitDay = $dbRow['date_dd'];
+          if($dbRow['date_dd'] < 10)
+            $dbldigitDay = "0".$dbRow['date_dd'];
+        $dashboardObj->calendarExpenses[$calendarCtr]->start = $dateArr[0]."-".$dbldigitMonth."-".$dbldigitDay."T00:00:00";
+        $dashboardObj->calendarExpenses[$calendarCtr]->backgroundColor = $dbRow['spendings_types_sl'] == 1 ? '#2384E8' : '#009444';
+        $dashboardObj->calendarExpenses[$calendarCtr]->borderColor = $dbRow['spendings_types_sl'] == 1 ? '#2384E8' : '#009444';
+        $dashboardObj->calendarExpenses[$calendarCtr]->title = $expenseTypesArr[$dbRow['expense_types_sl']].": ".$dbRow['amount'];
+        $dashboardObj->calendarExpenses[$calendarCtr]->description = $expenseTypesArr[$dbRow['expense_types_sl']];
+        if(isset($dbRow['comments']) && $dbRow['comments'] != "")
+          $dashboardObj->calendarExpenses[$calendarCtr]->description .= ": ".$dbRow['comments'];
+        $dashboardObj->calendarExpenses[$calendarCtr]->spendingType = $spendingTypesArr[$dbRow['spendings_types_sl']];
+        $calendarCtr++;
+      }
+
+      foreach ($yearlyExpenses as $key => $value) {
+        if($value <= 0)
+          unset($yearlyExpenses[$key]);
+      }
+
+      foreach ($monthlyExpenses as $key => $value) {
+        if($value <= 0)
+          unset($monthlyExpenses[$key]);
+      }
+
+      foreach ($dailyExpenses as $key => $value) {
+        if($value <= 0)
+          unset($dailyExpenses[$key]);
+      }
     }
 
-    $expenseSql = "SELECT date_yyyy, amount FROM expenses ";
+    $expenseSql = "SELECT date_yyyy, amount, spendings_types_sl FROM expenses ";
     $expenseSql .= "WHERE users_sl='".$_SESSION['users_sl']."'";
     $expenseSql .= " and spendings_types_sl='2' ";
     $expenseSql .= " and date_yyyy<='".$dateArr[0]."' ";
@@ -145,7 +167,7 @@
         $yearBars[$ictr] = 0;
     }
 
-    $expenseSql = "SELECT date_mm, amount FROM expenses ";
+    $expenseSql = "SELECT date_mm, amount, spendings_types_sl FROM expenses ";
     $expenseSql .= "WHERE users_sl='".$_SESSION['users_sl']."'";
     $expenseSql .= " and spendings_types_sl='2' ";
     $expenseSql .= " and date_yyyy='".$dateArr[0]."' ";
@@ -153,7 +175,6 @@
     $expenseSql .= " ORDER BY sl DESC";
 
     $dbResult = $dbConfig->dbQuery($expenseSql);
-
 
     if ($dbResult->num_rows > 0) {
       while($dbRow = $dbResult->fetch_assoc()) {
@@ -168,7 +189,7 @@
         $monthBars[$ictr] = 0;
     }
 
-    $expenseSql = "SELECT date_dd, amount FROM expenses ";
+    $expenseSql = "SELECT date_dd, amount, spendings_types_sl FROM expenses ";
     $expenseSql .= "WHERE users_sl='".$_SESSION['users_sl']."'";
     $expenseSql .= " and spendings_types_sl='2' ";
     $expenseSql .= " and date_yyyy='".$dateArr[0]."' ";

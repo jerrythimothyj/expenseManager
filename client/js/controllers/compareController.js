@@ -28,21 +28,21 @@
         vm.date1Bubble = [];
 
         if(compareData.data.date3) {
-          vm.date3Bubble = compareData.data.date3.spendings;
+          vm.date3Bubble = compareService.calculateSpendings(compareData.data.date3.spendings, compareData.data.date3.earnings);
           vm.date3BubbleEarnings = compareData.data.date3.earnings;
         }
 
         if(compareData.data.date2) {
-          vm.date2Bubble = compareData.data.date2.spendings;
+          vm.date2Bubble = compareService.calculateSpendings(compareData.data.date2.spendings, compareData.data.date2.earnings);
           vm.date2BubbleEarnings = compareData.data.date2.earnings;
         }
 
         if(compareData.data.date1) {
-          vm.date1Bubble = compareData.data.date1.spendings;
+          vm.date1Bubble = compareService.calculateSpendings(compareData.data.date1.spendings, compareData.data.date1.earnings);
           vm.date1BubbleEarnings = compareData.data.date1.earnings;
         }
 
-        vm.groupBarChartData = compareService.prepareGroupChartData(vm.kind, date1, date2, date3, compareData.data.groupChartData);
+        vm.groupBarChartData = compareService.prepareGroupChartData(vm.kind, date1, date2, date3, compareData.data.groupChartData, compareData.data.groupChartEarningsData);
 
         if (compareData.data.validAll === 0) {
           vm.getExpenseValidation = compareData.data;

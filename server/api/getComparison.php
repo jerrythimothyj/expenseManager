@@ -266,6 +266,42 @@
         }
     }
 
+    $expenseSql = "SELECT expense_types.type, SUM(expenses.amount) as amount, expenses.date_yyyy";
+    if($kind == 'monthly' || $kind == 'daily')
+        $expenseSql .= ", expenses.date_mm";
+    if($kind == 'daily')
+        $expenseSql .= ", expenses.date_dd";
+    $expenseSql .= " FROM expense_types ";
+    $expenseSql .= " LEFT JOIN expenses ";
+    $expenseSql .= " ON expense_types.sl=expenses.expense_types_sl ";
+    $expenseSql .= " AND expense_types.status='1' ";
+    $expenseSql .= " AND expenses.users_sl='".$_SESSION['users_sl']."' ";
+    $expenseSql .= " AND expenses.spendings_types_sl='1' ";
+    $expenseSql .= " AND (expenses.date_yyyy='".$dateArr3[0]."' OR expenses.date_yyyy='".$dateArr2[0]."' OR expenses.date_yyyy='".$dateArr1[0]."') ";
+    if($kind == 'monthly' || $kind == 'daily')
+        $expenseSql .= " AND (expenses.date_mm='".$dateArr3[1]."' OR expenses.date_mm='".$dateArr2[1]."' OR expenses.date_mm='".$dateArr1[1]."') ";
+    if($kind == 'daily')
+        $expenseSql .= " AND (expenses.date_dd='".$dateArr3[2]."' OR expenses.date_dd='".$dateArr2[2]."' OR expenses.date_dd='".$dateArr1[2]."') ";
+    $expenseSql .= " GROUP BY expense_types.sl,expenses.date_yyyy";
+    if($kind == 'monthly' || $kind == 'daily')
+        $expenseSql .= ",expenses.date_mm";
+    if($kind == 'daily')
+        $expenseSql .= ",expenses.date_dd";
+    $expenseSql .= " ORDER BY amount DESC,expenses.date_yyyy DESC";
+    if($kind == 'monthly' || $kind == 'daily')
+        $expenseSql .= ",expenses.date_mm DESC";
+    if($kind == 'daily')
+        $expenseSql .= ",expenses.date_dd DESC";
+    
+    $dbResult = $dbConfig->dbQuery($expenseSql);
+
+    if ($dbResult->num_rows > 0) {
+        $compareObj->groupChartEarningsData = array();
+        while($dbRow = $dbResult->fetch_assoc()) {
+            $compareObj->groupChartEarningsData[] = $dbRow;
+        }
+    }
+
     if(isset($expenseColorsArr))
     $compareObj->bubbleColors = $expenseColorsArr;
 
