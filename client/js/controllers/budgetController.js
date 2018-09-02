@@ -75,5 +75,9 @@
           budgetDate.day.id;
         vm.getBudgetRecords(budgetService.getLastMonthBudgetDate(dateObj));
       };
+
+      vm.isEqual = (o1, o2) => {
+        return angular.equals(o1, o2);
+      };
     });
 })(window.angular);

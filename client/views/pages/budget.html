@@ -6,7 +6,7 @@
                 <chosen-date date-chosen="bc.dateChosen" expense-date="bc.budgetDate" get-expense-validation="bc.getBudgetValidation" get-expense-records="bc.getBudgetRecords(expenseDate)"
                     no-day="bc.noDay">
                 </chosen-date>
-                <div>
+                <div ng-if="bc.budgetRecords && bc.budgetRecords.length == 1 && bc.isEqual(bc.budgetRecords[0], bc.emptyRecord)">
                     <button type="button" class="btn btn-default btn-custom btn-md" data-ng-click="bc.getLastMonthRecords(bc.budgetDate)">
                         RETRIEVE FROM LAST MONTH
                         <span class="glyphicon glyphicon glyphicon-edit
