@@ -1,20 +1,22 @@
 <div class="vertical-center input-page">
     <div class="container">
         <div class="landing-panel horizontal-center input-panel shadow-box">
-             <span class="title-text">Enter Monthly Budget</span>
-                <chosen-date date-chosen="bc.dateChosen"
-                             expense-date="bc.budgetDate"
-                             get-expense-validation="bc.getBudgetValidation"
-                             get-expense-records="bc.getBudgetRecords(expenseDate)"
-                             no-day="bc.noDay">
+            <span class="title-text">Enter Monthly Budget</span>
+            <div class="flex-container align-center justify-between">
+                <chosen-date date-chosen="bc.dateChosen" expense-date="bc.budgetDate" get-expense-validation="bc.getBudgetValidation" get-expense-records="bc.getBudgetRecords(expenseDate)"
+                    no-day="bc.noDay">
                 </chosen-date>
-                <budget-records date-chosen="bc.dateChosen" 
-                                get-budget-validation="bc.getBudgetValidation" 
-                                expense-fields="bc.expenseFields" 
-                                budget-records="bc.budgetRecords"
-                                save-budget="bc.saveBudget(budgetRecords)"
-                                budget-saved-res="bc.budgetSavedRes">
-                </budget-records>
+                <button type="button" class="btn btn-default btn-custom btn-md" data-ng-click="bc.getLastMonthRecords(bc.budgetDate)">
+                    RETRIEVE FROM LAST MONTH
+                    <span class="glyphicon glyphicon glyphicon-edit
+                    " aria-hidden="true"></span>
+                </button>
+            </div>
+
+            <br>
+            <budget-records date-chosen="bc.dateChosen" get-budget-validation="bc.getBudgetValidation" expense-fields="bc.expenseFields"
+                budget-records="bc.budgetRecords" save-budget="bc.saveBudget(budgetRecords)" budget-saved-res="bc.budgetSavedRes">
+            </budget-records>
         </div>
     </div>
 </div>
