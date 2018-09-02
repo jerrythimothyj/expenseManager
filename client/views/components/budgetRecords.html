@@ -1,79 +1,65 @@
 <form novalidate data-ng-submit="brc.saveRecords(brc.budgetRecords)">
     <strong>
-    <div class="row text-right">
-        <div class="col-sm-12">Total: {{brc.todays.total}}</div>
+        <div class="row text-right">
+            <div class="col-sm-12">Total: {{brc.todays.total}}</div>
+        </div>
+    </strong>
+    <div data-ng-if="!brc.dateChosen && !brc.getExpenseValidation.validDate" class="bg-primary">
+        Please click GO after selecting a date
     </div>
-</strong>
-<div data-ng-if="!brc.dateChosen && !brc.getExpenseValidation.validDate"
-     class="bg-primary">
-    Please click GO after selecting a date
-</div>
-<fieldset data-ng-disabled="!brc.dateChosen">
-<div class="table-responsive">
-    <div data-ng-if="brc.budgetSavedRes && brc.budgetSavedRes.saveInd == 1"
-         class="bg-success">
-        Your monthly budget is saved
-    </div>
-    <div data-ng-if="brc.budgetSavedRes && brc.budgetSavedRes.validAll == 0"
-         class="bg-danger">
-        Please correct the errors highlighted in red
-    </div>
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th>#</th>
-            <th>Expense Type</th>
-            <th>Optional Comments</th>
-            <th>Amount</th>
-            <th data-ng-if="brc.dateChosen"></th>
-        </tr>
-        </thead>
-        <tbody>
-          <tr data-ng-repeat="record in brc.budgetRecords track by $index">
-            <td>{{$index + 1}}</td>
-            <td>
-                <select class="form-control 
+    <fieldset data-ng-disabled="!brc.dateChosen">
+        <div class="table-responsive">
+            <div data-ng-if="brc.budgetSavedRes && brc.budgetSavedRes.saveInd == 1" class="bg-success">
+                Your monthly budget is saved
+            </div>
+            <div data-ng-if="brc.budgetSavedRes && brc.budgetSavedRes.validAll == 0" class="bg-danger">
+                Please correct the errors highlighted in red
+            </div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Expense Type</th>
+                        <th>Optional Comments</th>
+                        <th>Amount</th>
+                        <th data-ng-if="brc.dateChosen"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="record in brc.budgetRecords track by $index">
+                        <td>{{$index + 1}}</td>
+                        <td>
+                            <select class="form-control 
                                 ngClass: {'error-border': brc.budgetSavedRes.invalidExpenseType && 
-                                brc.budgetSavedRes.invalidExpenseType.indexOf($index + 1) != -1}"
-                        data-ng-model="brc.budgetRecords[$index].expenseType"
-                        data-ng-change="brc.addNewRow($index)">
-                    <option data-ng-repeat="expenseField in brc.expenseFields"
-                            value="{{expenseField.sl}}">
-                        {{expenseField.type | uppercase}}
-                    </option>
-                </select>
-            </td>
-            <td>
-                <input type="text" 
-                       class="form-control 
+                                brc.budgetSavedRes.invalidExpenseType.indexOf($index + 1) != -1}" data-ng-model="brc.budgetRecords[$index].expenseType"
+                                data-ng-change="brc.addNewRow($index)">
+                                <option data-ng-repeat="expenseField in brc.expenseFields" value="{{expenseField.sl}}">
+                                    {{expenseField.type | uppercase}}
+                                </option>
+                            </select>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control 
                                 ngClass: {'error-border': brc.budgetSavedRes.invalidComments && 
-                                brc.budgetSavedRes.invalidComments.indexOf($index + 1) != -1}"
-                        data-ng-model="brc.budgetRecords[$index].comments"
-                        data-ng-change="brc.addNewRow($index)">
-            </td>
-            <td>
-                <input type="number" 
-                       class="form-control 
+                                brc.budgetSavedRes.invalidComments.indexOf($index + 1) != -1}" data-ng-model="brc.budgetRecords[$index].comments"
+                                data-ng-change="brc.addNewRow($index)">
+                        </td>
+                        <td>
+                            <input type="number" class="form-control 
                                 ngClass: {'error-border': brc.budgetSavedRes.invalidAmount && 
-                                brc.budgetSavedRes.invalidAmount.indexOf($index + 1) != -1}" 
-                       data-ng-model="brc.budgetRecords[$index].amount"
-                       data-ng-change="brc.addNewRow($index)">
-            </td>
-            <td>
-              <span class="glyphicon glyphicon-trash alert-color clickable"
-                      data-ng-click="brc.deleteRow($index)"
-                      data-ng-if="brc.budgetRecords.length - 1 != $index">
-              </span>
-            </td>
-          </tr>
-        </tbody>
-    </table>
-</div>
-<button type="submit" 
-        class="btn btn-default btn-custom"
-        
-        >
-    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Submit 
-</button>
-</fieldset>
+                                brc.budgetSavedRes.invalidAmount.indexOf($index + 1) != -1}" data-ng-model="brc.budgetRecords[$index].amount"
+                                data-ng-change="brc.addNewRow($index)">
+                        </td>
+                        <td data-ng-if="brc.dateChosen">
+                            <span class="glyphicon glyphicon-trash alert-color clickable" data-ng-click="brc.deleteRow($index)" data-ng-if="brc.budgetRecords.length - 1 != $index">
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <button type="submit" class="btn btn-default btn-custom">
+            <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Submit
+        </button>
+    </fieldset>
 </form>
