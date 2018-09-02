@@ -286,7 +286,10 @@
     $exceedBudgetArr = [];
     $exceedBudCtr = 0;
     foreach ($bugArr as $key => $value) {
-      if(array_key_exists($key, $dashboardObj->monthly->expenses) && (float)$dashboardObj->monthly->expenses[$key] > (float)$value) {
+      if(isset($dashboardObj->monthly) && 
+      isset($dashboardObj->monthly->expenses) && 
+      array_key_exists($key, $dashboardObj->monthly->expenses) && 
+      (float)$dashboardObj->monthly->expenses[$key] > (float)$value) {
         $exceedBudgetArr[$exceedBudCtr]['expenseType'] = $key;
         $exceedBudgetArr[$exceedBudCtr]['amount'] = $dashboardObj->monthly->expenses[$key] - $value;
         $exceedBudCtr++;

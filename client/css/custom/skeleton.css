@@ -127,14 +127,10 @@ body {
   display: flex;
 }
 
-.align-center {
-  align-items: center;
+.align-top {
+  align-items: flex-start;
 }
 
 .justify-between {
   justify-content: space-between;
-}
-
-.form-group {
-  margin-bottom: 0;
 }

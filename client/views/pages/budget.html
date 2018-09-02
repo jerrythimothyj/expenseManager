@@ -2,15 +2,17 @@
     <div class="container">
         <div class="landing-panel horizontal-center input-panel shadow-box">
             <span class="title-text">Enter Monthly Budget</span>
-            <div class="flex-container align-center justify-between">
+            <div class="flex-container align-top justify-between">
                 <chosen-date date-chosen="bc.dateChosen" expense-date="bc.budgetDate" get-expense-validation="bc.getBudgetValidation" get-expense-records="bc.getBudgetRecords(expenseDate)"
                     no-day="bc.noDay">
                 </chosen-date>
-                <button type="button" class="btn btn-default btn-custom btn-md" data-ng-click="bc.getLastMonthRecords(bc.budgetDate)">
-                    RETRIEVE FROM LAST MONTH
-                    <span class="glyphicon glyphicon glyphicon-edit
+                <div>
+                    <button type="button" class="btn btn-default btn-custom btn-md" data-ng-click="bc.getLastMonthRecords(bc.budgetDate)">
+                        RETRIEVE FROM LAST MONTH
+                        <span class="glyphicon glyphicon glyphicon-edit
                     " aria-hidden="true"></span>
-                </button>
+                    </button>
+                </div>
             </div>
 
             <br>
