@@ -1,37 +1,37 @@
-(function(angular) {
-  'use strict';
-angular.module('moneyManager')
-    .service('expensesService', function($http) {
-        this.expenseFields = () => {
-            return $http({
-              method: 'GET',
-              url: './server/api.php?api=expenseFields'
-            });
-        }
-        
-        this.spendingFields = () => {
-            return $http({
-              method: 'GET',
-              url: './server/api.php?api=spendingFields'
-            });
-        }
+export default class expensesService {
+  constructor($http) {
+    this.expenseFields = () => {
+      return $http({
+        method: "GET",
+        url: "./server/api.php?api=expenseFields"
+      });
+    };
 
-        this.getExpenses = (obj) => {
-            return $http({
-              method: 'POST',
-              url: './server/api.php?api=getExpenses',
-              data: {
-                date: obj
-              }
-            });
-        }
+    this.spendingFields = () => {
+      return $http({
+        method: "GET",
+        url: "./server/api.php?api=spendingFields"
+      });
+    };
 
-        this.saveExpenses = (obj) => {
-            return $http({
-              method: 'POST',
-              url: './server/api.php?api=saveExpenses',
-              data: obj
-            });
+    this.getExpenses = obj => {
+      return $http({
+        method: "POST",
+        url: "./server/api.php?api=getExpenses",
+        data: {
+          date: obj
         }
-    });
-})(window.angular);
+      });
+    };
+
+    this.saveExpenses = obj => {
+      return $http({
+        method: "POST",
+        url: "./server/api.php?api=saveExpenses",
+        data: obj
+      });
+    };
+  }
+}
+
+angular.module("moneyManager").service("expensesService", expensesService);

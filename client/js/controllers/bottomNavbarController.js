@@ -1,13 +1,16 @@
-(function(angular) {
-  'use strict';
-angular.module('moneyManager')
-
-    .controller('bottomNavbarController', function(facebookService) {
-
-        var vm = this;
-        facebookService.getRecentPosts().then((response) => {
-        	vm.recentPost = response.data.data[0].message;
-        });
-
+export default class bottomNavbarController {
+  constructor(facebookService) {
+    facebookService.getRecentPosts().then(response => {
+      this.recentPost = response.data.data[0].message;
     });
-})(window.angular);
+  }
+}
+
+angular
+  .module("moneyManager")
+  .controller("bottomNavbarController", bottomNavbarController)
+  .component("bottomNavbar", {
+    templateUrl: "./client/views/components/bottomNavbar.html",
+    controller: bottomNavbarController,
+    controllerAs: "bnc"
+  });

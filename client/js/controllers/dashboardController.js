@@ -1,90 +1,106 @@
-(function(angular) {
-  'use strict';
-angular.module('moneyManager')
-    .controller('dashboardController', function($scope, dashboardData, dashboardService) {
-        var vm = this;
-        let d = new Date();
-        vm.expenseDate = {
-            year: d.getFullYear(),
-            month: (d.getMonth() + 1),
-            day: d.getDate()
-        }
+export default class dashboardController {
+  constructor($scope, dashboardData, dashboardService) {
+    this.$scope = $scope;
+    this.dashboardData = dashboardData;
+    this.dashboardService = dashboardService;
 
-        let resetDashboard = (dashboardData) => {
-            vm.budgetExceed = dashboardData.data.budgetExceed;
-            
-            vm.bubbleColors = dashboardData.data.bubbleColors;
+    const d = new Date();
+    this.expenseDate = {
+      year: d.getFullYear(),
+      month: d.getMonth() + 1,
+      day: d.getDate()
+    };
+  }
 
-            vm.dailyBubble = dashboardData.data.daily;
-            vm.dailyBubbleEarnings = dashboardData.data.dailyEarnings;
-            vm.dailyBar = [];
-            if (vm.dailyBubble) {
-                _.map(vm.dailyBubble.comparisons, (num, key) => {
-                    vm.dailyBar.push({
-                        time: key,
-                        amount: num
-                    });
-                });
-            }
-            vm.dailyBar.reverse();
+  resetDashboard(dashboardData) {
+    this.budgetExceed = dashboardData.data.budgetExceed;
 
-            vm.monthlyBubble = dashboardData.data.monthly;
-            vm.monthlyBubbleEarnings = dashboardData.data.monthlyEarnings;
-            vm.monthlyBar = [];
-            vm.monthsName = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-            if (vm.monthlyBubble) {
-                _.map(vm.monthlyBubble.comparisons, (num, key) => {
-                    vm.monthlyBar.push({
-                        time: vm.monthsName[key],
-                        amount: num
-                    });
-                });
-            }
-            vm.monthlyBar.reverse();
+    this.bubbleColors = dashboardData.data.bubbleColors;
 
-            vm.yearlyBubble = dashboardData.data.yearly;
-            vm.yearlyBubbleEarnings = dashboardData.data.yearlyEarnings;
-            vm.yearlyBar = [];
-            if (vm.yearlyBubble) {
-                _.map(vm.yearlyBubble.comparisons, (num, key) => {
-                    vm.yearlyBar.push({
-                        time: key,
-                        amount: num
-                    });
-                });
-            }
-            vm.yearlyBar.reverse();
+    this.dailyBubble = dashboardData.data.daily;
+    this.dailyBubbleEarnings = dashboardData.data.dailyEarnings;
+    this.dailyBar = [];
+    if (this.dailyBubble) {
+      _.map(this.dailyBubble.comparisons, (num, key) => {
+        this.dailyBar.push({
+          time: key,
+          amount: num
+        });
+      });
+    }
+    this.dailyBar.reverse();
 
-            vm.barData = {
-                daily: vm.dailyBar,
-                monthly: vm.monthlyBar,
-                yearly: vm.yearlyBar            
-            }
+    this.monthlyBubble = dashboardData.data.monthly;
+    this.monthlyBubbleEarnings = dashboardData.data.monthlyEarnings;
+    this.monthlyBar = [];
+    this.monthsName = [
+      "",
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ];
+    if (this.monthlyBubble) {
+      _.map(this.monthlyBubble.comparisons, (num, key) => {
+        this.monthlyBar.push({
+          time: this.monthsName[key],
+          amount: num
+        });
+      });
+    }
+    this.monthlyBar.reverse();
 
-            vm.barColorClass = {
-                daily: 'bar-danger',
-                monthly: 'bar-success',
-                yearly: 'bar-info'            
-            }
+    this.yearlyBubble = dashboardData.data.yearly;
+    this.yearlyBubbleEarnings = dashboardData.data.yearlyEarnings;
+    this.yearlyBar = [];
+    if (this.yearlyBubble) {
+      _.map(this.yearlyBubble.comparisons, (num, key) => {
+        this.yearlyBar.push({
+          time: key,
+          amount: num
+        });
+      });
+    }
+    this.yearlyBar.reverse();
 
-            // vm.invoices = dashboardData.data.invoices;
-            // _.map(vm.invoices, (num, key) => {
-            //     num.date = new Date(num.date);
-            // });
+    this.barData = {
+      daily: this.dailyBar,
+      monthly: this.monthlyBar,
+      yearly: this.yearlyBar
+    };
 
-            vm.calendarExpenses = dashboardData.data.calendarExpenses;
+    this.barColorClass = {
+      daily: "bar-danger",
+      monthly: "bar-success",
+      yearly: "bar-info"
+    };
 
-            if(dashboardData.data.validAll === 0) {
-                vm.getExpenseValidation = dashboardData.data;
-            }
-        }
+    this.calendarExpenses = dashboardData.data.calendarExpenses;
 
-        resetDashboard(dashboardData);
+    if (dashboardData.data.validAll === 0) {
+      this.getExpenseValidation = dashboardData.data;
+    }
+  }
 
-        vm.getExpenseRecords = (expenseDate) => {
-            dashboardService.getDashboard(expenseDate).then((response) => {
-                resetDashboard(response);
-            });
-        };
+  getExpenseRecords(expenseDate) {
+    this.dashboardService.getDashboard(expenseDate).then(response => {
+      this.resetDashboard(response);
     });
-})(window.angular);
+  }
+
+  $onInit() {
+    this.resetDashboard(this.dashboardData);
+  }
+}
+
+angular
+  .module("moneyManager")
+  .controller("dashboardController", dashboardController);

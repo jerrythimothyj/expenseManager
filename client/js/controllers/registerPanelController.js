@@ -1,21 +1,33 @@
-(function(angular) {
-  "use strict";
-  angular
-    .module("moneyManager")
-    .controller("registerPanelController", function($scope) {
-      var vm = this;
-      vm.registerUser = user => {
-        vm.registrationSubmit({ submissionDetails: user });
-      };
+export default class registerPanelController {
+  constructor($scope) {
+    this.$scope = $scope;
+  }
 
-      $scope.$watch("rpc.returnObj", newValue => {
-        if (newValue && newValue.validAll == 1) {
-          vm.user = {
-            email: "",
-            pwd: "",
-            confPwd: ""
-          };
-        }
-      });
+  registerUser(user) {
+    this.registrationSubmit({ submissionDetails: user });
+  }
+
+  $onInit() {
+    this.$scope.$watch("rpc.returnObj", newValue => {
+      if (newValue && newValue.validAll == 1) {
+        this.user = {
+          email: "",
+          pwd: "",
+          confPwd: ""
+        };
+      }
     });
-})(window.angular);
+  }
+}
+angular
+  .module("moneyManager")
+  .controller("registerPanelController", registerPanelController)
+  .component("registerPanel", {
+    templateUrl: "./client/views/components/registerPanel.html",
+    bindings: {
+      returnObj: "=",
+      registrationSubmit: "&"
+    },
+    controller: registerPanelController,
+    controllerAs: "rpc"
+  });

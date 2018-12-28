@@ -1,19 +1,25 @@
-(function(angular) {
-  'use strict';
-angular.module('moneyManager')
+export default class navbarController {
+  constructor($state, landingService) {
+    this.$state = $state;
+    this.landingService = landingService;
+  }
 
-    .controller('navbarController', function($state, landingService) {
+  logout() {
+    this.landingService.logout().then(response => {
+      this.returnObj = response.data;
 
-        var vm = this;
-        vm.logout = () => {
-        	landingService.logout()
-        		.then((response) => {
-        			vm.returnObj = response.data;
-
-                    if (vm.returnObj.logoutInd == 1) {
-                        $state.go ('login');
-                    }
-        		});
-        }
+      if (this.returnObj.logoutInd == 1) {
+        this.$state.go("login");
+      }
     });
-})(window.angular);
+  }
+}
+
+angular
+  .module("moneyManager")
+  .controller("navbarController", navbarController)
+  .component("navbar", {
+    templateUrl: "./client/views/components/navbar.html",
+    controller: navbarController,
+    controllerAs: "nc"
+  });

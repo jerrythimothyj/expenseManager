@@ -1,83 +1,75 @@
-(function(angular) {
-  "use strict";
-  angular
-    .module("moneyManager")
-    .controller("budgetController", function(
-      $scope,
-      $state,
-      expenseFields,
-      budgetData,
-      budgetService
-    ) {
-      var vm = this;
-      vm.noDay = true;
-      vm.dateChosen = false;
+export default class budgetController {
+  constructor(expenseFields, budgetData, budgetService) {
+    this.noDay = true;
+    this.dateChosen = false;
 
-      vm.expenseFields = _.sortBy(expenseFields.data, "type");
+    this.expenseFields = _.sortBy(expenseFields.data, "type");
 
-      let d = new Date();
-      vm.budgetDate = {
-        year: d.getFullYear(),
-        month: d.getMonth() + 1,
-        day: 1
-      };
+    this.budgetRecords = budgetData.data;
 
-      vm.budgetRecords = budgetData.data;
-      vm.emptyRecord = {
-        expenseType: 0,
-        comments: "",
-        amount: 0
-      };
-      vm.budgetRecords.push(angular.copy(vm.emptyRecord));
+    this.budgetRecords = budgetData.data;
+    this.emptyRecord = {
+      expenseType: 0,
+      comments: "",
+      amount: 0
+    };
+    this.budgetRecords.push(angular.copy(this.emptyRecord));
 
-      vm.budgetSavedRes = {};
+    this.budgetSavedRes = {};
+  }
 
-      vm.getBudgetRecords = budgetDate => {
-        budgetService.getBudget(budgetDate).then(response => {
-          vm.getBudgetValidation = {};
+  getBudgetRecords(budgetDate) {
+    this.budgetService.getBudget(budgetDate).then(response => {
+      this.getBudgetValidation = {};
 
-          if (response.data.validAll == 0) {
-            vm.getBudgetValidation = response.data;
-          } else {
-            vm.budgetRecords = response.data;
-            vm.budgetRecords.push(angular.copy(vm.emptyRecord));
+      if (response.data.validAll == 0) {
+        this.getBudgetValidation = response.data;
+      } else {
+        this.budgetRecords = response.data;
+        this.budgetRecords.push(angular.copy(this.emptyRecord));
 
-            vm.dateChosen = true;
-            vm.budgetSavedRes = {};
-          }
-        });
-      };
-
-      vm.saveBudget = budgetRecords => {
-        let budRecords = angular.copy(budgetRecords);
-        budRecords.pop();
-
-        let budgetData = {
-          date: vm.budgetDate.year.id + "/" + vm.budgetDate.month.id + "/" + 1,
-          budget: budRecords
-        };
-
-        budgetService.saveBudget(budgetData).then(response => {
-          vm.budgetSavedRes = response.data;
-
-          if (response.data.saveInd == 1) {
-            vm.dateChosen = false;
-          }
-        });
-      };
-
-      vm.getLastMonthRecords = budgetDate => {
-        let dateObj =
-          budgetDate.year.id +
-          "/" +
-          budgetDate.month.id +
-          "/" +
-          budgetDate.day.id;
-        vm.getBudgetRecords(budgetService.getLastMonthBudgetDate(dateObj));
-      };
-
-      vm.isEqual = (o1, o2) => {
-        return angular.equals(o1, o2);
-      };
+        this.dateChosen = true;
+        this.budgetSavedRes = {};
+      }
     });
-})(window.angular);
+  }
+
+  saveBudget(budgetRecords) {
+    const budRecords = angular.copy(budgetRecords);
+    budRecords.pop();
+
+    const budgetData = {
+      date: this.budgetDate.year.id + "/" + this.budgetDate.month.id + "/" + 1,
+      budget: budRecords
+    };
+
+    this.budgetService.saveBudget(budgetData).then(response => {
+      this.budgetSavedRes = response.data;
+
+      if (response.data.saveInd == 1) {
+        this.dateChosen = false;
+      }
+    });
+  }
+
+  getLastMonthRecords(budgetDate) {
+    const dateObj =
+      budgetDate.year.id + "/" + budgetDate.month.id + "/" + budgetDate.day.id;
+    this.getBudgetRecords(this.budgetService.getLastMonthBudgetDate(dateObj));
+  }
+
+  isEqual(o1, o2) {
+    return angular.equals(o1, o2);
+  }
+
+  $onInit() {
+    const d = new Date();
+    this.budgetDate = {
+      year: d.getFullYear(),
+      month: d.getMonth() + 1,
+      day: 1
+    };
+  }
+}
+
+angular.module("moneyManager").controller("budgetController", budgetController);

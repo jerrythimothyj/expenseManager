@@ -1,6 +1,5 @@
-(function(angular) {
-  "use strict";
-  angular.module("moneyManager").service("budgetService", function($http) {
+export default class budgetService {
+  constructor($http) {
     this.getBudget = obj => {
       return $http({
         method: "POST",
@@ -24,5 +23,6 @@
         .subtract(1, "months")
         .format("YYYY/MM/DD");
     };
-  });
-})(window.angular);
+  }
+}
+angular.module("moneyManager").service("budgetService", budgetService);

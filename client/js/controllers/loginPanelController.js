@@ -1,11 +1,18 @@
-(function(angular) {
-  'use strict';
-angular.module('moneyManager')
-    .controller('loginPanelController', function() {
-        var vm = this;
+export default class loginPanelController {
+  loginPanelUser(user) {
+    this.loginSubmit({ submissionDetails: user });
+  }
+}
 
-        vm.loginPanelUser = (user) => {
-        	vm.loginSubmit({submissionDetails: user})
-        }
-    });
-})(window.angular);
+angular
+  .module("moneyManager")
+  .controller("loginPanelController", loginPanelController)
+  .component("loginPanel", {
+    templateUrl: "./client/views/components/loginPanel.html",
+    bindings: {
+      returnObj: "=",
+      loginSubmit: "&"
+    },
+    controller: loginPanelController,
+    controllerAs: "lpc"
+  });

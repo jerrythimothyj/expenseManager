@@ -1,13 +1,15 @@
-(function(angular) {
-  "use strict";
-  angular
-    .module("moneyManager")
-    .controller("forgotPasswordController", function(landingService) {
-      var vm = this;
-      vm.forgotSubmit = user => {
-        landingService.forgotPassword(user).then(response => {
-          vm.returnObj = response.data;
-        });
-      };
+export default class forgotPasswordController {
+  constructor(landingService) {
+    this.landingService = landingService;
+  }
+
+  forgotSubmit(user) {
+    this.landingService.forgotPassword(user).then(response => {
+      this.returnObj = response.data;
     });
-})(window.angular);
+  }
+}
+
+angular
+  .module("moneyManager")
+  .controller("forgotPasswordController", forgotPasswordController);

@@ -1,6 +1,5 @@
-(function(angular) {
-  "use strict";
-  angular.module("moneyManager").service("compareService", function($http) {
+export default class compareService {
+  constructor($http) {
     this.getComparison = (kind, date1, date2, date3) => {
       return $http({
         method: "POST",
@@ -210,11 +209,18 @@
       return { ddate1, ddate2, ddate3 };
     };
 
-    this.make0OrGreater = (amount) => {
+    this.make0OrGreater = amount => {
       return amount <= 0 ? 0 : amount;
-    }
+    };
 
-    this.prepareGroupChartData = (kind, date1, date2, date3, data, earningData) => {
+    this.prepareGroupChartData = (
+      kind,
+      date1,
+      date2,
+      date3,
+      data,
+      earningData
+    ) => {
       let tmpLabels = _.uniq(_.pluck(data, "type"));
       let labels = [];
       let date1Arr = date1.split("/");
@@ -225,12 +231,10 @@
       let d2 = null;
       let d3 = null;
 
-
       let filteredByType = null;
       let filterByD3 = null;
       let filterByD2 = null;
       let filterByD1 = null;
-
 
       switch (kind) {
         case "yearly":
@@ -315,27 +319,57 @@
                 0
             ) {
               labels.push(tmpLabel);
-              let date3Filtered = _.filter(filteredByType, { date_yyyy: date3Arr[0] })[0];
-              let date2Filtered = _.filter(filteredByType, { date_yyyy: date2Arr[0] })[0];
-              let date1Filtered = _.filter(filteredByType, { date_yyyy: date1Arr[0] })[0];
+              let date3Filtered = _.filter(filteredByType, {
+                date_yyyy: date3Arr[0]
+              })[0];
+              let date2Filtered = _.filter(filteredByType, {
+                date_yyyy: date2Arr[0]
+              })[0];
+              let date1Filtered = _.filter(filteredByType, {
+                date_yyyy: date1Arr[0]
+              })[0];
 
-              let date3EarningFiltered = _.filter(earningData, {date_yyyy: date3Filtered.date_yyyy, type: date3Filtered.type});
-              let date2EarningFiltered = _.filter(earningData, {date_yyyy: date2Filtered.date_yyyy, type: date2Filtered.type});
-              let date1EarningFiltered = _.filter(earningData, {date_yyyy: date1Filtered.date_yyyy, type: date1Filtered.type});
+              let date3EarningFiltered = _.filter(earningData, {
+                date_yyyy: date3Filtered.date_yyyy,
+                type: date3Filtered.type
+              });
+              let date2EarningFiltered = _.filter(earningData, {
+                date_yyyy: date2Filtered.date_yyyy,
+                type: date2Filtered.type
+              });
+              let date1EarningFiltered = _.filter(earningData, {
+                date_yyyy: date1Filtered.date_yyyy,
+                type: date1Filtered.type
+              });
 
               series[0].values.push(
-                this.make0OrGreater(date3Filtered.amount - (date3EarningFiltered.length > 0 ? date3EarningFiltered[0].amount : 0))
+                this.make0OrGreater(
+                  date3Filtered.amount -
+                    (date3EarningFiltered.length > 0
+                      ? date3EarningFiltered[0].amount
+                      : 0)
+                )
               );
               series[1].values.push(
-                this.make0OrGreater(date2Filtered.amount - (date2EarningFiltered.length > 0 ? date2EarningFiltered[0].amount : 0))
+                this.make0OrGreater(
+                  date2Filtered.amount -
+                    (date2EarningFiltered.length > 0
+                      ? date2EarningFiltered[0].amount
+                      : 0)
+                )
               );
               series[2].values.push(
-                this.make0OrGreater(date1Filtered.amount - (date1EarningFiltered.length > 0 ? date1EarningFiltered[0].amount : 0))
+                this.make0OrGreater(
+                  date1Filtered.amount -
+                    (date1EarningFiltered.length > 0
+                      ? date1EarningFiltered[0].amount
+                      : 0)
+                )
               );
             }
             break;
 
-            case "monthly":
+          case "monthly":
             filteredByType = _.filter(data, { type: tmpLabel });
             filterByD3 = _.filter(filteredByType, {
               date_yyyy: date3Arr[0],
@@ -379,39 +413,81 @@
             );
 
             if (
-              _.filter(filteredByType, { date_yyyy: date3Arr[0], date_mm: date3Arr[1] })[0].amount !=
-                0 ||
-              _.filter(filteredByType, { date_yyyy: date2Arr[0], date_mm: date2Arr[1] })[0].amount !=
-                0 ||
-              _.filter(filteredByType, { date_yyyy: date1Arr[0], date_mm: date1Arr[1] })[0].amount !=
-                0
+              _.filter(filteredByType, {
+                date_yyyy: date3Arr[0],
+                date_mm: date3Arr[1]
+              })[0].amount != 0 ||
+              _.filter(filteredByType, {
+                date_yyyy: date2Arr[0],
+                date_mm: date2Arr[1]
+              })[0].amount != 0 ||
+              _.filter(filteredByType, {
+                date_yyyy: date1Arr[0],
+                date_mm: date1Arr[1]
+              })[0].amount != 0
             ) {
               labels.push(tmpLabel);
-              let date3Filtered = _.filter(filteredByType, { date_yyyy: date3Arr[0], date_mm: date3Arr[1] })[0];
-              let date2Filtered = _.filter(filteredByType, { date_yyyy: date2Arr[0], date_mm: date2Arr[1] })[0];
-              let date1Filtered = _.filter(filteredByType, { date_yyyy: date1Arr[0], date_mm: date1Arr[1] })[0];
+              let date3Filtered = _.filter(filteredByType, {
+                date_yyyy: date3Arr[0],
+                date_mm: date3Arr[1]
+              })[0];
+              let date2Filtered = _.filter(filteredByType, {
+                date_yyyy: date2Arr[0],
+                date_mm: date2Arr[1]
+              })[0];
+              let date1Filtered = _.filter(filteredByType, {
+                date_yyyy: date1Arr[0],
+                date_mm: date1Arr[1]
+              })[0];
 
-              let date3EarningFiltered = _.filter(earningData, {date_yyyy: date3Filtered.date_yyyy, date_mm: date3Filtered.date_mm, type: date3Filtered.type});
-              let date2EarningFiltered = _.filter(earningData, {date_yyyy: date2Filtered.date_yyyy, date_mm: date2Filtered.date_mm, type: date2Filtered.type});
-              let date1EarningFiltered = _.filter(earningData, {date_yyyy: date1Filtered.date_yyyy, date_mm: date1Filtered.date_mm, type: date1Filtered.type});
+              let date3EarningFiltered = _.filter(earningData, {
+                date_yyyy: date3Filtered.date_yyyy,
+                date_mm: date3Filtered.date_mm,
+                type: date3Filtered.type
+              });
+              let date2EarningFiltered = _.filter(earningData, {
+                date_yyyy: date2Filtered.date_yyyy,
+                date_mm: date2Filtered.date_mm,
+                type: date2Filtered.type
+              });
+              let date1EarningFiltered = _.filter(earningData, {
+                date_yyyy: date1Filtered.date_yyyy,
+                date_mm: date1Filtered.date_mm,
+                type: date1Filtered.type
+              });
 
               series[0].values.push(
-                this.make0OrGreater(date3Filtered.amount - (date3EarningFiltered.length > 0 ? date3EarningFiltered[0].amount : 0))
+                this.make0OrGreater(
+                  date3Filtered.amount -
+                    (date3EarningFiltered.length > 0
+                      ? date3EarningFiltered[0].amount
+                      : 0)
+                )
               );
               series[1].values.push(
-                this.make0OrGreater(date2Filtered.amount - (date2EarningFiltered.length > 0 ? date2EarningFiltered[0].amount : 0))
+                this.make0OrGreater(
+                  date2Filtered.amount -
+                    (date2EarningFiltered.length > 0
+                      ? date2EarningFiltered[0].amount
+                      : 0)
+                )
               );
               series[2].values.push(
-                this.make0OrGreater(date1Filtered.amount - (date1EarningFiltered.length > 0 ? date1EarningFiltered[0].amount : 0))
+                this.make0OrGreater(
+                  date1Filtered.amount -
+                    (date1EarningFiltered.length > 0
+                      ? date1EarningFiltered[0].amount
+                      : 0)
+                )
               );
             }
             break;
-        case "daily":
+          case "daily":
             filteredByType = _.filter(data, { type: tmpLabel });
             filterByD3 = _.filter(filteredByType, {
               date_yyyy: date3Arr[0],
               date_mm: date3Arr[1],
-              date_dd: date3Arr[2],
+              date_dd: date3Arr[2]
             });
             if (filterByD3.length == 0)
               filteredByType.push({
@@ -419,12 +495,12 @@
                 amount: 0,
                 date_yyyy: date3Arr[0],
                 date_mm: date3Arr[1],
-                date_dd: date3Arr[2],
+                date_dd: date3Arr[2]
               });
             filterByD2 = _.filter(filteredByType, {
               date_yyyy: date2Arr[0],
               date_mm: date2Arr[1],
-              date_dd: date2Arr[2],
+              date_dd: date2Arr[2]
             });
             if (filterByD2.length == 0)
               filteredByType.push({
@@ -432,12 +508,12 @@
                 amount: 0,
                 date_yyyy: date2Arr[0],
                 date_mm: date2Arr[1],
-                date_dd: date2Arr[2],
+                date_dd: date2Arr[2]
               });
             filterByD1 = _.filter(filteredByType, {
               date_yyyy: date1Arr[0],
               date_mm: date1Arr[1],
-              date_dd: date1Arr[2],
+              date_dd: date1Arr[2]
             });
             if (filterByD1.length == 0)
               filteredByType.push({
@@ -457,30 +533,81 @@
             );
 
             if (
-              _.filter(filteredByType, { date_yyyy: date3Arr[0], date_mm: date3Arr[1], date_dd: date3Arr[2] })[0].amount !=
-                0 ||
-              _.filter(filteredByType, { date_yyyy: date2Arr[0], date_mm: date2Arr[1], date_dd: date2Arr[2] })[0].amount !=
-                0 ||
-              _.filter(filteredByType, { date_yyyy: date1Arr[0], date_mm: date1Arr[1], date_dd: date1Arr[2] })[0].amount !=
-                0
+              _.filter(filteredByType, {
+                date_yyyy: date3Arr[0],
+                date_mm: date3Arr[1],
+                date_dd: date3Arr[2]
+              })[0].amount != 0 ||
+              _.filter(filteredByType, {
+                date_yyyy: date2Arr[0],
+                date_mm: date2Arr[1],
+                date_dd: date2Arr[2]
+              })[0].amount != 0 ||
+              _.filter(filteredByType, {
+                date_yyyy: date1Arr[0],
+                date_mm: date1Arr[1],
+                date_dd: date1Arr[2]
+              })[0].amount != 0
             ) {
               labels.push(tmpLabel);
-              let date3Filtered = _.filter(filteredByType, { date_yyyy: date3Arr[0], date_mm: date3Arr[1], date_dd: date3Arr[2] })[0];
-              let date2Filtered = _.filter(filteredByType, { date_yyyy: date2Arr[0], date_mm: date2Arr[1], date_dd: date2Arr[2] })[0];
-              let date1Filtered = _.filter(filteredByType, { date_yyyy: date1Arr[0], date_mm: date1Arr[1], date_dd: date1Arr[2] })[0];
+              let date3Filtered = _.filter(filteredByType, {
+                date_yyyy: date3Arr[0],
+                date_mm: date3Arr[1],
+                date_dd: date3Arr[2]
+              })[0];
+              let date2Filtered = _.filter(filteredByType, {
+                date_yyyy: date2Arr[0],
+                date_mm: date2Arr[1],
+                date_dd: date2Arr[2]
+              })[0];
+              let date1Filtered = _.filter(filteredByType, {
+                date_yyyy: date1Arr[0],
+                date_mm: date1Arr[1],
+                date_dd: date1Arr[2]
+              })[0];
 
-              let date3EarningFiltered = _.filter(earningData, {date_yyyy: date3Filtered.date_yyyy, date_mm: date3Filtered.date_mm, date_dd: date3Filtered.date_dd, type: date3Filtered.type});
-              let date2EarningFiltered = _.filter(earningData, {date_yyyy: date2Filtered.date_yyyy, date_mm: date2Filtered.date_mm, date_dd: date2Filtered.date_dd, type: date2Filtered.type});
-              let date1EarningFiltered = _.filter(earningData, {date_yyyy: date1Filtered.date_yyyy, date_mm: date1Filtered.date_mm, date_dd: date1Filtered.date_dd, type: date1Filtered.type});
+              let date3EarningFiltered = _.filter(earningData, {
+                date_yyyy: date3Filtered.date_yyyy,
+                date_mm: date3Filtered.date_mm,
+                date_dd: date3Filtered.date_dd,
+                type: date3Filtered.type
+              });
+              let date2EarningFiltered = _.filter(earningData, {
+                date_yyyy: date2Filtered.date_yyyy,
+                date_mm: date2Filtered.date_mm,
+                date_dd: date2Filtered.date_dd,
+                type: date2Filtered.type
+              });
+              let date1EarningFiltered = _.filter(earningData, {
+                date_yyyy: date1Filtered.date_yyyy,
+                date_mm: date1Filtered.date_mm,
+                date_dd: date1Filtered.date_dd,
+                type: date1Filtered.type
+              });
 
               series[0].values.push(
-                this.make0OrGreater(date3Filtered.amount - (date3EarningFiltered.length > 0 ? date3EarningFiltered[0].amount : 0))
+                this.make0OrGreater(
+                  date3Filtered.amount -
+                    (date3EarningFiltered.length > 0
+                      ? date3EarningFiltered[0].amount
+                      : 0)
+                )
               );
               series[1].values.push(
-                this.make0OrGreater(date2Filtered.amount - (date2EarningFiltered.length > 0 ? date2EarningFiltered[0].amount : 0))
+                this.make0OrGreater(
+                  date2Filtered.amount -
+                    (date2EarningFiltered.length > 0
+                      ? date2EarningFiltered[0].amount
+                      : 0)
+                )
               );
               series[2].values.push(
-                this.make0OrGreater(date1Filtered.amount - (date1EarningFiltered.length > 0 ? date1EarningFiltered[0].amount : 0))
+                this.make0OrGreater(
+                  date1Filtered.amount -
+                    (date1EarningFiltered.length > 0
+                      ? date1EarningFiltered[0].amount
+                      : 0)
+                )
               );
             }
             break;
@@ -492,14 +619,16 @@
 
     this.calculateSpendings = (spendings, earnings) => {
       _.map(spendings.expenses, (expense, key) => {
-        if(earnings.expenses && earnings.expenses[key]) {
-          spendings.expenses[key] = spendings.expenses[key] - earnings.expenses[key];
+        if (earnings.expenses && earnings.expenses[key]) {
+          spendings.expenses[key] =
+            spendings.expenses[key] - earnings.expenses[key];
         }
-        if(spendings.expenses[key] <= 0) {
+        if (spendings.expenses[key] <= 0) {
           delete spendings.expenses[key];
         }
-      })
+      });
       return spendings;
     };
-  });
-})(window.angular);
+  }
+}
+angular.module("moneyManager").service("compareService", compareService);
